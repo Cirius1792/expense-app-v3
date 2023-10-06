@@ -1,7 +1,0 @@
-com/clt/expenses/Main.class
-com/clt/expenses/ImmutableMoney.class
-com/clt/expenses/Money.class
-com/clt/expenses/Expense.class
-com/clt/expenses/ImmutableExpense$Builder.class
-com/clt/expenses/ImmutableExpense.class
-com/clt/expenses/ImmutableMoney$Builder.class
