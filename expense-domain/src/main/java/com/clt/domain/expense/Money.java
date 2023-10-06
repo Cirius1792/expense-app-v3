@@ -1,6 +1,5 @@
 package com.clt.domain.expense;
 
-import com.clt.expenses.ImmutableMoney;
 import org.immutables.value.Value;
 
 import java.math.BigDecimal;
