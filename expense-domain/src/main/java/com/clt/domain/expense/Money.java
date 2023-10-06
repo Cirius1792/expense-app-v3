@@ -19,7 +19,7 @@ public abstract class Money {
   }
 
   public Money divide(Money money) {
-    return Money.euros(getAmount().divide(money.getAmount()));
+    return Money.euros(getAmount().divide(money.getAmount(), 2, RoundingMode.CEILING));
   }
 
   public Money divide(BigDecimal amount) {
