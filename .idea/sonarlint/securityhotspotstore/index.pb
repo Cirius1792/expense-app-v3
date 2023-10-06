@@ -1,3 +1,28 @@
 
-g
-7expense-domain/src/main/java/com/clt/expenses/Main.java,0/d/0d0f1bbd2bd15fe1b2639ae0d64cd54e723ec668
+7
+pom.yml,f/1/f1ae81a54a89a749d0645453aa82b52a2e93f5f2
+r
+Bexpense-domain/src/test/java/com/clt/domain/expense/MoneyTest.java,5/f/5f371b335a4ad982cb817fd7aab42edd6dfd571a
+p
+@expense-domain/src/main/java/com/clt/domain/expense/Expense.java,1/9/191c7f33b39c669f3800c268dd8228f6c896d112
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+l
+<expense-domain/src/main/java/com/clt/domain/group/Group.java,e/4/e40f55edcf4bc887679d884369eba916e69815da
+n
+>expense-domain/src/main/java/com/clt/domain/expense/Money.java,f/4/f4b5fc4394f4837658cd776766670f78521e93f3
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
+H
+expense-domain/README.md,7/8/78d300f647c881c2b52c680b0301df9cfecb8d61
+m
+=expense-domain/src/main/java/com/clt/domain/events/Event.java,7/4/74b5243cfd79458a7c006db7914d2bfbffab7cca
+F
+expense-domain/pom.yml,8/8/888bcef7ae6301fa1790f6fea08cff4e66019c21
+m
+=expense-domain/src/main/java/com/clt/domain/group/Person.java,3/a/3ad874816645a12ee8271a98ed40b0b92765def6
+z
+Jexpense-domain/src/main/java/com/clt/domain/group/GroupManagerService.java,5/b/5bd98e4fb14a6a0d7998c3f40e567614eb5cadcc
+~
+Nexpense-domain/src/test/java/com/clt/domain/group/GroupManagerServiceTest.java,5/7/571a3c3617991d1facddee9c9cb3e1dc9d368920
