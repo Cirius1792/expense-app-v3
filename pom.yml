@@ -1,0 +1,48 @@
+modelEncoding: UTF-8
+modelVersion: 4.0.0
+groupId: com.clt.expenses
+artifactId: expenses-app-v3
+version: 1.0-SNAPSHOT
+packaging: pom
+name: expenses-app-v3
+url: https://github.com/Cirius1792/expense-app-v3
+properties: {wiremock.version: 2.35.0, maven.compiler.target: 17, org.mapstruct.version: 1.5.4.Final,
+  java.version: 17, cucumber.version: 7.11.1, maven.compiler.source: 17, springdoc.version: 2.1.0,
+  project.build.sourceEncoding: UTF-8, spring.boot.version: 3.0.6}
+modules: [expense-domain]
+dependencyManagement:
+  dependencies:
+  - {groupId: org.immutables, artifactId: bom, version: 2.9.2, type: pom, scope: import}
+  - {groupId: org.apache.commons, artifactId: commons-lang3, version: 3.12.0}
+  - {groupId: io.cucumber, artifactId: cucumber-bom, version: '${cucumber.version}',
+    type: pom, scope: import}
+  - {groupId: org.junit, artifactId: junit-bom, version: 5.9.2, type: pom, scope: import}
+  - {groupId: org.testcontainers, artifactId: testcontainers-bom, version: 1.17.3,
+    type: pom, scope: import}
+build:
+  plugins:
+  - {groupId: org.apache.maven.plugins, artifactId: maven-surefire-plugin, version: 3.0.0}
+  - groupId: com.spotify.fmt
+    artifactId: fmt-maven-plugin
+    version: 2.19
+    executions:
+    - goals: [format]
+      id: default
+      inherited: true
+      priority: 0
+profiles:
+- build:
+    plugins:
+    - groupId: org.apache.maven.plugins
+      artifactId: maven-failsafe-plugin
+      version: 3.0.0
+      configuration:
+        includes: ['**/*IT']
+      executions:
+      - goals: [integration-test, verify]
+        id: default
+        inherited: true
+        priority: 0
+  id: failsafe
+  source: pom
+childProjectUrlInheritAppendPath: true
