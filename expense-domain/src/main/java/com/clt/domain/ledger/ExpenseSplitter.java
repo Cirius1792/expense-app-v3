@@ -26,7 +26,7 @@ public class ExpenseSplitter {
                     .id(idFactory.newId())
                     .debtor(debtor)
                     .dueAmount(dueProCapite)
-                    .expense(expense)
+                    .expense(expense.id())
                     .groupId(group.id())
                     .build())
         .collect(Collectors.toList());

@@ -1,6 +1,6 @@
 package com.clt.domain.group;
 
-import java.util.Set;
+import java.util.List;
 import org.immutables.value.Value;
 
 @Value.Immutable
@@ -11,5 +11,5 @@ public interface Group {
 
   Person owner();
 
-  Set<Person> members();
+  List<Person> members();
 }

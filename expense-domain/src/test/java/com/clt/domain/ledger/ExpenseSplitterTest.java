@@ -8,14 +8,13 @@ import com.clt.domain.group.Group;
 import com.clt.domain.group.GroupUtil;
 import com.clt.domain.group.Person;
 import com.clt.domain.group.PersonUtil;
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
-import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.List;
 
 class ExpenseSplitterTest {
 
@@ -32,11 +31,7 @@ class ExpenseSplitterTest {
           + "Then an expense charge of X/3€ from Jack to Al is created"
           + "And an expense charge of X/3€ from John to Al is created")
   @ParameterizedTest
-  @CsvSource({
-          "6,2.00,2.00",
-          "8,2.67,2.67",
-          "4, 1.34, 1.34"
-  })
+  @CsvSource({"6,2.00,2.00", "8,2.67,2.67", "4, 1.34, 1.34"})
   void split_expense_test(String cost, String dueAmount1, String dueAmount2) {
     Expense expense =
         ImmutableExpense.builder()

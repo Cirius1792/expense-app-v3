@@ -1,6 +1,5 @@
 package com.clt.domain.ledger;
 
-import com.clt.domain.expense.Expense;
 import com.clt.domain.expense.Money;
 import com.clt.domain.group.Person;
 import org.immutables.value.Value;
@@ -9,7 +8,7 @@ import org.immutables.value.Value;
 public interface ExpenseCharge {
   String id();
 
-  Expense expense();
+  String expense();
 
   String groupId();
 
@@ -17,7 +16,5 @@ public interface ExpenseCharge {
 
   Person debtor();
 
-  default Person creditor() {
-    return expense().owner();
-  }
+  Person creditor();
 }
