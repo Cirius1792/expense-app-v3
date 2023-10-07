@@ -10,5 +10,6 @@ dependencies:
   - { groupId: io.projectreactor, artifactId: reactor-core, version: 3.5.5 }
   # Test
   - {groupId: org.junit.jupiter, artifactId: junit-jupiter-api, scope: test}
+  - {groupId: org.junit.jupiter, artifactId: junit-jupiter-params, scope: test}
   - { groupId: io.projectreactor, artifactId: reactor-test, version: 3.5.5, scope: test }
 childProjectUrlInheritAppendPath: true

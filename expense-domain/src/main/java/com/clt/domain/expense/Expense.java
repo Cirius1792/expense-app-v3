@@ -12,5 +12,6 @@ public interface Expense {
   Money amount();
 
   Person owner();
+
   String groupId();
 }
