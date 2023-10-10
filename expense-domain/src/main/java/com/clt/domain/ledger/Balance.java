@@ -40,10 +40,6 @@ public class Balance {
         this.charges.add(charge);
     }
 
-    public List<ExpenseCharge> getExpenseCharges() {
-        return new ArrayList<>(this.charges);
-    }
-
     public Money getDueTo(Person person) {
         Money debits = this.charges.stream()
                 .filter(c -> person.id().equals(c.creditor().id()))
