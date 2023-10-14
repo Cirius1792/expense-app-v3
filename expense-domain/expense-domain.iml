@@ -6,4 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test" isTestSource="true" />
     </content>
   </component>
+  <component name="SonarLintModuleSettings">
+    <option name="uniqueId" value="47594e7e-94b7-49a5-a3fa-945c994bee00" />
+  </component>
 </module>
