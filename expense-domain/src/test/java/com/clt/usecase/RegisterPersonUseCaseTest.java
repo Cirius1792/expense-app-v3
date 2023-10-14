@@ -3,25 +3,24 @@ package com.clt.usecase;
 import com.clt.domain.commons.UUIDIdFactory;
 import com.clt.domain.group.Person;
 import com.clt.domain.group.PersonStore;
-import com.clt.usecase.RegisterPerson;
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
 
-class RegisterPersonTest {
+class RegisterPersonUseCaseTest {
 
 
     private static final String USER_NAME = "Mario";
     private static PersonStore store;
 
 
-    private static RegisterPerson useCase;
+    private static RegisterPersonUseCase useCase;
 
     @BeforeEach
     void initMocks() {
         store = Mockito.mock(PersonStore.class);
         Mockito.when(store.store(Mockito.any()))
                 .thenAnswer(args -> args.getArgument(0));
-        useCase = new RegisterPerson(new UUIDIdFactory(), store);
+        useCase = new RegisterPersonUseCase(new UUIDIdFactory(), store);
     }
 
     @DisplayName("Given a valid name" +

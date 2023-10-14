@@ -2,12 +2,13 @@ package com.clt.usecase;
 
 import com.clt.domain.commons.UUIDIdFactory;
 import com.clt.domain.group.*;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 class CreateGroupUseCaseTest {
 
@@ -24,7 +25,7 @@ class CreateGroupUseCaseTest {
         GroupManagerService groupManagerService = new GroupManagerService(new UUIDIdFactory());
         PersonStore personStore = Mockito.mock(PersonStore.class);
         Mockito.when(personStore.retrieve(OWNER.id()))
-                .thenReturn(OWNER);
+                .thenReturn(Optional.of(OWNER));
         Mockito.when(personStore.retrieve(MEMBERS_IDS))
                 .thenReturn(Collections.singletonList(MEMBER));
         useCase = new CreateGroupUseCase(groupManagerService, personStore, groupStore);
@@ -57,6 +58,14 @@ class CreateGroupUseCaseTest {
     void created_group_is_stored_test(){
         Group actual = useCase.create(GROUP_NAME, OWNER.id(), MEMBERS_IDS);
         Mockito.verify(groupStore, Mockito.atLeastOnce()).store(actual);
+    }
+
+    @Test
+    @DisplayName("Given a wrong owner id " +
+            "When creating the group " +
+            "Then a PersonNotFound error is thrown")
+    void wrong_owner_id_test(){
+        Assertions.assertThrows(PersonNotFound.class, () -> useCase.create(GROUP_NAME, UUID.randomUUID().toString(), MEMBERS_IDS));
     }
 
 }

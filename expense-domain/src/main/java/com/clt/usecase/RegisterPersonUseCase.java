@@ -5,12 +5,12 @@ import com.clt.domain.group.ImmutablePerson;
 import com.clt.domain.group.Person;
 import com.clt.domain.group.PersonStore;
 
-public class RegisterPerson {
+public class RegisterPersonUseCase {
 
     private final IdFactory idFactory;
     private final PersonStore store;
 
-    public RegisterPerson(IdFactory idFactory, PersonStore store) {
+    public RegisterPersonUseCase(IdFactory idFactory, PersonStore store) {
         this.idFactory = idFactory;
         this.store = store;
     }

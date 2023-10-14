@@ -16,7 +16,8 @@ public class CreateGroupUseCase {
     }
 
     public Group create(String groupName, String ownerId, List<String> memberIds){
-        Person owner = personStore.retrieve(ownerId);
+        Person owner = personStore.retrieve(ownerId)
+                .orElseThrow(PersonNotFound::new);
         List<Person> members = personStore.retrieve(memberIds);
         Group group = groupManagerService.create(groupName, owner, members);
         groupStore.store(group);
