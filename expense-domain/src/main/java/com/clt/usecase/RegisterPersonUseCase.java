@@ -1,24 +1,20 @@
 package com.clt.usecase;
 
-import com.clt.domain.commons.IdFactory;
-import com.clt.domain.group.ImmutablePerson;
 import com.clt.domain.group.Person;
+import com.clt.domain.group.PersonFactory;
 import com.clt.domain.group.PersonStore;
 
 public class RegisterPersonUseCase {
 
-    private final IdFactory idFactory;
+    private final PersonFactory personFactory;
     private final PersonStore store;
 
-    public RegisterPersonUseCase(IdFactory idFactory, PersonStore store) {
-        this.idFactory = idFactory;
+    public RegisterPersonUseCase(PersonFactory personFactory, PersonStore store) {
+        this.personFactory = personFactory;
         this.store = store;
     }
 
     public Person register(String username){
-        return this.store.store(ImmutablePerson.builder()
-                .id(idFactory.newId())
-                .username(username)
-                .build());
+        return this.store.store(personFactory.create(username));
     }
 }

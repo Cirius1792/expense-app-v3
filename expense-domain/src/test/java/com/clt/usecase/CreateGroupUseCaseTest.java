@@ -22,13 +22,13 @@ class CreateGroupUseCaseTest {
     @BeforeEach
     void initMocks(){
         groupStore = Mockito.mock(GroupStore.class);
-        GroupManagerService groupManagerService = new GroupManagerService(new UUIDIdFactory());
+        GroupFactory groupFactory = new GroupFactory(new UUIDIdFactory());
         PersonStore personStore = Mockito.mock(PersonStore.class);
         Mockito.when(personStore.retrieve(OWNER.id()))
                 .thenReturn(Optional.of(OWNER));
         Mockito.when(personStore.retrieve(MEMBERS_IDS))
                 .thenReturn(Collections.singletonList(MEMBER));
-        useCase = new CreateGroupUseCase(groupManagerService, personStore, groupStore);
+        useCase = new CreateGroupUseCase(groupFactory, personStore, groupStore);
     }
 
     @Test

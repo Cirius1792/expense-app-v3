@@ -32,10 +32,6 @@ o
 ?expense-domain/src/main/java/com/clt/domain/ledger/Balance.java,b/6/b62df85c7ff6e25f7895dd6712afe28d65a7c93d
 Q
 !expense-domain/expense-domain.iml,4/a/4a30cb651106a014ffd1d1450dce64b03f3f078f
-p
-@expense-domain/src/main/java/com/clt/usecase/RegisterPerson.java,e/b/eb2a93d3fe9b3d463c5d9ff9159816174007a69a
-t
-Dexpense-domain/src/test/java/com/clt/usecase/RegisterPersonTest.java,a/a/aa1c33575ba6e03d0b11e696c13258f1ce29da98
 q
 Aexpense-domain/src/test/java/com/clt/domain/group/PersonUtil.java,2/0/20816e60adc6dcabfe905c6c6c811a32a827ddef
 q
@@ -46,3 +42,11 @@ t
 Dexpense-domain/src/main/java/com/clt/usecase/CreateGroupUseCase.java,6/f/6f0492f1190d5ac61bbca3cdc1a155b5ea8b5ea6
 x
 Hexpense-domain/src/test/java/com/clt/usecase/CreateGroupUseCaseTest.java,0/d/0dc754a92bbc17c3ff36a5a164901a522bc26d8a
+{
+Kexpense-domain/src/test/java/com/clt/usecase/RegisterPersonUseCaseTest.java,b/6/b6ef90c49b6cf4b7bff8ce17abf96edb8d8a5f54
+u
+Eexpense-domain/src/main/java/com/clt/domain/group/PersonNotFound.java,a/5/a55114ba678ec07861fab7bdd7001b68fa08d8d4
+w
+Gexpense-domain/src/main/java/com/clt/usecase/RegisterPersonUseCase.java,7/4/74fae363383c147ca09c61bad6db4ba9e3785ab0
+8
+todos.md,c/2/c23273998587596e1e8dc20157389b9b05ee99ec

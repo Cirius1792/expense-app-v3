@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class GroupManagerServiceTest {
+class GroupFactoryTest {
 
   private static final String GROUP_NAME = "group-x";
   private static final Person GROUP_OWNER = PersonUtil.newPerson();
   private static final Group GROUP = GroupUtil.newGroup();
 
-  GroupManagerService service = new GroupManagerService(new UUIDIdFactory());
+  GroupFactory service = new GroupFactory(new UUIDIdFactory());
 
   @DisplayName(
       "Given a name and an owner "

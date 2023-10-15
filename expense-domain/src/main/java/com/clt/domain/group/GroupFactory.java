@@ -4,10 +4,10 @@ import com.clt.domain.commons.IdFactory;
 
 import java.util.List;
 
-public class GroupManagerService {
+public class GroupFactory {
   private final IdFactory groupIdFactory;
 
-  public GroupManagerService(IdFactory groupIdFactory) {
+  public GroupFactory(IdFactory groupIdFactory) {
     this.groupIdFactory = groupIdFactory;
   }
 
