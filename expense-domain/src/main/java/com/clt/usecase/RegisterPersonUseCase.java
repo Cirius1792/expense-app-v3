@@ -3,6 +3,7 @@ package com.clt.usecase;
 import com.clt.domain.group.Person;
 import com.clt.domain.group.PersonFactory;
 import com.clt.domain.group.PersonStore;
+import reactor.core.publisher.Mono;
 
 public class RegisterPersonUseCase {
 
@@ -14,7 +15,7 @@ public class RegisterPersonUseCase {
         this.store = store;
     }
 
-    public Person register(String username){
+    public Mono<Person> register(String username){
         return this.store.store(personFactory.create(username));
     }
 }

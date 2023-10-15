@@ -1,11 +1,11 @@
 package com.clt.domain.group;
 
-import java.util.List;
-import java.util.Optional;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 public interface PersonStore {
 
-    Person store(Person person);
-    Optional<Person> retrieve(String id);
-    List<Person> retrieve(Iterable<String> ids);
+    Mono<Person> store(Person person);
+    Mono<Person> retrieve(String id);
+    Flux<Person> retrieve(Iterable<String> ids);
 }

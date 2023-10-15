@@ -16,11 +16,12 @@ public class CreateGroupUseCase {
         this.groupStore = groupStore;
     }
 
-    public Mono<Group> create(String groupName, String ownerId, List<String> memberIds){
-        Person owner = personStore.retrieve(ownerId)
-                .orElseThrow(PersonNotFound::new);
-        List<Person> members = personStore.retrieve(memberIds);
-        Group group = groupFactory.create(groupName, owner, members);
-        return groupStore.store(group);
+    public Mono<Group> create(String groupName, String ownerId, List<String> memberIds) {
+        Mono<Person> ownerProducer = personStore.retrieve(ownerId)
+                .switchIfEmpty(Mono.error(new PersonNotFound()));
+        Mono<List<Person>> membersProduer = personStore.retrieve(memberIds)
+                .collectList();
+        return Mono.zip(ownerProducer, membersProduer, (o, ms) -> groupFactory.create(groupName, o, ms))
+                .doOnNext(groupStore::store);
     }
 }
