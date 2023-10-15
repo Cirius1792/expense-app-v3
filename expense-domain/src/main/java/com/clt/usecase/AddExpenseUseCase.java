@@ -11,23 +11,30 @@ import com.clt.domain.group.PersonStore;
 import reactor.core.publisher.Mono;
 
 public class AddExpenseUseCase {
-    private final PersonStore personStore;
-    private final GroupStore groupStore;
-    private final ExpenseFactory expenseFactory;
-    private final ExpenseStore expenseStore;
+  private final PersonStore personStore;
+  private final GroupStore groupStore;
+  private final ExpenseFactory expenseFactory;
+  private final ExpenseStore expenseStore;
 
-    public AddExpenseUseCase(PersonStore personStore, GroupStore groupStore, ExpenseFactory expenseFactory, ExpenseStore expenseStore) {
-        this.personStore = personStore;
-        this.groupStore = groupStore;
-        this.expenseFactory = expenseFactory;
-        this.expenseStore = expenseStore;
-    }
+  public AddExpenseUseCase(
+      PersonStore personStore,
+      GroupStore groupStore,
+      ExpenseFactory expenseFactory,
+      ExpenseStore expenseStore) {
+    this.personStore = personStore;
+    this.groupStore = groupStore;
+    this.expenseFactory = expenseFactory;
+    this.expenseStore = expenseStore;
+  }
 
-    public Mono<Expense> create(String description, Money amount, String ownerId, String groupId) {
-        var personProducer = personStore.retrieve(ownerId).switchIfEmpty(Mono.error(PersonNotFound::new));
-        var groupProducer = groupStore.retrieve(groupId).switchIfEmpty(Mono.error(GroupNotFound::new));
-        return Mono.zip(personProducer, groupProducer,
-                        (person, group) -> expenseFactory.create(description, amount, person, group.id()))
-                .doOnNext(expenseStore::store);
-    }
+  public Mono<Expense> create(String description, Money amount, String ownerId, String groupId) {
+    var personProducer =
+        personStore.retrieve(ownerId).switchIfEmpty(Mono.error(PersonNotFound::new));
+    var groupProducer = groupStore.retrieve(groupId).switchIfEmpty(Mono.error(GroupNotFound::new));
+    return Mono.zip(
+            personProducer,
+            groupProducer,
+            (person, group) -> expenseFactory.create(description, amount, person, group.id()))
+        .doOnNext(expenseStore::store);
+  }
 }
