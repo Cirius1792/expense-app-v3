@@ -19,9 +19,9 @@ public class CreateGroupUseCase {
     public Mono<Group> create(String groupName, String ownerId, List<String> memberIds) {
         Mono<Person> ownerProducer = personStore.retrieve(ownerId)
                 .switchIfEmpty(Mono.error(new PersonNotFound()));
-        Mono<List<Person>> membersProduer = personStore.retrieve(memberIds)
+        Mono<List<Person>> membersProducer = personStore.retrieve(memberIds)
                 .collectList();
-        return Mono.zip(ownerProducer, membersProduer, (o, ms) -> groupFactory.create(groupName, o, ms))
+        return Mono.zip(ownerProducer, membersProducer, (o, ms) -> groupFactory.create(groupName, o, ms))
                 .doOnNext(groupStore::store);
     }
 }
