@@ -1,6 +1,7 @@
 package com.clt.usecase;
 
 import com.clt.domain.group.*;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -15,12 +16,11 @@ public class CreateGroupUseCase {
         this.groupStore = groupStore;
     }
 
-    public Group create(String groupName, String ownerId, List<String> memberIds){
+    public Mono<Group> create(String groupName, String ownerId, List<String> memberIds){
         Person owner = personStore.retrieve(ownerId)
                 .orElseThrow(PersonNotFound::new);
         List<Person> members = personStore.retrieve(memberIds);
         Group group = groupFactory.create(groupName, owner, members);
-        groupStore.store(group);
-        return group;
+        return groupStore.store(group);
     }
 }

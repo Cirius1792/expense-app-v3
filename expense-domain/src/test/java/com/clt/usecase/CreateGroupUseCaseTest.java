@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import reactor.core.publisher.Mono;
+import reactor.test.StepVerifier;
 
 import java.util.*;
 
@@ -20,10 +22,12 @@ class CreateGroupUseCaseTest {
     private CreateGroupUseCase useCase;
 
     @BeforeEach
-    void initMocks(){
+    void initMocks() {
         groupStore = Mockito.mock(GroupStore.class);
         GroupFactory groupFactory = new GroupFactory(new UUIDIdFactory());
         PersonStore personStore = Mockito.mock(PersonStore.class);
+        Mockito.when(groupStore.store(Mockito.any()))
+                .thenAnswer(args -> Mono.just(args.getArgument(0)));
         Mockito.when(personStore.retrieve(OWNER.id()))
                 .thenReturn(Optional.of(OWNER));
         Mockito.when(personStore.retrieve(MEMBERS_IDS))
@@ -34,9 +38,12 @@ class CreateGroupUseCaseTest {
     @Test
     @DisplayName("When creating a group " +
             "Then the group id is not null")
-    void create_group_id_test(){
-        Group actual = useCase.create(GROUP_NAME, OWNER.id(), MEMBERS_IDS);
-        Assertions.assertNotNull(actual.id(), "Missing group id");
+    void create_group_id_test() {
+        var producer = useCase.create(GROUP_NAME, OWNER.id(), MEMBERS_IDS);
+        StepVerifier.create(producer)
+                        .assertNext(actual -> Assertions.assertNotNull(actual.id(), "Missing group id"))
+                .verifyComplete();
+
     }
 
     @Test
@@ -47,24 +54,31 @@ class CreateGroupUseCaseTest {
             "Then a new group is created with the owner " +
             "And with two members, the owner and the person")
     void create_group_test() {
-        Group actual = useCase.create(GROUP_NAME, OWNER.id(), MEMBERS_IDS);
-        Assertions.assertEquals(OWNER, actual.owner(), "Wrong group owner");
-        Assertions.assertEquals(MEMBERS_IDS.size(), actual.members().size());
-        Assertions.assertEquals(MEMBER, actual.members().get(0));
+         var producer = useCase.create(GROUP_NAME, OWNER.id(), MEMBERS_IDS);
+         StepVerifier.create(producer)
+                         .assertNext(actual -> {
+                             Assertions.assertEquals(OWNER, actual.owner(), "Wrong group owner");
+                             Assertions.assertEquals(MEMBERS_IDS.size(), actual.members().size());
+                             Assertions.assertEquals(MEMBER, actual.members().get(0));
+                         })
+                 .verifyComplete();
     }
+
     @Test
     @DisplayName("When creating a group " +
             "Then the created group is stored")
-    void created_group_is_stored_test(){
-        Group actual = useCase.create(GROUP_NAME, OWNER.id(), MEMBERS_IDS);
-        Mockito.verify(groupStore, Mockito.atLeastOnce()).store(actual);
+    void created_group_is_stored_test() {
+        var producer = useCase.create(GROUP_NAME, OWNER.id(), MEMBERS_IDS);
+        StepVerifier.create(producer)
+                        .assertNext(actual -> Mockito.verify(groupStore, Mockito.atLeastOnce()).store(actual))
+                                .verifyComplete();
     }
 
     @Test
     @DisplayName("Given a wrong owner id " +
             "When creating the group " +
             "Then a PersonNotFound error is thrown")
-    void wrong_owner_id_test(){
+    void wrong_owner_id_test() {
         Assertions.assertThrows(PersonNotFound.class, () -> useCase.create(GROUP_NAME, UUID.randomUUID().toString(), MEMBERS_IDS));
     }
 

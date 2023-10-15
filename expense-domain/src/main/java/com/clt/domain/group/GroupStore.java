@@ -1,6 +1,8 @@
 package com.clt.domain.group;
 
+import reactor.core.publisher.Mono;
+
 public interface GroupStore {
-    Group store(Group group);
-    Group retrieve(String groupId);
+    Mono<Group> store(Group group);
+    Mono<Group> retrieve(String groupId);
 }
