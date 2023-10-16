@@ -12,6 +12,7 @@
     <module>expense-domain</module>
     <module>expenses-app</module>
     <module>ledger-app</module>
+    <module>expenses-persistence-h2</module>
   </modules>
   <properties>
     <wiremock.version>2.35.0</wiremock.version>
@@ -26,6 +27,13 @@
   </properties>
   <dependencyManagement>
     <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring.boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
       <dependency>
         <groupId>org.immutables</groupId>
         <artifactId>bom</artifactId>
