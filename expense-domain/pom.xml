@@ -6,7 +6,6 @@
     <groupId>com.clt.expenses</groupId>
     <artifactId>expenses-app-v3</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <relativePath>../pom.yml</relativePath>
   </parent>
   <artifactId>expense-domain</artifactId>
   <properties>

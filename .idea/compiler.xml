@@ -7,6 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="expense-domain" />
+        <module name="ledger-app" />
+        <module name="expenses-app" />
       </profile>
     </annotationProcessing>
   </component>
