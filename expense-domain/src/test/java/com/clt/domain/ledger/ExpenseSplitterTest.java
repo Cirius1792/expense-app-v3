@@ -35,7 +35,7 @@ class ExpenseSplitterTest {
   void split_expense_test(String cost, String dueAmount1, String dueAmount2) {
     Expense expense =
         ImmutableExpense.builder()
-            .owner(AL)
+            .owner(AL.id())
             .id("x")
             .description("Milk")
             .amount(Money.euros(cost))
@@ -43,13 +43,13 @@ class ExpenseSplitterTest {
             .build();
     List<ExpenseCharge> actual = splitter.split(expense, GROUP);
     ExpenseCharge split =
-        actual.stream().filter(el -> JACK.equals(el.debtor())).findAny().orElseThrow();
+        actual.stream().filter(el -> JACK.id().equals(el.debtor())).findAny().orElseThrow();
     Assertions.assertEquals(Money.euros(new BigDecimal(dueAmount1)), split.dueAmount());
-    Assertions.assertEquals(AL, split.creditor());
+    Assertions.assertEquals(AL.id(), split.creditor());
 
-    split = actual.stream().filter(el -> JOHN.equals(el.debtor())).findAny().orElseThrow();
+    split = actual.stream().filter(el -> JOHN.id().equals(el.debtor())).findAny().orElseThrow();
     Assertions.assertEquals(Money.euros(new BigDecimal(dueAmount2)), split.dueAmount());
-    Assertions.assertEquals(AL, split.creditor());
+    Assertions.assertEquals(AL.id(), split.creditor());
 
     Assertions.assertEquals(2, actual.size());
   }

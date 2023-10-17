@@ -22,10 +22,10 @@ class ExpenseFactoryTest {
   @Test
   void test_expense_creation_basic_fields() {
     Expense actual =
-        expenseFactory.create(EXPENSE_DESCRIPTION, EXPENSE_AMOUNT, EXPENSE_OWNER, EXPENSE_GROUP);
+        expenseFactory.create(EXPENSE_DESCRIPTION, EXPENSE_AMOUNT, EXPENSE_OWNER.id(), EXPENSE_GROUP);
     Assertions.assertNotNull(actual.id());
     Assertions.assertEquals(EXPENSE_DESCRIPTION, actual.description());
-    Assertions.assertEquals(EXPENSE_OWNER, actual.owner());
+    Assertions.assertEquals(EXPENSE_OWNER.id(), actual.owner());
     Assertions.assertEquals(EXPENSE_AMOUNT, actual.amount());
     Assertions.assertEquals(EXPENSE_GROUP, actual.groupId());
   }

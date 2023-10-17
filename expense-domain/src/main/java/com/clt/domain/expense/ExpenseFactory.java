@@ -10,7 +10,7 @@ public class ExpenseFactory {
     this.idFactory = idFactory;
   }
 
-  public Expense create(String description, Money amount, Person owner, String groupId) {
+  public Expense create(String description, Money amount, String owner, String groupId) {
     return ImmutableExpense.builder()
         .id(idFactory.newId())
         .description(description)

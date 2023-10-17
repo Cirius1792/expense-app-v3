@@ -14,7 +14,7 @@ public class ExpenseMapper {
         entity.setAmount(expense.amount().getAmount().toString());
         entity.setDescription(expense.description());
         entity.setGroupId(expense.groupId());
-        entity.setOwnerId(expense.owner().id());
+        entity.setOwnerId(expense.owner());
         return entity;
     }
 
@@ -24,7 +24,7 @@ public class ExpenseMapper {
                 .amount(Money.euros(expenseEntity.getAmount()))
                 .description(expenseEntity.getDescription())
                 .groupId(expenseEntity.getGroupId())
-                .owner(new StoredPerson(expenseEntity.getOwnerId()))
+                .owner(expenseEntity.getOwnerId())
                 .build();
     }
 }

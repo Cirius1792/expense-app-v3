@@ -71,7 +71,7 @@ class ExpenseStoreImplTest {
                 .description(DESCRIPTION)
                 .amount(Money.euros(AMOUNT))
                 .groupId(GROUP_ID)
-                .owner(ImmutablePerson.builder().id(OWNER_ID).username("ciccio").build())
+                .owner(OWNER_ID)
                 .build();
     }
 

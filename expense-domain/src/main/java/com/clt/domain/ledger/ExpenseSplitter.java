@@ -19,12 +19,12 @@ public class ExpenseSplitter {
     long debtors = group.members().size();
     Money dueProCapite = expense.amount().divide(BigDecimal.valueOf(debtors));
     return group.members().stream()
-        .filter(el -> !expense.owner().equals(el))
+        .filter(el -> !expense.owner().equals(el.id()))
         .map(
             debtor ->
                 ImmutableExpenseCharge.builder()
                     .id(idFactory.newId())
-                    .debtor(debtor)
+                    .debtor(debtor.id())
                     .creditor(expense.owner())
                     .dueAmount(dueProCapite)
                     .expense(expense.id())

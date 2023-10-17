@@ -34,7 +34,7 @@ public class AddExpenseUseCase {
     return Mono.zip(
             personProducer,
             groupProducer,
-            (person, group) -> expenseFactory.create(description, amount, person, group.id()))
+            (person, group) -> expenseFactory.create(description, amount, person.id(), group.id()))
         .doOnNext(expenseStore::store);
   }
 }

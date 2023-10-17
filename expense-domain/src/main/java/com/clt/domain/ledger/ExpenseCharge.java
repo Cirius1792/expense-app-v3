@@ -14,7 +14,7 @@ public interface ExpenseCharge {
 
   Money dueAmount();
 
-  Person debtor();
+  String debtor();
 
-  Person creditor();
+  String creditor();
 }

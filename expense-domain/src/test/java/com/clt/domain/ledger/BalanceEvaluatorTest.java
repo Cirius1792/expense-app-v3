@@ -15,8 +15,8 @@ class BalanceEvaluatorTest {
   private static final ExpenseCharge EXPENSE_CHARGE_FROM_ALICE_TO_BOB =
       ImmutableExpenseCharge.builder()
           .id("EXPENSE_CHARGE_FROM_ALICE_TO_BOB")
-          .debtor(BOB)
-          .creditor(ALICE)
+          .debtor(BOB.id())
+          .creditor(ALICE.id())
           .expense("e1")
           .groupId("g1")
           .dueAmount(Money.euros(2))
@@ -24,8 +24,8 @@ class BalanceEvaluatorTest {
   private static final ExpenseCharge EXPENSE_CHARGE_FROM_BOB_TO_ALICE =
       ImmutableExpenseCharge.builder()
           .id("EXPENSE_CHARGE_FROM_BOB_TO_ALICE")
-          .creditor(BOB)
-          .debtor(ALICE)
+          .creditor(BOB.id())
+          .debtor(ALICE.id())
           .expense("e2")
           .groupId("g1")
           .dueAmount(Money.euros(1))
@@ -34,8 +34,8 @@ class BalanceEvaluatorTest {
   private static final ExpenseCharge EXPENSE_CHARGE_FROM_BOB_TO_ALICE_2 =
       ImmutableExpenseCharge.builder()
           .id("EXPENSE_CHARGE_FROM_BOB_TO_ALICE_2")
-          .creditor(BOB)
-          .debtor(ALICE)
+          .creditor(BOB.id())
+          .debtor(ALICE.id())
           .expense("e3")
           .groupId("g1")
           .dueAmount(Money.euros(6))
@@ -43,8 +43,8 @@ class BalanceEvaluatorTest {
   private static final ExpenseCharge EXPENSE_CHARGE_FROM_SARA_TO_BOB =
       ImmutableExpenseCharge.builder()
           .id("EXPENSE_CHARGE_FROM_SARA_TO_BOB")
-          .creditor(SARA)
-          .debtor(BOB)
+          .creditor(SARA.id())
+          .debtor(BOB.id())
           .expense("e4")
           .groupId("g1")
           .dueAmount(Money.euros(3))
