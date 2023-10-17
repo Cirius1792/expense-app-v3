@@ -6,5 +6,6 @@ import org.immutables.value.Value;
 public interface Person {
   String id();
 
+  @Value.Auxiliary
   String username();
 }
