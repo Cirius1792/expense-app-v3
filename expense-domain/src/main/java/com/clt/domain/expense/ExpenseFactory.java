@@ -1,7 +1,6 @@
 package com.clt.domain.expense;
 
 import com.clt.domain.commons.IdFactory;
-import com.clt.domain.group.Person;
 
 public class ExpenseFactory {
   private final IdFactory idFactory;

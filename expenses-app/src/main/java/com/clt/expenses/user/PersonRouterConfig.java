@@ -12,12 +12,14 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 @Configuration
 public class PersonRouterConfig {
 
-    @Bean
-    RegisterPersonUseCase registerPersonUseCase(PersonStore personStore){
-        return new RegisterPersonUseCase(new PersonFactory(new UUIDIdFactory()), personStore);
-    }
-    @Bean
-    RouterFunction<ServerResponse> userRouter(RegisterPersonUseCase createUserUseCase, PersonMapper personMapper) {
-        return new PersonRoute(createUserUseCase, personMapper).createRoutes();
-    }
+  @Bean
+  RegisterPersonUseCase registerPersonUseCase(PersonStore personStore) {
+    return new RegisterPersonUseCase(new PersonFactory(new UUIDIdFactory()), personStore);
+  }
+
+  @Bean
+  RouterFunction<ServerResponse> userRouter(
+      RegisterPersonUseCase createUserUseCase, PersonMapper personMapper) {
+    return new PersonRoute(createUserUseCase, personMapper).createRoutes();
+  }
 }

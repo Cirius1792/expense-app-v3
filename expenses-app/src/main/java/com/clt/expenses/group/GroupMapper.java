@@ -7,20 +7,18 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class GroupMapper {
-    private final PersonMapper personMapper;
+  private final PersonMapper personMapper;
 
-    public GroupMapper(PersonMapper personMapper) {
-        this.personMapper = personMapper;
-    }
+  public GroupMapper(PersonMapper personMapper) {
+    this.personMapper = personMapper;
+  }
 
-    public GroupResponse toDto(Group group) {
-        GroupResponse response = new GroupResponse();
-        response.setId(group.id());
-        response.setName(group.name());
-        response.setOwner(personMapper.toDto(group.owner()));
-        response.setMembers(group.members()
-                .stream().map(personMapper::toDto)
-                .toList());
-        return response;
-    }
+  public GroupResponse toDto(Group group) {
+    GroupResponse response = new GroupResponse();
+    response.setId(group.id());
+    response.setName(group.name());
+    response.setOwner(personMapper.toDto(group.owner()));
+    response.setMembers(group.members().stream().map(personMapper::toDto).toList());
+    return response;
+  }
 }

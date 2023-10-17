@@ -5,6 +5,4 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @EnableTransactionManagement
-public class StoreTestConfiguration {
-
-}
+public class StoreTestConfiguration {}

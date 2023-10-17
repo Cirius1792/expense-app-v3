@@ -7,13 +7,13 @@ import reactor.core.publisher.Mono;
 
 @Repository
 public class GroupStoreImpl implements GroupStore {
-    @Override
-    public Mono<Group> store(Group group) {
-        return null;
-    }
+  @Override
+  public Mono<Group> store(Group group) {
+    return null;
+  }
 
-    @Override
-    public Mono<Group> retrieve(String groupId) {
-        return null;
-    }
+  @Override
+  public Mono<Group> retrieve(String groupId) {
+    return null;
+  }
 }

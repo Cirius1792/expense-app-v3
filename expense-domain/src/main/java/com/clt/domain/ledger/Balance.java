@@ -33,8 +33,7 @@ public class Balance {
   }
 
   public void addExpenseCharge(ExpenseCharge charge) {
-    if (!this.owner.id().equals(charge.creditor())
-        && !this.owner.id().equals(charge.debtor()))
+    if (!this.owner.id().equals(charge.creditor()) && !this.owner.id().equals(charge.debtor()))
       throw new IllegalArgumentException("The balance owner is not the debtor nor the creditor");
     this.charges.add(charge);
   }

@@ -6,9 +6,8 @@ import reactor.core.publisher.Hooks;
 
 @SpringBootApplication
 public class ExpenseApp {
-    public static void main(String[] args) {
-        Hooks.onOperatorDebug();
-        SpringApplication.run(ExpenseApp.class, args);
-    }
+  public static void main(String[] args) {
+    Hooks.onOperatorDebug();
+    SpringApplication.run(ExpenseApp.class, args);
+  }
 }
-

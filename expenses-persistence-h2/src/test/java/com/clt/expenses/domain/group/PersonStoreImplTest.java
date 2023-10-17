@@ -14,78 +14,69 @@ import reactor.test.StepVerifier;
 
 import java.util.Arrays;
 
-
 @SpringBootTest(classes = GroupTestConfiguration.class)
 class PersonStoreImplTest {
-    private static final String ID = "id";
-    private static final String USERNAME = "username";
-    @Autowired
-    DatabaseClient database;
-    @Autowired
-    PersonStore personStore;
-    @Autowired
-    PersonRepository personRepository;
+  private static final String ID = "id";
+  private static final String USERNAME = "username";
+  @Autowired DatabaseClient database;
+  @Autowired PersonStore personStore;
+  @Autowired PersonRepository personRepository;
 
-    @BeforeEach
-    void setUp() {
+  @BeforeEach
+  void setUp() {
 
-        Hooks.onOperatorDebug();
+    Hooks.onOperatorDebug();
+    System.out.println("Cancello PERSON");
+    var statements =
+        Arrays.asList( //
+            "DROP TABLE IF EXISTS person;",
+            "CREATE TABLE person ( "
+                + "id VARCHAR PRIMARY KEY, "
+                + "username VARCHAR(255) "
+                + ");");
 
-        var statements = Arrays.asList(//
-                "DROP TABLE IF EXISTS person;",
-                "CREATE TABLE person ( " +
-                        "id VARCHAR PRIMARY KEY, " +
-                        "username VARCHAR(255) " +
-                        ");");
-
-        statements.forEach(it -> database.sql(it) //
+    statements.forEach(
+        it ->
+            database
+                .sql(it) //
                 .fetch() //
                 .rowsUpdated() //
                 .as(StepVerifier::create) //
                 .expectNextCount(1) //
                 .verifyComplete());
-    }
+  }
 
-    private Person buildPerson() {
-        return ImmutablePerson.builder()
-                .id(ID)
-                .username(USERNAME)
-                .build();
-    }
+  private Person buildPerson() {
+    return ImmutablePerson.builder().id(ID).username(USERNAME).build();
+  }
 
-    private PersonEntity buildPersonEntity() {
-        PersonEntity entity = new PersonEntity();
-        entity.setId(ID);
-        entity.setUsername(USERNAME);
-        return entity;
-    }
+  private PersonEntity buildPersonEntity() {
+    PersonEntity entity = new PersonEntity();
+    entity.setId(ID);
+    entity.setUsername(USERNAME);
+    return entity;
+  }
 
-    @DisplayName("Should store a person")
-    @Test
-    void store_person_test() {
-        Person expected = buildPerson();
-        personStore.store(expected)
-                .as(StepVerifier::create)
-                .expectNext(expected)
-                .verifyComplete();
-        personRepository.findById(ID)
-                .as(StepVerifier::create)
-                .expectNext(buildPersonEntity())
-                .verifyComplete();
-    }
+  @DisplayName("Should store a person")
+  @Test
+  void store_person_test() {
+    Person expected = buildPerson();
+    personStore.store(expected).as(StepVerifier::create).expectNext(expected).verifyComplete();
+    personRepository
+        .findById(ID)
+        .as(StepVerifier::create)
+        .expectNext(buildPersonEntity())
+        .verifyComplete();
+  }
 
-    @DisplayName("Should retrieve a stored person")
-    @Test
-    void retrieve_person_test() {
-        personRepository.save(buildPersonEntity())
-                .as(StepVerifier::create)
-                .expectNextCount(1)
-                .verifyComplete();
-        personStore.retrieve(ID)
-                .as(StepVerifier::create)
-                .expectNext(buildPerson())
-                .verifyComplete();
-
-    }
-
+  @DisplayName("Should retrieve a stored person")
+  @Test
+  void retrieve_person_test() {
+    personRepository
+        .save(buildPersonEntity())
+        .as(StepVerifier::create)
+        .expectNextCount(1)
+        .verifyComplete();
+    personStore.retrieve(ID).as(StepVerifier::create).expectNext(buildPerson()).verifyComplete();
+  }
 }

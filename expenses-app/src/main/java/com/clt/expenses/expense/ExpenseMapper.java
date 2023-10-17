@@ -7,7 +7,7 @@ import reactor.core.publisher.Mono;
 
 @Component
 public class ExpenseMapper {
-    public ExpenseResponse toDto(Mono<Expense> expenseMono) {
-        return null;
-    }
+  public ExpenseResponse toDto(Mono<Expense> expenseMono) {
+    return null;
+  }
 }

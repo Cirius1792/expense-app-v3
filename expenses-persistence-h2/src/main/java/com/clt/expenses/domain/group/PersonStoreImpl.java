@@ -8,37 +8,36 @@ import reactor.core.publisher.Mono;
 
 @Repository
 public class PersonStoreImpl implements PersonStore {
-    private final PersonRepository personRepository;
-    private final PersonPersistenceMapper personMapper;
+  private final PersonRepository personRepository;
+  private final PersonPersistenceMapper personMapper;
 
-    public PersonStoreImpl(PersonRepository personRepository, PersonPersistenceMapper personMapper) {
-        this.personRepository = personRepository;
-        this.personMapper = personMapper;
-    }
+  public PersonStoreImpl(PersonRepository personRepository, PersonPersistenceMapper personMapper) {
+    this.personRepository = personRepository;
+    this.personMapper = personMapper;
+  }
 
-    @Override
-    public Mono<Person> store(Person person) {
-        PersonEntity entity = personMapper.toEntity(person);
-        return this.personRepository.findById(person.id())
-                .map($ ->{
-                    entity.setNew(false);
-                    return entity;
-                })
-                .switchIfEmpty(Mono.just(entity))
-                .flatMap(personRepository::save)
-                .map(personMapper::toDomain);
+  @Override
+  public Mono<Person> store(Person person) {
+    PersonEntity entity = personMapper.toEntity(person);
+    return this.personRepository
+        .findById(person.id())
+        .map(
+            $ -> {
+              entity.setNew(false);
+              return entity;
+            })
+        .switchIfEmpty(Mono.just(entity))
+        .flatMap(personRepository::save)
+        .map(personMapper::toDomain);
+  }
 
-    }
+  @Override
+  public Mono<Person> retrieve(String id) {
+    return personRepository.findById(id).map(personMapper::toDomain);
+  }
 
-    @Override
-    public Mono<Person> retrieve(String id) {
-        return personRepository.findById(id)
-                .map(personMapper::toDomain);
-    }
-
-    @Override
-    public Flux<Person> retrieve(Iterable<String> ids) {
-        return personRepository.findAllById(ids)
-                .map(personMapper::toDomain);
-    }
+  @Override
+  public Flux<Person> retrieve(Iterable<String> ids) {
+    return personRepository.findAllById(ids).map(personMapper::toDomain);
+  }
 }

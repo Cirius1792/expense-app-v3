@@ -13,23 +13,20 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 @Configuration
 public class GroupRouterConfig {
 
-    @Bean
-    GroupFactory groupFactory() {
-        return new GroupFactory(new UUIDIdFactory());
-    }
+  @Bean
+  GroupFactory groupFactory() {
+    return new GroupFactory(new UUIDIdFactory());
+  }
 
-    @Bean
-    CreateGroupUseCase createGroupUseCase(GroupFactory groupFactory,
-                                          PersonStore personStore,
-                                          GroupStore groupStore) {
-        return new CreateGroupUseCase(groupFactory, personStore, groupStore);
-    }
+  @Bean
+  CreateGroupUseCase createGroupUseCase(
+      GroupFactory groupFactory, PersonStore personStore, GroupStore groupStore) {
+    return new CreateGroupUseCase(groupFactory, personStore, groupStore);
+  }
 
-    @Bean
-    RouterFunction<ServerResponse> groupRoutes(
-            CreateGroupUseCase createGroupUseCase,
-            GroupMapper groupMapper) {
-        return new GroupRouter(createGroupUseCase, groupMapper)
-                .createRoutes();
-    }
+  @Bean
+  RouterFunction<ServerResponse> groupRoutes(
+      CreateGroupUseCase createGroupUseCase, GroupMapper groupMapper) {
+    return new GroupRouter(createGroupUseCase, groupMapper).createRoutes();
+  }
 }
