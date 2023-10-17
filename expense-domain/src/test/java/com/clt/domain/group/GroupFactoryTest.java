@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class GroupFactoryTest {
 
   private static final String GROUP_NAME = "group-x";
-  private static final Person GROUP_OWNER = PersonUtil.newPerson();
+  private static final String GROUP_OWNER = "owner";
   private static final Group GROUP = GroupUtil.newGroup();
 
   GroupFactory service = new GroupFactory(new UUIDIdFactory());
@@ -42,9 +42,9 @@ class GroupFactoryTest {
           + "Then the user is a member of the group")
   @Test
   void add_user_to_a_group_test() {
-    Person newPerson = PersonUtil.newPerson();
-    Group actual = service.add(GROUP, newPerson);
+    String newPersonId = "new-id";
+    Group actual = service.add(GROUP, newPersonId);
     Assertions.assertNotNull(actual);
-    Assertions.assertTrue(actual.members().contains(newPerson), "Missing expected group member");
+    Assertions.assertTrue(actual.members().contains(newPersonId), "Missing expected group member");
   }
 }

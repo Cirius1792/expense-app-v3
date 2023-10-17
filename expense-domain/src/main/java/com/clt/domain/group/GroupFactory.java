@@ -10,7 +10,7 @@ public class GroupFactory {
     this.groupIdFactory = groupIdFactory;
   }
 
-  public Group create(String name, Person owner) {
+  public Group create(String name, String owner) {
     return ImmutableGroup.builder()
         .id(groupIdFactory.newId())
         .name(name)
@@ -19,7 +19,7 @@ public class GroupFactory {
         .build();
   }
 
-  public Group create(String name, Person owner, List<Person> members) {
+  public Group create(String name, String owner, List<String> members) {
     return ImmutableGroup.builder()
         .id(groupIdFactory.newId())
         .name(name)
@@ -29,7 +29,7 @@ public class GroupFactory {
         .build();
   }
 
-  public Group add(Group group, Person member) {
+  public Group add(Group group, String member) {
     return ImmutableGroup.builder().from(group).addMembers(member).build();
   }
 }

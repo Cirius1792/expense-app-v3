@@ -1,8 +1,8 @@
 package com.clt.expenses.group;
 
-import com.clt.domain.group.Group;
 import com.clt.expenses.group.response.GroupResponse;
 import com.clt.expenses.user.PersonMapper;
+import com.clt.usecase.GroupAggregate;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,7 +13,7 @@ public class GroupMapper {
     this.personMapper = personMapper;
   }
 
-  public GroupResponse toDto(Group group) {
+  public GroupResponse toDto(GroupAggregate group) {
     GroupResponse response = new GroupResponse();
     response.setId(group.id());
     response.setName(group.name());

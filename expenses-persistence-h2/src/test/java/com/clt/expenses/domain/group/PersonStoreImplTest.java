@@ -3,6 +3,7 @@ package com.clt.expenses.domain.group;
 import com.clt.domain.group.ImmutablePerson;
 import com.clt.domain.group.Person;
 import com.clt.domain.group.PersonStore;
+import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,8 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.r2dbc.core.DatabaseClient;
 import reactor.core.publisher.Hooks;
 import reactor.test.StepVerifier;
-
-import java.util.Arrays;
 
 @SpringBootTest(classes = GroupTestConfiguration.class)
 class PersonStoreImplTest {

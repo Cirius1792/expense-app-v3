@@ -11,8 +11,8 @@ public class GroupUtil {
     return ImmutableGroup.builder()
         .id(UUID.randomUUID().toString())
         .name("Test Group " + new Random().nextInt())
-        .owner(PersonUtil.newPerson())
-        .addMembers(PersonUtil.newPerson())
+        .owner(UUID.randomUUID().toString())
+        .addMembers(UUID.randomUUID().toString())
         .build();
   }
 
@@ -21,8 +21,8 @@ public class GroupUtil {
     return ImmutableGroup.builder()
         .id(UUID.randomUUID().toString())
         .name(name)
-        .owner(members.get(0))
-        .members(members)
+        .owner(members.get(0).id())
+        .members(members.stream().map(Person::id).toList())
         .build();
   }
 
@@ -32,10 +32,10 @@ public class GroupUtil {
     return ImmutableGroup.builder()
         .id(UUID.randomUUID().toString())
         .name("Test Group " + new Random().nextInt())
-        .owner(owner)
+        .owner(owner.id())
         .members(
             IntStream.range(0, nMembers)
-                .mapToObj($ -> PersonUtil.newPerson())
+                .mapToObj($ -> UUID.randomUUID().toString())
                 .collect(Collectors.toList()))
         .build();
   }

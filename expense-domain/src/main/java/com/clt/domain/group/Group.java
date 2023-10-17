@@ -9,7 +9,7 @@ public interface Group {
 
   String name();
 
-  Person owner();
+  String owner();
 
-  List<Person> members();
+  List<String> members();
 }
