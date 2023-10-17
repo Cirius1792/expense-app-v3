@@ -9,9 +9,9 @@ import reactor.core.publisher.Mono;
 @Repository
 public class PersonStoreImpl implements PersonStore {
     private final PersonRepository personRepository;
-    private final PersonMapper personMapper;
+    private final PersonPersistenceMapper personMapper;
 
-    public PersonStoreImpl(PersonRepository personRepository, PersonMapper personMapper) {
+    public PersonStoreImpl(PersonRepository personRepository, PersonPersistenceMapper personMapper) {
         this.personRepository = personRepository;
         this.personMapper = personMapper;
     }

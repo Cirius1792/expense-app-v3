@@ -8,9 +8,9 @@ import reactor.core.publisher.Mono;
 @Repository
 public class ExpenseStoreImpl implements ExpenseStore {
     private final ExpenseRepository expenseRepository;
-    private final ExpenseMapper expenseMapper;
+    private final ExpenseEntityMapper expenseMapper;
 
-    public ExpenseStoreImpl(ExpenseRepository expenseRepository, ExpenseMapper expenseMapper) {
+    public ExpenseStoreImpl(ExpenseRepository expenseRepository, ExpenseEntityMapper expenseMapper) {
         this.expenseRepository = expenseRepository;
         this.expenseMapper = expenseMapper;
     }

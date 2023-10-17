@@ -16,6 +16,7 @@ import static org.springdoc.core.fn.builders.requestbody.Builder.requestBodyBuil
 import static org.springdoc.webflux.core.fn.SpringdocRouteBuilder.route;
 
 public class ExpenseRouter {
+    private static final String EXPENSE_TAG = "Expenses";
     private final ExpenseMapper expenseMapper;
     private final AddExpenseUseCase addExpenseUseCase;
 
@@ -52,7 +53,7 @@ public class ExpenseRouter {
                         this::addExpense,
                         ops ->
                                 ops.operationId("addExpense")
-                                        .tag("Group")
+                                        .tag(EXPENSE_TAG)
                                         .parameter(
                                                 parameterBuilder()
                                                         .in(ParameterIn.PATH)
@@ -67,7 +68,7 @@ public class ExpenseRouter {
                         this::retrieveExpenses,
                         ops ->
                                 ops.operationId("retrieveExpenses")
-                                        .tag("Group")
+                                        .tag(EXPENSE_TAG)
                                         .parameter(
                                                 parameterBuilder()
                                                         .in(ParameterIn.PATH)

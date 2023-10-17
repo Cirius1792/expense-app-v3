@@ -1,4 +1,4 @@
-package com.clt.expenses.domain;
+package com.clt.expenses.domain.common;
 
 public interface PersistenceMapper <ENTITY, DOMAIN>{
     ENTITY toEntity(DOMAIN domain);

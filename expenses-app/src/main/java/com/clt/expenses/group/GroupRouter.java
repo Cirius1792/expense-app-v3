@@ -27,7 +27,7 @@ public class GroupRouter {
     Mono<ServerResponse> createGroup(ServerRequest request) {
         return request
                 .bodyToMono(CreateGroupRequestDto.class)
-                .map(r -> createGroupUseCase.create(
+                .flatMap(r -> createGroupUseCase.create(
                         r.getName(),
                         r.getOwnerId(),
                         r.getMemberIds()

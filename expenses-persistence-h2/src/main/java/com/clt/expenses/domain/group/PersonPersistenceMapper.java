@@ -2,11 +2,11 @@ package com.clt.expenses.domain.group;
 
 import com.clt.domain.group.ImmutablePerson;
 import com.clt.domain.group.Person;
-import com.clt.expenses.domain.PersistenceMapper;
+import com.clt.expenses.domain.common.PersistenceMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PersonMapper implements PersistenceMapper<PersonEntity, Person> {
+public class PersonPersistenceMapper implements PersistenceMapper<PersonEntity, Person> {
     @Override
     public PersonEntity toEntity(Person person) {
         PersonEntity entity = new PersonEntity();
