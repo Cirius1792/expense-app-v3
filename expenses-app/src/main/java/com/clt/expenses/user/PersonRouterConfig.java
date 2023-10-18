@@ -3,6 +3,7 @@ package com.clt.expenses.user;
 import com.clt.domain.commons.UUIDIdFactory;
 import com.clt.domain.group.PersonFactory;
 import com.clt.domain.group.PersonStore;
+import com.clt.usecase.FindUserUseCase;
 import com.clt.usecase.RegisterPersonUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,8 +19,12 @@ public class PersonRouterConfig {
   }
 
   @Bean
-  RouterFunction<ServerResponse> userRouter(
+  FindUserUseCase findUserUseCase(PersonStore personStore){
+    return new FindUserUseCase(personStore);
+  }
+  @Bean
+  RouterFunction<ServerResponse> userRouter(FindUserUseCase findUserUseCase,
       RegisterPersonUseCase createUserUseCase, PersonMapper personMapper) {
-    return new PersonRoute(createUserUseCase, personMapper).createRoutes();
+    return new PersonRoute(createUserUseCase, findUserUseCase, personMapper).createRoutes();
   }
 }
