@@ -5,6 +5,7 @@ import com.clt.domain.group.GroupFactory;
 import com.clt.domain.group.GroupStore;
 import com.clt.domain.group.PersonStore;
 import com.clt.usecase.CreateGroupUseCase;
+import com.clt.usecase.FindGroupUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.server.RouterFunction;
@@ -25,8 +26,13 @@ public class GroupRouterConfig {
   }
 
   @Bean
+  FindGroupUseCase findGroupUseCase(PersonStore personStore, GroupStore groupStore){
+    return new FindGroupUseCase(groupStore, personStore);
+  }
+  @Bean
   RouterFunction<ServerResponse> groupRoutes(
+          FindGroupUseCase findGroupUseCase,
       CreateGroupUseCase createGroupUseCase, GroupMapper groupMapper) {
-    return new GroupRouter(createGroupUseCase, groupMapper).createRoutes();
+    return new GroupRouter(findGroupUseCase, createGroupUseCase, groupMapper).createRoutes();
   }
 }
