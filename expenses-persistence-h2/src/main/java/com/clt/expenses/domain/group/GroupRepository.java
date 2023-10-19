@@ -2,6 +2,7 @@ package com.clt.expenses.domain.group;
 
 import org.springframework.r2dbc.core.DatabaseClient;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
@@ -39,5 +40,27 @@ public class GroupRepository {
                 g.getOwner(),
                 ms
         ));
+    }
+    public void save(GroupEntity entity){
+         databaseClient.sql("""
+                        INSERT INTO expense_group (ID, NAME, OWNER) 
+                        VALUES( :id, :name, :owner)
+                        """
+                ).bind("id", entity.getId())
+                .bind("name", entity.getName())
+                .bind("owner", entity.getOwner())
+                .fetch()
+                .rowsUpdated()
+                .concatWith(Flux.fromIterable(entity.getMembers())
+                        .flatMap(m -> databaseClient.sql("""
+                        INSERT INTO group_member (group_id, member ) 
+                        VALUES( :groupId, :member)
+                        """
+                                ).bind("groupId", entity.getId())
+                                .bind("member", m)
+                                .fetch()
+                                .rowsUpdated()))
+                 .subscribe();
+
     }
 }

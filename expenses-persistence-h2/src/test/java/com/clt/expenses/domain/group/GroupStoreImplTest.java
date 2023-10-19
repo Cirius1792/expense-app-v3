@@ -3,6 +3,7 @@ package com.clt.expenses.domain.group;
 import com.clt.domain.group.Group;
 import com.clt.domain.group.GroupStore;
 import com.clt.domain.group.ImmutableGroup;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -126,6 +127,44 @@ class GroupStoreImplTest {
                 .expectNext(EXPECTED_GROUP)
                 .verifyComplete();
 
+    }
+
+
+    @Test
+    @DisplayName("Should store a new Group")
+    void store_group_test() {
+        groupStore.store(EXPECTED_GROUP)
+                .as(StepVerifier::create)
+                .expectNext(EXPECTED_GROUP)
+                .verifyComplete();
+
+        database.sql("""
+                        SELECT * 
+                        FROM group_member
+                        WHERE group_id = :groupId
+                        """
+                ).bind("groupId", GROUP_ID)
+                .fetch()
+                .all()
+                .as(StepVerifier::create)
+                .expectNextCount(3)
+                .verifyComplete();
+
+        database.sql("""
+                        SELECT id, name, owner 
+                        FROM expense_group
+                        WHERE id = :groupId
+                        """
+                ).bind("groupId", GROUP_ID)
+                .fetch()
+                .first()
+                .as(StepVerifier::create)
+                .assertNext(row -> {
+                    Assertions.assertEquals(GROUP_ID, row.get("id"));
+                    Assertions.assertEquals(GROUP_NAME, row.get("name"));
+                    Assertions.assertEquals(OWNER_ID, row.get("owner"));
+                })
+                .verifyComplete();
     }
 
 

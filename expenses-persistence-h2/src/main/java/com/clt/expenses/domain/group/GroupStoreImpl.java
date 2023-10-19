@@ -17,7 +17,8 @@ public class GroupStoreImpl implements GroupStore {
 
   @Override
   public Mono<Group> store(Group group) {
-    return null;
+    return Mono.just(group)
+            .doOnNext(el -> this.groupRepository.save(mapper.toEntity(group)));
   }
 
   @Override
