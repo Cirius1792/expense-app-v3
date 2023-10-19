@@ -7,6 +7,14 @@ import reactor.core.publisher.Mono;
 
 @Repository
 public class GroupStoreImpl implements GroupStore {
+  private final GroupRepository groupRepository;
+  private final GroupPersistenceMapper mapper;
+
+  public GroupStoreImpl(GroupRepository groupRepository, GroupPersistenceMapper mapper) {
+    this.groupRepository = groupRepository;
+    this.mapper = mapper;
+  }
+
   @Override
   public Mono<Group> store(Group group) {
     return null;
@@ -14,6 +22,7 @@ public class GroupStoreImpl implements GroupStore {
 
   @Override
   public Mono<Group> retrieve(String groupId) {
-    return null;
+    return groupRepository.findById(groupId)
+            .map(mapper::toDomain);
   }
 }
