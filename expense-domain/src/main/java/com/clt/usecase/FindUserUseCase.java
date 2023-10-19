@@ -6,14 +6,13 @@ import com.clt.domain.group.PersonStore;
 import reactor.core.publisher.Mono;
 
 public class FindUserUseCase {
-    private final PersonStore personStore;
+  private final PersonStore personStore;
 
-    public FindUserUseCase(PersonStore personStore) {
-        this.personStore = personStore;
-    }
+  public FindUserUseCase(PersonStore personStore) {
+    this.personStore = personStore;
+  }
 
-    public Mono<Person> retrieve(String userId){
-        return personStore.retrieve(userId)
-                .switchIfEmpty(Mono.error(new PersonNotFound()));
-    }
+  public Mono<Person> retrieve(String userId) {
+    return personStore.retrieve(userId).switchIfEmpty(Mono.error(new PersonNotFound()));
+  }
 }

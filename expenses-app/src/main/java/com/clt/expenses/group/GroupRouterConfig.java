@@ -26,13 +26,15 @@ public class GroupRouterConfig {
   }
 
   @Bean
-  FindGroupUseCase findGroupUseCase(PersonStore personStore, GroupStore groupStore){
+  FindGroupUseCase findGroupUseCase(PersonStore personStore, GroupStore groupStore) {
     return new FindGroupUseCase(groupStore, personStore);
   }
+
   @Bean
   RouterFunction<ServerResponse> groupRoutes(
-          FindGroupUseCase findGroupUseCase,
-      CreateGroupUseCase createGroupUseCase, GroupMapper groupMapper) {
+      FindGroupUseCase findGroupUseCase,
+      CreateGroupUseCase createGroupUseCase,
+      GroupMapper groupMapper) {
     return new GroupRouter(findGroupUseCase, createGroupUseCase, groupMapper).createRoutes();
   }
 }

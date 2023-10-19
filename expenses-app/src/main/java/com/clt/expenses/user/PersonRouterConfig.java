@@ -19,12 +19,15 @@ public class PersonRouterConfig {
   }
 
   @Bean
-  FindUserUseCase findUserUseCase(PersonStore personStore){
+  FindUserUseCase findUserUseCase(PersonStore personStore) {
     return new FindUserUseCase(personStore);
   }
+
   @Bean
-  RouterFunction<ServerResponse> userRouter(FindUserUseCase findUserUseCase,
-      RegisterPersonUseCase createUserUseCase, PersonMapper personMapper) {
+  RouterFunction<ServerResponse> userRouter(
+      FindUserUseCase findUserUseCase,
+      RegisterPersonUseCase createUserUseCase,
+      PersonMapper personMapper) {
     return new PersonRoute(createUserUseCase, findUserUseCase, personMapper).createRoutes();
   }
 }

@@ -17,13 +17,11 @@ public class GroupStoreImpl implements GroupStore {
 
   @Override
   public Mono<Group> store(Group group) {
-    return Mono.just(group)
-            .doOnNext(el -> this.groupRepository.save(mapper.toEntity(group)));
+    return Mono.just(group).doOnNext(el -> this.groupRepository.save(mapper.toEntity(group)));
   }
 
   @Override
   public Mono<Group> retrieve(String groupId) {
-    return groupRepository.findById(groupId)
-            .map(mapper::toDomain);
+    return groupRepository.findById(groupId).map(mapper::toDomain);
   }
 }
