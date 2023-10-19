@@ -44,7 +44,7 @@ public class PersonRoute {
         return findUserUseCase.retrieve(userId)
                 .map(personMapper::toDto)
                 .flatMap(r -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                        .body(r, UserResponseDto.class));
+                        .body(Mono.just(r), UserResponseDto.class));
     }
 
     public RouterFunction<ServerResponse> createRoutes() {
