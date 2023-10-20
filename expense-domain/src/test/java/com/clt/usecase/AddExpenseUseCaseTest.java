@@ -1,7 +1,6 @@
 package com.clt.usecase;
 
 import com.clt.domain.commons.UUIDIdFactory;
-import com.clt.domain.expense.Expense;
 import com.clt.domain.expense.ExpenseFactory;
 import com.clt.domain.expense.ExpenseStore;
 import com.clt.domain.expense.Money;
@@ -51,14 +50,14 @@ class AddExpenseUseCaseTest {
           + "And the new expense is tored")
   @Test
   void test_create_and_store_new_expense() {
-    Mono<Expense> producer = useCase.create(DESCRIPTION, AMOUNT, OWNER.id(), GROUP.id());
+    Mono<ExpenseAggregate> producer = useCase.create(DESCRIPTION, AMOUNT, OWNER.id(), GROUP.id());
     StepVerifier.create(producer)
         .assertNext(
             actual -> {
               Assertions.assertNotNull(actual);
               Assertions.assertEquals(DESCRIPTION, actual.description());
               Assertions.assertEquals(AMOUNT, actual.amount());
-              Mockito.verify(expenseStore, Mockito.atLeastOnce()).store(actual);
+              Mockito.verify(expenseStore, Mockito.atLeastOnce()).store(Mockito.any());
             })
         .verifyComplete();
   }

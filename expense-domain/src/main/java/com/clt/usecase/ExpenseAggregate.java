@@ -6,9 +6,13 @@ import org.immutables.value.Value;
 
 @Value.Immutable
 public interface ExpenseAggregate {
-    String id();
-    String description();
-    Money amount();
-    Person owner();
-    String groupId();
+  String id();
+
+  String description();
+
+  Money amount();
+
+  Person owner();
+
+  String groupId();
 }

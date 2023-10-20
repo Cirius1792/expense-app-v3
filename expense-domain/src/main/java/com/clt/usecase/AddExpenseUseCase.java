@@ -4,11 +4,10 @@ import com.clt.domain.expense.Expense;
 import com.clt.domain.expense.ExpenseFactory;
 import com.clt.domain.expense.ExpenseStore;
 import com.clt.domain.expense.Money;
-import com.clt.domain.group.GroupNotFound;
-import com.clt.domain.group.GroupStore;
-import com.clt.domain.group.PersonNotFound;
-import com.clt.domain.group.PersonStore;
+import com.clt.domain.group.*;
 import reactor.core.publisher.Mono;
+
+record ExpenseRecord(Person expenseOwner, Expense expense) {}
 
 public class AddExpenseUseCase {
   private final PersonStore personStore;
@@ -27,14 +26,22 @@ public class AddExpenseUseCase {
     this.expenseStore = expenseStore;
   }
 
-  public Mono<Expense> create(String description, Money amount, String ownerId, String groupId) {
+  public Mono<ExpenseAggregate> create(
+      String description, Money amount, String ownerId, String groupId) {
     var personProducer =
         personStore.retrieve(ownerId).switchIfEmpty(Mono.error(PersonNotFound::new));
     var groupProducer = groupStore.retrieve(groupId).switchIfEmpty(Mono.error(GroupNotFound::new));
     return Mono.zip(
             personProducer,
             groupProducer,
-            (person, group) -> expenseFactory.create(description, amount, person.id(), group.id()))
-        .doOnNext(expenseStore::store);
+            (person, group) ->
+                new ExpenseRecord(
+                    person, expenseFactory.create(description, amount, person.id(), group.id())))
+        .doOnNext(er -> expenseStore.store(er.expense()))
+        .map(er -> buildAggregate(er.expenseOwner(), er.expense()));
+  }
+
+  private ExpenseAggregate buildAggregate(Person person, Expense e) {
+    return expenseFactory.create(e, person);
   }
 }
