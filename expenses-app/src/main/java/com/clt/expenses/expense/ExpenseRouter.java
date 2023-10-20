@@ -12,6 +12,8 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
+import java.net.URI;
+
 import static org.springdoc.core.fn.builders.apiresponse.Builder.responseBuilder;
 import static org.springdoc.core.fn.builders.parameter.Builder.parameterBuilder;
 import static org.springdoc.core.fn.builders.requestbody.Builder.requestBodyBuilder;
@@ -45,7 +47,7 @@ public class ExpenseRouter {
                         r.getOwnerId(),
                         groupId)
                     .map(expenseMapper::toDto))
-        .flatMap(r -> ServerResponse.ok().body(Mono.just(r), ExpenseResponse.class));
+        .flatMap(r -> ServerResponse.created(URI.create("/expense/"+r.getId())).body(Mono.just(r), ExpenseResponse.class));
   }
 
   private Mono<ServerResponse> retrieveExpenses(ServerRequest serverRequest) {
