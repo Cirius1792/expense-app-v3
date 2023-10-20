@@ -4,6 +4,8 @@ import com.clt.domain.expense.*;
 import com.clt.domain.group.Person;
 import com.clt.domain.group.PersonStore;
 import com.clt.domain.group.PersonUtil;
+import com.clt.view.ExpenseAggregate;
+import com.clt.view.ExpenseAggregateFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,13 +30,7 @@ class FindExpenseUseCaseTest {
           .owner(EXPENSE_OWNER.id())
           .build();
   private static final ExpenseAggregate EXPENSE_AGGREGATE =
-      ImmutableExpenseAggregate.builder()
-          .id(EXPENSE_ID)
-          .groupId(GROUP_ID)
-          .amount(EXPENSE_AMOUNT)
-          .description(EXPENSE_DESCRIPTION)
-          .owner(EXPENSE_OWNER)
-          .build();
+      ExpenseAggregateFactory.fromDomain(EXPENSE, EXPENSE_OWNER);
   private static FindExpenseUseCase useCase;
 
   @BeforeAll

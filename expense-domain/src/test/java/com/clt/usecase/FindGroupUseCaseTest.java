@@ -1,6 +1,8 @@
 package com.clt.usecase;
 
 import com.clt.domain.group.*;
+import com.clt.view.GroupAggregate;
+import com.clt.view.GroupAggregateFactory;
 import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,14 +19,17 @@ class FindGroupUseCaseTest {
   private static final Person OWNER = PersonUtil.newPerson();
 
   private static final Person MEMBER = PersonUtil.newPerson();
-
-  private static final GroupAggregate GROUP_AGGREGATE =
-      ImmutableGroupAggregate.builder()
+  private static final Group GROUP =
+      ImmutableGroup.builder()
           .id(GROUP_ID)
           .name(GROUP_NAME)
-          .owner(OWNER)
-          .addMembers(MEMBER, OWNER)
+          .owner(OWNER.id())
+          .addMembers(OWNER.id(), MEMBER.id())
           .build();
+
+  private static final GroupAggregate GROUP_AGGREGATE =
+      GroupAggregateFactory.fromDomain(GROUP, OWNER, Arrays.asList(OWNER, MEMBER));
+
   private FindGroupUseCase useCase;
 
   @BeforeEach

@@ -5,6 +5,7 @@ import com.clt.domain.expense.ExpenseFactory;
 import com.clt.domain.expense.ExpenseStore;
 import com.clt.domain.expense.Money;
 import com.clt.domain.group.*;
+import com.clt.view.ExpenseAggregate;
 import java.util.Arrays;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

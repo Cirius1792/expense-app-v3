@@ -2,8 +2,6 @@ package com.clt.usecase;
 
 import com.clt.domain.commons.UUIDIdFactory;
 import com.clt.domain.group.*;
-import java.util.Arrays;
-import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -12,6 +10,9 @@ import org.mockito.Mockito;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
+
+import java.util.Arrays;
+import java.util.List;
 
 class CreateGroupUseCaseTest {
 
@@ -60,7 +61,7 @@ class CreateGroupUseCaseTest {
             actual -> {
               Assertions.assertEquals(OWNER, actual.owner(), "Wrong group owner");
               Assertions.assertEquals(MEMBERS_IDS.size() + 1, actual.members().size());
-              Assertions.assertEquals(MEMBER, actual.members().get(0));
+              Assertions.assertEquals(MEMBER, actual.members().toArray()[0]);
             })
         .verifyComplete();
   }

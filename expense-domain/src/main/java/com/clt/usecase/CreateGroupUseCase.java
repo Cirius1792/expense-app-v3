@@ -1,10 +1,11 @@
 package com.clt.usecase;
 
 import com.clt.domain.group.*;
+import com.clt.view.GroupAggregate;
+import com.clt.view.GroupAggregateFactory;
+import java.util.List;
 import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple3;
-
-import java.util.List;
 
 public class CreateGroupUseCase {
   private final GroupFactory groupFactory;
@@ -31,12 +32,6 @@ public class CreateGroupUseCase {
     Person owner = objects.getT1();
     List<Person> memebers = objects.getT2();
     Group group = objects.getT3();
-    return ImmutableGroupAggregate.builder()
-        .id(group.id())
-        .name(group.name())
-        .owner(owner)
-        .addAllMembers(memebers)
-        .addMembers(owner)
-        .build();
+    return GroupAggregateFactory.fromDomain(group, owner, memebers);
   }
 }

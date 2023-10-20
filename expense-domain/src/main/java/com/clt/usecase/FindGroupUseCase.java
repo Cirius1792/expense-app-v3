@@ -1,6 +1,8 @@
 package com.clt.usecase;
 
 import com.clt.domain.group.*;
+import com.clt.view.GroupAggregate;
+import com.clt.view.GroupAggregateFactory;
 import java.util.ArrayList;
 import java.util.List;
 import org.reactivestreams.Publisher;
@@ -31,16 +33,10 @@ public class FindGroupUseCase {
   private Publisher<GroupAggregate> buildAggregate(Group g, Mono<List<Person>> membersProducer) {
     return membersProducer.map(
         members ->
-            ImmutableGroupAggregate.builder()
-                .id(g.id())
-                .name(g.name())
-                .owner(
-                    members.stream()
-                        .filter(m -> m.id().equals(g.owner()))
-                        .findFirst()
-                        .orElseThrow())
-                .members(members)
-                .build());
+            GroupAggregateFactory.fromDomain(
+                g,
+                members.stream().filter(m -> m.id().equals(g.owner())).findFirst().orElseThrow(),
+                members));
   }
 
   private List<String> allMembers(Group g) {

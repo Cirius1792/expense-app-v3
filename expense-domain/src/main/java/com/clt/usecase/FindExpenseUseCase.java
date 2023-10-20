@@ -3,6 +3,8 @@ package com.clt.usecase;
 import com.clt.domain.expense.ExpenseNotFound;
 import com.clt.domain.expense.ExpenseStore;
 import com.clt.domain.group.PersonStore;
+import com.clt.view.ExpenseAggregate;
+import com.clt.view.ExpenseAggregateFactory;
 import reactor.core.publisher.Mono;
 
 public class FindExpenseUseCase {
@@ -20,16 +22,6 @@ public class FindExpenseUseCase {
         .switchIfEmpty(Mono.error(new ExpenseNotFound()))
         .flatMap(
             e ->
-                personStore
-                    .retrieve(e.owner())
-                    .map(
-                        o ->
-                            ImmutableExpenseAggregate.builder()
-                                .id(e.id())
-                                .owner(o)
-                                .description(e.description())
-                                .amount(e.amount())
-                                .groupId(e.groupId())
-                                .build()));
+                personStore.retrieve(e.owner()).map(o -> ExpenseAggregateFactory.fromDomain(e, o)));
   }
 }

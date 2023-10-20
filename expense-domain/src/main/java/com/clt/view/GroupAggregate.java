@@ -1,9 +1,10 @@
-package com.clt.usecase;
+package com.clt.view;
 
 import com.clt.domain.group.Person;
-import java.util.List;
+import java.util.Set;
 import org.immutables.value.Value;
 
+@Value.Style(visibility = Value.Style.ImplementationVisibility.PACKAGE)
 @Value.Immutable
 public interface GroupAggregate {
   String id();
@@ -12,5 +13,5 @@ public interface GroupAggregate {
 
   Person owner();
 
-  List<Person> members();
+  Set<Person> members();
 }

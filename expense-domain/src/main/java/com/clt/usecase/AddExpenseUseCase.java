@@ -5,6 +5,8 @@ import com.clt.domain.expense.ExpenseFactory;
 import com.clt.domain.expense.ExpenseStore;
 import com.clt.domain.expense.Money;
 import com.clt.domain.group.*;
+import com.clt.view.ExpenseAggregate;
+import com.clt.view.ExpenseAggregateFactory;
 import reactor.core.publisher.Mono;
 
 record ExpenseRecord(Person expenseOwner, Expense expense) {}
@@ -38,10 +40,6 @@ public class AddExpenseUseCase {
                 new ExpenseRecord(
                     person, expenseFactory.create(description, amount, person.id(), group.id())))
         .doOnNext(er -> expenseStore.store(er.expense()))
-        .map(er -> buildAggregate(er.expenseOwner(), er.expense()));
-  }
-
-  private ExpenseAggregate buildAggregate(Person person, Expense e) {
-    return expenseFactory.create(e, person);
+        .map(er -> ExpenseAggregateFactory.fromDomain(er.expense(), er.expenseOwner()));
   }
 }
