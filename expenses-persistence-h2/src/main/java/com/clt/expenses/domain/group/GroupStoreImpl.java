@@ -23,8 +23,9 @@ public class GroupStoreImpl implements GroupStore {
 
   @Override
   public Mono<Group> retrieve(String groupId) {
-    return groupRepository.findById(groupId)
-            .switchIfEmpty(Mono.error(new GroupNotFound(groupId)))
-            .map(mapper::toDomain);
+    return groupRepository
+        .findById(groupId)
+        .switchIfEmpty(Mono.error(new GroupNotFound(groupId)))
+        .map(mapper::toDomain);
   }
 }

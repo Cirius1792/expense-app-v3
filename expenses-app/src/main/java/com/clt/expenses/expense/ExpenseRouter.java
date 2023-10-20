@@ -1,23 +1,22 @@
 package com.clt.expenses.expense;
 
+import static org.springdoc.core.fn.builders.apiresponse.Builder.responseBuilder;
+import static org.springdoc.core.fn.builders.parameter.Builder.parameterBuilder;
+import static org.springdoc.core.fn.builders.requestbody.Builder.requestBodyBuilder;
+import static org.springdoc.webflux.core.fn.SpringdocRouteBuilder.route;
+
 import com.clt.domain.expense.Money;
 import com.clt.expenses.expense.request.CreateExpenseRequestDto;
 import com.clt.expenses.expense.response.ExpenseResponse;
 import com.clt.usecase.AddExpenseUseCase;
 import com.clt.usecase.FindExpenseUseCase;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import java.net.URI;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
-
-import java.net.URI;
-
-import static org.springdoc.core.fn.builders.apiresponse.Builder.responseBuilder;
-import static org.springdoc.core.fn.builders.parameter.Builder.parameterBuilder;
-import static org.springdoc.core.fn.builders.requestbody.Builder.requestBodyBuilder;
-import static org.springdoc.webflux.core.fn.SpringdocRouteBuilder.route;
 
 public class ExpenseRouter {
   private static final String EXPENSE_TAG = "Expenses";
@@ -47,7 +46,10 @@ public class ExpenseRouter {
                         r.getOwnerId(),
                         groupId)
                     .map(expenseMapper::toDto))
-        .flatMap(r -> ServerResponse.created(URI.create("/expense/"+r.getId())).body(Mono.just(r), ExpenseResponse.class));
+        .flatMap(
+            r ->
+                ServerResponse.created(URI.create("/expense/" + r.getId()))
+                    .body(Mono.just(r), ExpenseResponse.class));
   }
 
   private Mono<ServerResponse> retrieveExpenses(ServerRequest serverRequest) {
@@ -55,8 +57,7 @@ public class ExpenseRouter {
     return ServerResponse.ok()
         .contentType(MediaType.APPLICATION_JSON)
         .body(
-            findExpenseUseCase.retrieveExpense(expenseId)
-                    .map(expenseMapper::toDto),
+            findExpenseUseCase.retrieveExpense(expenseId).map(expenseMapper::toDto),
             ExpenseResponse.class);
   }
 
