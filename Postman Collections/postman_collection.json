@@ -206,6 +206,141 @@
 			"id": "bef9b6d6-1161-493b-bcd1-1b6b03991963"
 		},
 		{
+			"name": "Retrieve Group Use Case",
+			"item": [
+				{
+					"name": "Retrieve Group By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1a74d4b7-e070-49e9-a294-1c84ffe72c42",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "45d624d5-84cf-4e26-a856-73ca829f1795",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "48fb395f-6ab6-4bd4-ae64-c3521ab27f93",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/group/:groupId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"group",
+								":groupId"
+							],
+							"variable": [
+								{
+									"key": "groupId",
+									"value": "{{test_group_id}}",
+									"description": "(Required) Group unique Id"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "395d8d4d-887e-43f0-b73a-fdd952873df0",
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/group/:groupId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"group",
+										":groupId"
+									],
+									"variable": [
+										{
+											"key": "groupId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"owner\": {\n    \"id\": \"<string>\",\n    \"username\": \"<string>\"\n  },\n  \"members\": [\n    {\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    }\n  ]\n}"
+						},
+						{
+							"id": "9b865cad-215b-4a37-88b8-4fde86543cea",
+							"name": "No group found for the given id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/group/:groupId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"group",
+										":groupId"
+									],
+									"variable": [
+										{
+											"key": "groupId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"responseTime": null,
+							"body": ""
+						}
+					]
+				}
+			],
+			"id": "321125bd-cb3c-4be8-8984-88d3c3aa0f18"
+		},
+		{
 			"name": "Create Group Use Case",
 			"item": [
 				{
@@ -511,7 +646,7 @@
 					]
 				},
 				{
-					"name": "retrieve Group By Id Copy",
+					"name": "Retrieve Group By Id",
 					"event": [
 						{
 							"listen": "test",
