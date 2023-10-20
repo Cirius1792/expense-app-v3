@@ -1,9 +1,10 @@
 package com.clt.usecase;
 
 import com.clt.domain.group.*;
-import java.util.List;
 import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple3;
+
+import java.util.List;
 
 public class CreateGroupUseCase {
   private final GroupFactory groupFactory;
@@ -22,7 +23,7 @@ public class CreateGroupUseCase {
         personStore.retrieve(ownerId).switchIfEmpty(Mono.error(new PersonNotFound()));
     Mono<List<Person>> membersProducer = personStore.retrieve(memberIds).collectList();
     Mono<Group> g =
-        Mono.just(groupFactory.create(groupName, ownerId, memberIds)).doOnNext(groupStore::store);
+        Mono.just(groupFactory.create(groupName, ownerId, memberIds)).flatMap(groupStore::store);
     return Mono.zip(ownerProducer, membersProducer, g).map(this::buildAggregate);
   }
 
