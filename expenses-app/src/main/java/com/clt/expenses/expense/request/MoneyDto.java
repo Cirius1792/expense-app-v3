@@ -11,6 +11,13 @@ public class MoneyDto {
   private BigDecimal amount;
   private CurrencyEnum currency;
 
+  public MoneyDto() {}
+
+  public MoneyDto(BigDecimal amount, CurrencyEnum currency) {
+    this.amount = amount;
+    this.currency = currency;
+  }
+
   public BigDecimal getAmount() {
     return amount;
   }

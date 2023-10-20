@@ -6,6 +6,7 @@ import com.clt.domain.expense.ExpenseStore;
 import com.clt.domain.group.GroupStore;
 import com.clt.domain.group.PersonStore;
 import com.clt.usecase.AddExpenseUseCase;
+import com.clt.usecase.FindExpenseUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.server.RouterFunction;
@@ -28,8 +29,15 @@ public class ExpenseRouteConfig {
   }
 
   @Bean
+  FindExpenseUseCase findExpenseUseCase(ExpenseStore expenseStore, PersonStore personStore) {
+    return new FindExpenseUseCase(expenseStore, personStore);
+  }
+
+  @Bean
   RouterFunction<ServerResponse> expensesRouter(
-      ExpenseMapper expenseMapper, AddExpenseUseCase addExpenseUseCase) {
-    return new ExpenseRouter(expenseMapper, addExpenseUseCase).createRoutes();
+      ExpenseMapper expenseMapper,
+      AddExpenseUseCase addExpenseUseCase,
+      FindExpenseUseCase findExpenseUseCase) {
+    return new ExpenseRouter(expenseMapper, addExpenseUseCase, findExpenseUseCase).createRoutes();
   }
 }
