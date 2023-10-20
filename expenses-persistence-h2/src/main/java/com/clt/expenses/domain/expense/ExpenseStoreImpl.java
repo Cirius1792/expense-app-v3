@@ -20,14 +20,15 @@ public class ExpenseStoreImpl implements ExpenseStore {
     ExpenseEntity entity = expenseMapper.toEntity(expense);
     return this.expenseRepository
         .findById(expense.id())
-        .map(
-            $ -> {
-              entity.setNew(false);
-              return entity;
-            })
+        .map(this::setAsNew)
         .switchIfEmpty(Mono.just(entity))
         .flatMap(expenseRepository::save)
         .map(expenseMapper::toDomain);
+  }
+
+  private ExpenseEntity setAsNew(ExpenseEntity entity) {
+      entity.setNew(false);
+      return entity;
   }
 
   @Override
