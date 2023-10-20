@@ -27,8 +27,8 @@ public class ExpenseStoreImpl implements ExpenseStore {
   }
 
   private ExpenseEntity setAsNew(ExpenseEntity entity) {
-      entity.setNew(false);
-      return entity;
+    entity.setNew(false);
+    return entity;
   }
 
   @Override
