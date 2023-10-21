@@ -13,6 +13,8 @@
     <module>expenses-app</module>
     <module>ledger-app</module>
     <module>expenses-persistence-h2</module>
+      <module>expenses-event-driver</module>
+      <module>ledger-event-port</module>
   </modules>
   <properties>
     <wiremock.version>2.35.0</wiremock.version>
