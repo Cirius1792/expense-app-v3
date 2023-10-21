@@ -1,21 +1,21 @@
 package com.clt.usecase;
 
-import com.clt.domain.expense.Expense;
-import com.clt.domain.expense.ExpenseFactory;
-import com.clt.domain.expense.ExpenseStore;
-import com.clt.domain.expense.Money;
-import com.clt.domain.group.*;
+import com.clt.domain.expense.*;
+import com.clt.domain.group.GroupNotFound;
+import com.clt.domain.group.GroupStore;
+import com.clt.domain.group.PersonNotFound;
+import com.clt.domain.group.PersonStore;
+import com.clt.event.Notifier;
 import com.clt.view.ExpenseAggregate;
 import com.clt.view.ExpenseAggregateFactory;
 import reactor.core.publisher.Mono;
-
-record ExpenseRecord(Person expenseOwner, Expense expense) {}
 
 public class AddExpenseUseCase {
   private final PersonStore personStore;
   private final GroupStore groupStore;
   private final ExpenseFactory expenseFactory;
   private final ExpenseStore expenseStore;
+  private final Notifier<ExpenseRecord> newExpenseNotifier;
 
   public AddExpenseUseCase(
       PersonStore personStore,
@@ -26,6 +26,20 @@ public class AddExpenseUseCase {
     this.groupStore = groupStore;
     this.expenseFactory = expenseFactory;
     this.expenseStore = expenseStore;
+    this.newExpenseNotifier = new NewExpenseNotifierNop();
+  }
+
+  public AddExpenseUseCase(
+      PersonStore personStore,
+      GroupStore groupStore,
+      ExpenseFactory expenseFactory,
+      ExpenseStore expenseStore,
+      Notifier<ExpenseRecord> newExpenseNotifier) {
+    this.personStore = personStore;
+    this.groupStore = groupStore;
+    this.expenseFactory = expenseFactory;
+    this.expenseStore = expenseStore;
+    this.newExpenseNotifier = newExpenseNotifier;
   }
 
   public Mono<ExpenseAggregate> create(
@@ -38,8 +52,11 @@ public class AddExpenseUseCase {
             groupProducer,
             (person, group) ->
                 new ExpenseRecord(
-                    person, expenseFactory.create(description, amount, person.id(), group.id())))
+                    person,
+                    expenseFactory.create(description, amount, person.id(), group.id()),
+                    group))
         .doOnNext(er -> expenseStore.store(er.expense()))
+        .doOnNext(newExpenseNotifier::notify)
         .map(er -> ExpenseAggregateFactory.fromDomain(er.expense(), er.expenseOwner()));
   }
 }

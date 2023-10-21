@@ -2,11 +2,12 @@ package com.clt.usecase;
 
 import com.clt.domain.commons.UUIDIdFactory;
 import com.clt.domain.expense.ExpenseFactory;
+import com.clt.domain.expense.ExpenseRecord;
 import com.clt.domain.expense.ExpenseStore;
 import com.clt.domain.expense.Money;
 import com.clt.domain.group.*;
+import com.clt.event.Notifier;
 import com.clt.view.ExpenseAggregate;
-import java.util.Arrays;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -14,6 +15,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
+
+import java.util.Arrays;
 
 class AddExpenseUseCaseTest {
 
@@ -25,6 +28,7 @@ class AddExpenseUseCaseTest {
   private GroupStore groupStore;
   private ExpenseStore expenseStore;
   private AddExpenseUseCase useCase;
+  private Notifier<ExpenseRecord> newExpenseNotifier;
 
   @BeforeEach
   void initMocks() {
@@ -35,12 +39,15 @@ class AddExpenseUseCaseTest {
     Mockito.when(groupStore.retrieve(GROUP.id())).thenReturn(Mono.just(GROUP));
 
     expenseStore = Mockito.mock(ExpenseStore.class);
-    Mockito.when(expenseStore.store(Mockito.any()))
-        .thenAnswer(args -> Mono.just(args.getArgument(0)));
+    newExpenseNotifier = Mockito.mock(Notifier.class);
 
     useCase =
         new AddExpenseUseCase(
-            personStore, groupStore, new ExpenseFactory(new UUIDIdFactory()), expenseStore);
+            personStore,
+            groupStore,
+            new ExpenseFactory(new UUIDIdFactory()),
+            expenseStore,
+            newExpenseNotifier);
   }
 
   @DisplayName(
@@ -85,5 +92,29 @@ class AddExpenseUseCaseTest {
     Mockito.when(groupStore.retrieve(invalidGroupId)).thenReturn(Mono.empty());
     var producer = useCase.create(DESCRIPTION, AMOUNT, OWNER.id(), invalidGroupId);
     StepVerifier.create(producer).verifyError(GroupNotFound.class);
+  }
+
+  @DisplayName("When a new expense is stored " + "Then the new_expense_created event is notified")
+  @Test
+  void notify_expense_creation_on_store() {
+    useCase
+        .create(DESCRIPTION, AMOUNT, OWNER.id(), GROUP.id())
+        .as(StepVerifier::create)
+        .assertNext(
+            e -> Mockito.verify(newExpenseNotifier, Mockito.atLeastOnce()).notify(Mockito.any()))
+        .verifyComplete();
+  }
+
+  @DisplayName(
+      "When a new expense can't be stored for any reason "
+          + "Then the new_expense_created event is not notified")
+  @Test
+  void not_notify_on_expense_store_failure() {
+    Mockito.when(expenseStore.store(Mockito.any())).thenReturn(Mono.error(new RuntimeException()));
+    useCase
+        .create(DESCRIPTION, AMOUNT, OWNER.id(), GROUP.id())
+        .as(StepVerifier::create)
+        .assertNext(e -> Mockito.verify(newExpenseNotifier, Mockito.never()).notify(Mockito.any()))
+        .expectError();
   }
 }
