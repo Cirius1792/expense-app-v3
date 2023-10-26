@@ -1,2 +1,3 @@
 - [ ] GroupManagerService.create: check per group name e owner not null
 - [ ] CreateGroupUseCase.create: check per utenti inseriti a doppio fra i membri
+- [ ] Split Expense Use Case

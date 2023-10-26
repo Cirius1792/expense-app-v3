@@ -4,6 +4,7 @@ import com.clt.domain.commons.IdFactory;
 import com.clt.domain.expense.Expense;
 import com.clt.domain.expense.Money;
 import com.clt.domain.group.Group;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
