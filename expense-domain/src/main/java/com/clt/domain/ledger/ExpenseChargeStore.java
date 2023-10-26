@@ -1,8 +1,5 @@
 package com.clt.domain.ledger;
 
-import reactor.core.publisher.Mono;
+import com.clt.domain.commons.Store;
 
-public interface ExpenseChargeStore {
-
-    Mono<ExpenseCharge> store(ExpenseCharge expenseCharge);
-}
+public interface ExpenseChargeStore extends Store<ExpenseCharge, String> {}

@@ -1,9 +1,5 @@
 package com.clt.domain.expense;
 
-import reactor.core.publisher.Mono;
+import com.clt.domain.commons.Store;
 
-public interface ExpenseStore {
-  Mono<Expense> store(Expense expense);
-
-  Mono<Expense> retrieve(String expenseId);
-}
+public interface ExpenseStore extends Store<Expense, String> {}

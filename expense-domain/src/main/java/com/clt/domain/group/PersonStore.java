@@ -1,13 +1,5 @@
 package com.clt.domain.group;
 
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+import com.clt.domain.commons.Store;
 
-public interface PersonStore {
-
-  Mono<Person> store(Person person);
-
-  Mono<Person> retrieve(String id);
-
-  Flux<Person> retrieve(Iterable<String> ids);
-}
+public interface PersonStore extends Store<Person, String> {}
