@@ -8,6 +8,7 @@ import com.clt.domain.expense.Money;
 import com.clt.domain.group.*;
 import com.clt.event.Notifier;
 import com.clt.view.ExpenseAggregate;
+import java.util.Arrays;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -15,8 +16,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
-
-import java.util.Arrays;
 
 class AddExpenseUseCaseTest {
 
