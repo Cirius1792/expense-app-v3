@@ -21,10 +21,6 @@ public abstract class Money {
     return Money.euros(getAmount().subtract(money.getAmount()));
   }
 
-  public Money divide(Money money) {
-    return Money.euros(getAmount().divide(money.getAmount(), 2, RoundingMode.CEILING));
-  }
-
   public Money divide(BigDecimal amount) {
     return Money.euros(getAmount().divide(amount, 2, RoundingMode.CEILING));
   }

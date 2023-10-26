@@ -1,5 +1,8 @@
 package com.clt.domain.ledger;
 
 import com.clt.domain.commons.Store;
+import reactor.core.publisher.Flux;
 
-public interface ExpenseChargeStore extends Store<ExpenseCharge, String> {}
+public interface ExpenseChargeStore extends Store<ExpenseCharge, String> {
+  Flux<ExpenseCharge> retrieveBy(String personId, String groupId);
+}

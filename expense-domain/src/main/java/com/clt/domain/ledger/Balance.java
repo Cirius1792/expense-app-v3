@@ -14,6 +14,12 @@ public class Balance {
     charges = new ArrayList<>();
   }
 
+  public Balance(Person owner, Iterable<ExpenseCharge> charges) {
+    this.owner = owner;
+    this.charges = new ArrayList<>();
+    charges.forEach(this::addExpenseCharge);
+  }
+
   public Money balance() {
     return this.credits().minus(this.debits());
   }
