@@ -54,7 +54,7 @@ class AddExpenseUseCaseTest {
           + "And a valid group "
           + "When registering a new expense "
           + "The the new expense is created "
-          + "And the new expense is tored")
+          + "And the new expense is stored")
   @Test
   void test_create_and_store_new_expense() {
     Mono<ExpenseAggregate> producer = useCase.create(DESCRIPTION, AMOUNT, OWNER.id(), GROUP.id());
