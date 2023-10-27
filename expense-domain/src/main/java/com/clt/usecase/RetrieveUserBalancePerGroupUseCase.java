@@ -16,9 +16,9 @@ public class RetrieveUserBalancePerGroupUseCase {
     this.expenseChargeStore = expenseChargeStore;
   }
 
-  public Mono<Money> retrieve(String personId, String groupId) {
+  public Mono<Money> retrieve(String debtor, String groupId) {
     return personStore
-        .retrieve(personId)
+        .retrieve(debtor)
         .map(p -> new Balance(p, expenseChargeStore.retrieveBy(p.id(), groupId).toIterable()))
         .map(Balance::balance);
   }

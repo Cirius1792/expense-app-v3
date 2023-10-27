@@ -21,13 +21,13 @@ public class PersonStoreImpl implements PersonStore {
     PersonEntity entity = personMapper.toEntity(person);
     return this.personRepository
         .findById(person.id())
-        .map(this::setAsNew)
+        .map(this::setAsNotNew)
         .switchIfEmpty(Mono.just(entity))
         .flatMap(personRepository::save)
         .map(personMapper::toDomain);
   }
 
-  private PersonEntity setAsNew(PersonEntity entity) {
+  private PersonEntity setAsNotNew(PersonEntity entity) {
     entity.setNew(false);
     return entity;
   }
