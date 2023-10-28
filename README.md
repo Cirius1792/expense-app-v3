@@ -1,5 +1,5 @@
 # expense-app-v3
-#Use Cases
+# Use Cases
 ## Add New Expense Use Case
 ```mermaid
 sequenceDiagram
