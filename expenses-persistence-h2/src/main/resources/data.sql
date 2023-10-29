@@ -12,3 +12,15 @@ INSERT INTO group_member (group_id, member )
   VALUES( 'test-group', 'member-1-id');
 INSERT INTO group_member (group_id, member )
   VALUES( 'test-group', 'member-2-id');
+
+
+INSERT INTO expense (id, description, amount, owner_id, group_id)
+    VALUES(1, 'Milk', '4.99', 'member-1-id', 'test-group');
+INSERT INTO expense (id, description, amount, owner_id, group_id)
+    VALUES(2, 'Water', '2.99', 'member-2-id', 'test-group');
+
+INSERT INTO expense_charge (id, expense, group_id, due_amount, debtor, creditor)
+  VALUES(1, 1, 'test-group', '1.50', 'member-1-id', 'member-2-id');
+INSERT INTO expense_charge (id, expense, group_id, due_amount, debtor, creditor)
+  VALUES(2, 2, 'test-group', '1.00', 'member-2-id', 'member-1-id');
+
