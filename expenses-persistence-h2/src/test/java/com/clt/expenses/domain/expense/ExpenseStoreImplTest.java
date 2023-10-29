@@ -4,6 +4,7 @@ import com.clt.domain.expense.Expense;
 import com.clt.domain.expense.ExpenseStore;
 import com.clt.domain.expense.ImmutableExpense;
 import com.clt.domain.expense.Money;
+import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,8 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.r2dbc.core.DatabaseClient;
 import reactor.core.publisher.Hooks;
 import reactor.test.StepVerifier;
-
-import java.util.Arrays;
 
 @SpringBootTest(classes = StoreTestConfiguration.class)
 class ExpenseStoreImplTest {

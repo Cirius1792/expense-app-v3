@@ -8,30 +8,29 @@ import reactor.core.publisher.Mono;
 
 @Repository
 public class ExpenseChargeStoreImpl implements ExpenseChargeStore {
-    private final ExpenseChargeRepository expenseChargeRepository;
-    private final ExpenseChargePersistenceMapper mapper;
+  private final ExpenseChargeRepository expenseChargeRepository;
+  private final ExpenseChargePersistenceMapper mapper;
 
-    public ExpenseChargeStoreImpl(ExpenseChargeRepository expenseChargeRepository, ExpenseChargePersistenceMapper mapper) {
-        this.expenseChargeRepository = expenseChargeRepository;
-        this.mapper = mapper;
-    }
+  public ExpenseChargeStoreImpl(
+      ExpenseChargeRepository expenseChargeRepository, ExpenseChargePersistenceMapper mapper) {
+    this.expenseChargeRepository = expenseChargeRepository;
+    this.mapper = mapper;
+  }
 
-    @Override
-    public Mono<ExpenseCharge> store(ExpenseCharge domain) {
-        return Mono.just(mapper.toEntity(domain))
-                .flatMap(expenseChargeRepository::save)
-                .map(mapper::toDomain);
-    }
+  @Override
+  public Mono<ExpenseCharge> store(ExpenseCharge domain) {
+    return Mono.just(mapper.toEntity(domain))
+        .flatMap(expenseChargeRepository::save)
+        .map(mapper::toDomain);
+  }
 
-    @Override
-    public Mono<ExpenseCharge> retrieve(String id) {
-        return expenseChargeRepository.findById(id)
-                .map(mapper::toDomain);
-    }
+  @Override
+  public Mono<ExpenseCharge> retrieve(String id) {
+    return expenseChargeRepository.findById(id).map(mapper::toDomain);
+  }
 
-    @Override
-    public Flux<ExpenseCharge> retrieveBy(String debtor, String groupId) {
-        return expenseChargeRepository.findByDebtorAndGroupId(debtor, groupId)
-                .map(mapper::toDomain);
-    }
+  @Override
+  public Flux<ExpenseCharge> retrieveBy(String debtor, String groupId) {
+    return expenseChargeRepository.findByDebtorAndGroupId(debtor, groupId).map(mapper::toDomain);
+  }
 }
