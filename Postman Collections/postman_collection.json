@@ -820,7 +820,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"username\": \"<string>\"\n}"
+							"raw": "{\n  \"username\": \"{{$randomFirstName}}\"\n}"
 						},
 						"url": "{{baseUrl}}/user"
 					},
