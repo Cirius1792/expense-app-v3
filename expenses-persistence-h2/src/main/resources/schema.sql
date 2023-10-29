@@ -20,3 +20,11 @@ CREATE TABLE group_member (
     );
 
 
+CREATE TABLE expense_charge(
+    id varchar primary key,
+    expense varchar(255) not null,
+    group_id varchar,
+    due_amount varchar(66) not null,
+    debtor varchar(255) not null,
+    creditor varchar(255) not null
+    );
