@@ -1019,6 +1019,127 @@
 				}
 			],
 			"id": "bc96b777-1f96-4dc5-ba04-d5698833051a"
+		},
+		{
+			"name": "Retrieve User Balance",
+			"item": [
+				{
+					"name": "Retrieve User Balance",
+					"id": "707217dc-faaa-451b-a1be-895df0726b47",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/group/:groupId/user/:userId/balance",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"group",
+								":groupId",
+								"user",
+								":userId",
+								"balance"
+							],
+							"variable": [
+								{
+									"id": "5bca8eca-68d8-4a28-8774-9b51bb83757e",
+									"key": "groupId",
+									"value": "{{test_group_id}}"
+								},
+								{
+									"id": "9e92799b-a141-41b6-9627-273e8f09e44c",
+									"key": "userId",
+									"value": "{{test_member_id}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "07ee882f-26f6-4d60-826d-008a5c1eafed",
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/group/:groupId/expense",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"group",
+										":groupId",
+										"expense"
+									],
+									"variable": [
+										{
+											"key": "groupId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "[]"
+						},
+						{
+							"id": "88a755c5-068a-4881-a471-7f0a80cd0791",
+							"name": "Group not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/group/:groupId/expense",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"group",
+										":groupId",
+										"expense"
+									],
+									"variable": [
+										{
+											"key": "groupId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"responseTime": null,
+							"body": ""
+						}
+					]
+				}
+			],
+			"id": "e9fbb7e2-41e8-45b7-8a92-e616e8365417"
 		}
 	],
 	"variable": [
