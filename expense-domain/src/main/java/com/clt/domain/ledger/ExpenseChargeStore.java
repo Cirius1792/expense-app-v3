@@ -5,4 +5,6 @@ import reactor.core.publisher.Flux;
 
 public interface ExpenseChargeStore extends Store<ExpenseCharge, String> {
   Flux<ExpenseCharge> retrieveBy(String debtor, String groupId);
+
+  Flux<ExpenseCharge> retrieveBy(String expenseId);
 }

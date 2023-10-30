@@ -36,4 +36,9 @@ public class ExpenseChargeStoreImpl implements ExpenseChargeStore {
         .concatWith(expenseChargeRepository.findByCreditorAndGroupId(subject, groupId))
         .map(mapper::toDomain);
   }
+
+  @Override
+  public Flux<ExpenseCharge> retrieveBy(String expenseId) {
+    return expenseChargeRepository.findByExpense(expenseId).map(mapper::toDomain);
+  }
 }

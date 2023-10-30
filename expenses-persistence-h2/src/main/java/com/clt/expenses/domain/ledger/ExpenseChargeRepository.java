@@ -10,4 +10,6 @@ public interface ExpenseChargeRepository
   Flux<ExpenseChargeEntity> findByDebtorAndGroupId(String debtor, String groupId);
 
   Flux<ExpenseChargeEntity> findByCreditorAndGroupId(String creditor, String groupId);
+
+  Flux<ExpenseChargeEntity> findByExpense(String expense);
 }
