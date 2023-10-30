@@ -17,11 +17,11 @@ public class RetrieveUserBalancePerGroupUseCase {
     this.expenseChargeStore = expenseChargeStore;
   }
 
-  public Mono<Money> retrieve(String debtor, String groupId) {
+  public Mono<Money> retrieve(String user, String groupId) {
     return personStore
-        .retrieve(debtor)
+        .retrieve(user)
         .switchIfEmpty(Mono.error(PersonNotFound::new))
-        .zipWith(expenseChargeStore.retrieveBy(debtor, groupId).collectList())
+        .zipWith(expenseChargeStore.retrieveBy(user, groupId).collectList())
         .map(p -> new Balance(p.getT1(), p.getT2()))
         .map(Balance::balance);
   }

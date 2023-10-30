@@ -8,4 +8,6 @@ import reactor.core.publisher.Flux;
 public interface ExpenseChargeRepository
     extends ReactiveCrudRepository<ExpenseChargeEntity, String> {
   Flux<ExpenseChargeEntity> findByDebtorAndGroupId(String debtor, String groupId);
+
+  Flux<ExpenseChargeEntity> findByCreditorAndGroupId(String creditor, String groupId);
 }

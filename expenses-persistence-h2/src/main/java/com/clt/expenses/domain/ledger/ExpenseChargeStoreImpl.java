@@ -30,7 +30,10 @@ public class ExpenseChargeStoreImpl implements ExpenseChargeStore {
   }
 
   @Override
-  public Flux<ExpenseCharge> retrieveBy(String debtor, String groupId) {
-    return expenseChargeRepository.findByDebtorAndGroupId(debtor, groupId).map(mapper::toDomain);
+  public Flux<ExpenseCharge> retrieveBy(String subject, String groupId) {
+    return expenseChargeRepository
+        .findByDebtorAndGroupId(subject, groupId)
+        .concatWith(expenseChargeRepository.findByCreditorAndGroupId(subject, groupId))
+        .map(mapper::toDomain);
   }
 }
