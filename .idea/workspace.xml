@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cfdadc1-3b9b-4e03-8177-25fe6428ff12" name="Changes" comment="[NEW] Retrieve split outcome for an expense Use Case" />
+    <list default="true" id="0cfdadc1-3b9b-4e03-8177-25fe6428ff12" name="Changes" comment="Fix merge issues" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -406,7 +406,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698649328463</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Fix merge issues">
+      <option name="closed" value="true" />
+      <created>1698909302257</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1698909302257</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -421,7 +429,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="moved to xml poms" />
     <MESSAGE value="[NEW] Find Person API" />
     <MESSAGE value="[FIX] Find Person API now hadles the producer₹properly" />
     <MESSAGE value="[NEW] Fing Group By Id Use case" />
@@ -446,7 +453,8 @@
     <MESSAGE value="[FIX] Retrieve Balance per user use case was not considering the user both as a debtor and as a creditor" />
     <MESSAGE value="[NEW] Retrieve split outcome for an expense" />
     <MESSAGE value="[NEW] Retrieve split outcome for an expense Use Case" />
-    <option name="LAST_COMMIT_MESSAGE" value="[NEW] Retrieve split outcome for an expense Use Case" />
+    <MESSAGE value="Fix merge issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix merge issues" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
