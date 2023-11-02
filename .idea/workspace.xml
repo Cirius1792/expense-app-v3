@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0cfdadc1-3b9b-4e03-8177-25fe6428ff12" name="Changes" comment="[NEW] Retrieve split outcome for an expense Use Case" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="module" />
+    </option>
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../../../DevTools/apache-maven" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2WQeiipdHPm4JvOO7cqTUqx3DWu" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/ciriu/Documents/Projects/expense-app-v3/expense-domain/src/test/java/com/clt/domain/ledger&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ciriu/Documents/Projects/expense-app-v3/pom.xml&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;PLAIN_TEXT&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.clt.usecase" />
+      <recent name="com.clt.expenses.domain.group" />
+      <recent name="com.clt.domain.ledger" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.clt.usecase" />
+      <recent name="com.clt.expenses.domain.group" />
+      <recent name="com.clt.expenses.user" />
+      <recent name="com.clt.domain.ledger" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.clt.expenses.domain.group" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="All in expense-domain" />
+      <command value="ExpenseApp" />
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.ExpenseChargeStoreImplTest">
+    <configuration name="ExpenseApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.clt.expenses.ExpenseApp" />
+      <module name="expenses-app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.clt.expenses.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in expenses-persistence-h2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="expenses-persistence-h2" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExpenseChargeStoreImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="expenses-persistence-h2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.clt.expenses.domain.ledger.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.clt.expenses.domain.ledger" />
+      <option name="MAIN_CLASS_NAME" value="com.clt.expenses.domain.ledger.ExpenseChargeStoreImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RetrieveSplitPerExpenseTest.retrieve_expense_charge_per_expense_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="expense-domain" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.clt.usecase.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.clt.usecase" />
+      <option name="MAIN_CLASS_NAME" value="com.clt.usecase.RetrieveSplitPerExpenseTest" />
+      <option name="METHOD_NAME" value="retrieve_expense_charge_per_expense_test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RetrieveUserBalancePerGroupTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="expense-domain" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.clt.usecase.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.clt.usecase" />
+      <option name="MAIN_CLASS_NAME" value="com.clt.usecase.RetrieveUserBalancePerGroupTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ExpenseChargeStoreImplTest" />
+        <item itemvalue="JUnit.RetrieveSplitPerExpenseTest.retrieve_expense_charge_per_expense_test" />
+        <item itemvalue="Application.ExpenseApp" />
+        <item itemvalue="JUnit.RetrieveUserBalancePerGroupTest" />
+        <item itemvalue="JUnit.All in expenses-persistence-h2" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0cfdadc1-3b9b-4e03-8177-25fe6428ff12" name="Changes" comment="" />
+      <created>1696669362789</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1696669362789</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Ledger split test case">
+      <option name="closed" value="true" />
+      <created>1696669975242</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1696669975242</updated>
+    </task>
+    <task id="LOCAL-00002" summary="WIP Balances">
+      <option name="closed" value="true" />
+      <created>1696677620915</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1696677620915</updated>
+    </task>
+    <task id="LOCAL-00003" summary="[NEW] Personal Balance to track amount owned">
+      <option name="closed" value="true" />
+      <created>1696877094577</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1696877094577</updated>
+    </task>
+    <task id="LOCAL-00004" summary="moved to xml poms">
+      <option name="closed" value="true" />
+      <created>1697472492218</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1697472492218</updated>
+    </task>
+    <task id="LOCAL-00005" summary="[NEW] Find Person API">
+      <option name="closed" value="true" />
+      <created>1697652052154</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1697652052154</updated>
+    </task>
+    <task id="LOCAL-00006" summary="[FIX] Find Person API now hadles the producer₹properly">
+      <option name="closed" value="true" />
+      <created>1697717825593</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1697717825593</updated>
+    </task>
+    <task id="LOCAL-00007" summary="[NEW] Fing Group By Id Use case">
+      <option name="closed" value="true" />
+      <created>1697725029704</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1697725029704</updated>
+    </task>
+    <task id="LOCAL-00008" summary="[NEW] Fing Group By Id Use case">
+      <option name="closed" value="true" />
+      <created>1697725397066</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1697725397066</updated>
+    </task>
+    <task id="LOCAL-00009" summary="[NEW] Fing Group By Id API">
+      <option name="closed" value="true" />
+      <created>1697726231218</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1697726231218</updated>
+    </task>
+    <task id="LOCAL-00010" summary="[NEW] GroupStore H2 Implementation">
+      <option name="closed" value="true" />
+      <created>1697729881228</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1697729881228</updated>
+    </task>
+    <task id="LOCAL-00011" summary="[NEW] GroupStore retrieve group H2 Implementation">
+      <option name="closed" value="true" />
+      <created>1697731171550</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1697731171550</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Code Reformatted">
+      <option name="closed" value="true" />
+      <created>1697731233548</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1697731233548</updated>
+    </task>
+    <task id="LOCAL-00013" summary="[NEW] Retrieve Expense Use Case">
+      <option name="closed" value="true" />
+      <created>1697783257300</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1697783257301</updated>
+    </task>
+    <task id="LOCAL-00014" summary="[NEW] Create Expense Use Case now uses the Expense Aggregate view">
+      <option name="closed" value="true" />
+      <created>1697786950842</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1697786950842</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Added schema definition for group an person tables">
+      <option name="closed" value="true" />
+      <created>1697790713674</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1697790713674</updated>
+    </task>
+    <task id="LOCAL-00016" summary="[NEW] Added data preparation for integration tests">
+      <option name="closed" value="true" />
+      <created>1697790732065</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1697790732065</updated>
+    </task>
+    <task id="LOCAL-00017" summary="[NEW] Retrieve Expense API">
+      <option name="closed" value="true" />
+      <created>1697790751762</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1697790751762</updated>
+    </task>
+    <task id="LOCAL-00018" summary="[FIX] Create Expense Api response code set to 201">
+      <option name="closed" value="true" />
+      <created>1697791734726</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1697791734726</updated>
+    </task>
+    <task id="LOCAL-00019" summary="[FIX] Retrieve Group Use Case throw an error if a group with the given id does not exists">
+      <option name="closed" value="true" />
+      <created>1697793611113</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1697793611113</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Code formatted">
+      <option name="closed" value="true" />
+      <created>1697793721709</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1697793721709</updated>
+    </task>
+    <task id="LOCAL-00021" summary="[FIX] Create Group: group store operation was not subscribed and therefore never executed">
+      <option name="closed" value="true" />
+      <created>1697794813980</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1697794813980</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Refactoring to isolate the Aggregates View object used">
+      <option name="closed" value="true" />
+      <created>1697806552479</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1697806552479</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Code Clean up">
+      <option name="closed" value="true" />
+      <created>1697816398071</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1697816398071</updated>
+    </task>
+    <task id="LOCAL-00024" summary="[NEW] Retrieve user balance per group API">
+      <option name="closed" value="true" />
+      <created>1698564429157</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1698564429157</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Added test data for expense charge">
+      <option name="closed" value="true" />
+      <created>1698565217423</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1698565217423</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Formatted code">
+      <option name="closed" value="true" />
+      <created>1698565276907</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1698565276907</updated>
+    </task>
+    <task id="LOCAL-00027" summary="[FIX] Retrieve Balance per user use case was not considering the user both as a debtor and as a creditor">
+      <option name="closed" value="true" />
+      <created>1698646439781</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1698646439781</updated>
+    </task>
+    <task id="LOCAL-00028" summary="[NEW] Retrieve split outcome for an expense Use Case">
+      <option name="closed" value="true" />
+      <created>1698649328463</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1698649328463</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="moved to xml poms" />
+    <MESSAGE value="[NEW] Find Person API" />
+    <MESSAGE value="[FIX] Find Person API now hadles the producer₹properly" />
+    <MESSAGE value="[NEW] Fing Group By Id Use case" />
+    <MESSAGE value="[NEW] Fing Group By Id API" />
+    <MESSAGE value="[NEW] GroupStore H2 Implementation" />
+    <MESSAGE value="[NEW] GroupStore retrieve group H2 Implementation" />
+    <MESSAGE value="Code Reformatted" />
+    <MESSAGE value="[NEW] Retrieve Expense Use Case" />
+    <MESSAGE value="[NEW] Create Expense Use Case now uses the Expense Aggregate view" />
+    <MESSAGE value="Added schema definition for group an person tables" />
+    <MESSAGE value="[NEW] Added data preparation for integration tests" />
+    <MESSAGE value="[NEW] Retrieve Expense API" />
+    <MESSAGE value="[FIX] Create Expense Api response code set to 201" />
+    <MESSAGE value="[FIX] Retrieve Group Use Case throw an error if a group with the given id does not exists" />
+    <MESSAGE value="Code formatted" />
+    <MESSAGE value="[FIX] Create Group: group store operation was not subscribed and therefore never executed" />
+    <MESSAGE value="Refactoring to isolate the Aggregates View object used" />
+    <MESSAGE value="Code Clean up" />
+    <MESSAGE value="[NEW] Retrieve user balance per group API" />
+    <MESSAGE value="Added test data for expense charge" />
+    <MESSAGE value="Formatted code" />
+    <MESSAGE value="[FIX] Retrieve Balance per user use case was not considering the user both as a debtor and as a creditor" />
+    <MESSAGE value="[NEW] Retrieve split outcome for an expense" />
+    <MESSAGE value="[NEW] Retrieve split outcome for an expense Use Case" />
+    <option name="LAST_COMMIT_MESSAGE" value="[NEW] Retrieve split outcome for an expense Use Case" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/expense-domain/src/test/java/com/clt/domain/ledger/BalanceEvaluatorTest.java</url>
+          <line>80</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/expense/ExpenseMapper.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/expense/ExpenseMapper.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/expense-domain/src/main/java/com/clt/domain/ledger/Balance.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/expense_app_v3$All_in_expense_domain__1_.ic" NAME="All in expense-domain (1) Coverage Results" MODIFIED="1697736911187" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/expense_app_v3$All_in_expenses_persistence_h2__1_.ic" NAME="All in expenses-persistence-h2 (1) Coverage Results" MODIFIED="1697736940478" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/expense_app_v3$All_in_expenses_app_v3.ic" NAME="All in expenses-app-v3 Coverage Results" MODIFIED="1697806632884" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>
