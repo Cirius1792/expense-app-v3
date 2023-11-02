@@ -4,6 +4,8 @@ import com.clt.domain.expense.Money;
 import com.clt.domain.ledger.ExpenseCharge;
 import com.clt.domain.ledger.ExpenseChargeStore;
 import com.clt.domain.ledger.ImmutableExpenseCharge;
+import java.math.BigDecimal;
+import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,9 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.r2dbc.core.DatabaseClient;
 import reactor.core.publisher.Hooks;
 import reactor.test.StepVerifier;
-
-import java.math.BigDecimal;
-import java.util.Arrays;
 
 @SpringBootTest(classes = ExpenseChargeStoreTestConfiguration.class)
 class ExpenseChargeStoreImplTest {
