@@ -1,7 +1,0 @@
-com\clt\expenses\domain\expense\ExpenseStoreImplTest.class
-com\clt\expenses\domain\ledger\ExpenseChargeStoreImplTest.class
-com\clt\expenses\domain\group\GroupStoreImplTest.class
-com\clt\expenses\domain\group\GroupTestConfiguration.class
-com\clt\expenses\domain\expense\StoreTestConfiguration.class
-com\clt\expenses\domain\group\PersonStoreImplTest.class
-com\clt\expenses\domain\ledger\ExpenseChargeStoreTestConfiguration.class
