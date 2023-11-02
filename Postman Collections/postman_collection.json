@@ -1,0 +1,1284 @@
+{
+	"info": {
+		"_postman_id": "63fba6a3-7fc3-4a5b-8527-b504163a984c",
+		"name": "Automated Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Expense Use Case",
+			"item": [
+				{
+					"name": "add Expense Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9093109f-2b0c-4624-a3ad-571ebff370a9",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Should have an expense id\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).not.eql(null);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Should have an expense id\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).not.eql(null);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Should have the group id\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.groupId).to.eql(pm.environment.get(\"test_group_id\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Should have the owner id\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.owner.id).to.eql(pm.environment.get(\"test_member_id\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Should have the proper amount\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.amount.amount).to.eql(pm.environment.get(\"expense_amount\"));\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Should have the proper description\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.description).to.eql(pm.environment.get(\"expense_description\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ab4fd422-f873-44b5-b84c-18af31d4953a",
+								"exec": [
+									"pm.environment.set(\"expense_amount\", 12.50);\r",
+									"pm.environment.set(\"expense_description\", \"Test Expense\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "7b18cf84-e5f2-4a4f-93f0-98eb5d5d34ad",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "*/*"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"description\": \"{{expense_description}}\",\n  \"amount\": {\n    \"amount\": \"{{expense_amount}}\",\n    \"currency\": \"EUR\"\n  },\n  \"ownerId\": \"{{test_member_id}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/group/:groupId/expense",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"group",
+								":groupId",
+								"expense"
+							],
+							"variable": [
+								{
+									"key": "groupId",
+									"value": "{{test_group_id}}",
+									"description": "(Required) Group Id"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "15a9a875-3c7f-49cd-8681-7da48ea6a4bb",
+							"name": "Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "*/*"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"description\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"EUR\"\n  },\n  \"ownerId\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/group/:groupId/expense",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"group",
+										":groupId",
+										"expense"
+									],
+									"variable": [
+										{
+											"key": "groupId"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{}"
+						},
+						{
+							"id": "19780c88-70f4-48d4-bd4d-16fbd7c4f3ee",
+							"name": "Group not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"description\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"EUR\"\n  },\n  \"ownerId\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/group/:groupId/expense",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"group",
+										":groupId",
+										"expense"
+									],
+									"variable": [
+										{
+											"key": "groupId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"responseTime": null,
+							"body": ""
+						}
+					]
+				}
+			],
+			"id": "bef9b6d6-1161-493b-bcd1-1b6b03991963"
+		},
+		{
+			"name": "Retrieve Group Use Case",
+			"item": [
+				{
+					"name": "Retrieve Group By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1a74d4b7-e070-49e9-a294-1c84ffe72c42",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "45d624d5-84cf-4e26-a856-73ca829f1795",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "48fb395f-6ab6-4bd4-ae64-c3521ab27f93",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/group/:groupId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"group",
+								":groupId"
+							],
+							"variable": [
+								{
+									"key": "groupId",
+									"value": "{{test_group_id}}",
+									"description": "(Required) Group unique Id"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "395d8d4d-887e-43f0-b73a-fdd952873df0",
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/group/:groupId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"group",
+										":groupId"
+									],
+									"variable": [
+										{
+											"key": "groupId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"owner\": {\n    \"id\": \"<string>\",\n    \"username\": \"<string>\"\n  },\n  \"members\": [\n    {\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    }\n  ]\n}"
+						},
+						{
+							"id": "9b865cad-215b-4a37-88b8-4fde86543cea",
+							"name": "No group found for the given id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/group/:groupId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"group",
+										":groupId"
+									],
+									"variable": [
+										{
+											"key": "groupId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"responseTime": null,
+							"body": ""
+						}
+					]
+				}
+			],
+			"id": "321125bd-cb3c-4be8-8984-88d3c3aa0f18"
+		},
+		{
+			"name": "Create Group Use Case",
+			"item": [
+				{
+					"name": "Create Group Owner",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "647ce7d0-2f74-4534-926f-defe79d64332",
+								"exec": [
+									"pm.test(\"Should create the group owner\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).not.eql(null);\r",
+									"    pm.collectionVariables.set(\"owner_id\", jsonData.id);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c26e2b6b-6901-430a-b81d-4962e4745405",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "a12dab7f-dffc-4cd9-af8a-ae0b83774464",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "*/*"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{$randomFirstName}}\"\n}"
+						},
+						"url": "{{baseUrl}}/user"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Group Member 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "647ce7d0-2f74-4534-926f-defe79d64332",
+								"exec": [
+									"pm.test(\"Should create the a group member\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).not.eql(null);\r",
+									"    pm.collectionVariables.set(\"member_1_id\", jsonData.id);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c26e2b6b-6901-430a-b81d-4962e4745405",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "81425088-7548-4ed7-8dd2-708e5a328901",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "*/*"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{$randomFirstName}}\"\n}"
+						},
+						"url": "{{baseUrl}}/user"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Group Member 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "647ce7d0-2f74-4534-926f-defe79d64332",
+								"exec": [
+									"pm.test(\"Should create the a group member\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).not.eql(null);\r",
+									"    pm.collectionVariables.set(\"member_2_id\", jsonData.id);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c26e2b6b-6901-430a-b81d-4962e4745405",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "e315391f-d215-4238-8035-fd1cf712c1cf",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "*/*"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{$randomFirstName}}\"\n}"
+						},
+						"url": "{{baseUrl}}/user"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Group",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "6b60a278-734b-4b1a-905e-7e4b9bcb6800",
+								"exec": [
+									"let group_name = pm.variables.replaceIn('{{$randomCompanyName}}')\r",
+									"pm.collectionVariables.set(\"group_name\", group_name);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "49b5920e-c661-4f35-9127-2aad41023da8",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Should have a group id\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).not.eql(null);\r",
+									"    pm.collectionVariables.set(\"group_id\", jsonData.id);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Should set the proper owner_id\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"\r",
+									"    let owner_id = pm.collectionVariables.get(\"owner_id\");\r",
+									"    pm.expect(jsonData.owner.id).to.eql(owner_id);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Should set the proper member ids\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"\r",
+									"    let owner_id = pm.collectionVariables.get(\"owner_id\");\r",
+									"    let member_1 = pm.collectionVariables.get(\"member_1_id\");\r",
+									"    let member_2 = pm.collectionVariables.get(\"member_1_id\");\r",
+									"    var member_ids = jsonData.members.map(a => a.id)\r",
+									"    pm.expect(member_ids).to.include(member_1);\r",
+									"    pm.expect(member_ids).to.include(member_2);\r",
+									"    pm.expect(member_ids).to.include(owner_id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "d3910639-ed30-4a14-a3d6-c3fac419ed99",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "*/*"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"{{group_name}}\",\n  \"ownerId\": \"{{owner_id}}\",\n  \"memberIds\": [\n    \"{{member_1_id}}\",\n    \"{{member_2_id}}\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/group"
+					},
+					"response": [
+						{
+							"id": "20e11533-da08-4d24-8aeb-6d07961366fd",
+							"name": "Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "*/*"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"memberIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
+								},
+								"url": "{{baseUrl}}/group"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"owner\": {\n    \"id\": \"<string>\",\n    \"username\": \"<string>\"\n  },\n  \"members\": [\n    {\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    }\n  ]\n}"
+						},
+						{
+							"id": "5e8e5c2a-0443-4b7e-af78-26975ff0d919",
+							"name": "Missing Required parameters",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"memberIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
+								},
+								"url": "{{baseUrl}}/group"
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"responseTime": null,
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Retrieve Group By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1a74d4b7-e070-49e9-a294-1c84ffe72c42",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "45d624d5-84cf-4e26-a856-73ca829f1795",
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "cf88495b-28a7-403e-a9ee-daea008cfcb7",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/group/:groupId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"group",
+								":groupId"
+							],
+							"variable": [
+								{
+									"key": "groupId",
+									"value": "{{group_id}}",
+									"description": "(Required) Group unique Id"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "a74b87fd-b836-4562-b581-0c96e45fc108",
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/group/:groupId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"group",
+										":groupId"
+									],
+									"variable": [
+										{
+											"key": "groupId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"owner\": {\n    \"id\": \"<string>\",\n    \"username\": \"<string>\"\n  },\n  \"members\": [\n    {\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    }\n  ]\n}"
+						},
+						{
+							"id": "d0a7b495-bdad-4b79-b2eb-4bc8b971a547",
+							"name": "No group found for the given id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/group/:groupId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"group",
+										":groupId"
+									],
+									"variable": [
+										{
+											"key": "groupId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"responseTime": null,
+							"body": ""
+						}
+					]
+				}
+			],
+			"id": "e0389b46-7d66-488b-a2aa-cd4449f77815"
+		},
+		{
+			"name": "Create User Use Case",
+			"item": [
+				{
+					"name": "Create New User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "647ce7d0-2f74-4534-926f-defe79d64332",
+								"exec": [
+									"pm.test(\"Should contain the id\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).not.eql(null);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Should contain the username\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.username).not.eql(null);\r",
+									"\r",
+									"    pm.collectionVariables.set(\"user_id\", jsonData.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "481286d8-8548-4279-82e1-b204e933141c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "*/*"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{$randomFirstName}}\"\n}"
+						},
+						"url": "{{baseUrl}}/user"
+					},
+					"response": [
+						{
+							"id": "21871674-6e2a-4366-becf-66fd9ea640dc",
+							"name": "Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "*/*"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"<string>\"\n}"
+								},
+								"url": "{{baseUrl}}/user"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"id\": \"<string>\",\n  \"username\": \"<string>\"\n}"
+						},
+						{
+							"id": "58587439-ff48-4ec4-814f-06580a9b8ce7",
+							"name": "Invalid Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"<string>\"\n}"
+								},
+								"url": "{{baseUrl}}/user"
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"responseTime": null,
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Retrieve New User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "22239bda-254f-4409-bda3-62c245610716",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has user id\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.userId).not.eql(null);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response has username\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.username).not.eql(null);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "019af3e2-abaf-431c-a150-fdc480239e86",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/user/:userId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								":userId"
+							],
+							"variable": [
+								{
+									"id": "a0f8b127-38f7-40b1-beda-da15fd28b0a0",
+									"key": "userId",
+									"value": "{{user_id}}",
+									"description": "(Required) User Unique Identifier"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "6645f92a-81ff-457f-8724-40c8827f9508",
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/user/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"id\": \"<string>\",\n  \"username\": \"<string>\"\n}"
+						},
+						{
+							"id": "59205b83-97b8-44c8-88af-63b531b0c32a",
+							"name": "User Not Found with the given ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/user/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"responseTime": null,
+							"body": ""
+						}
+					]
+				}
+			],
+			"id": "bc96b777-1f96-4dc5-ba04-d5698833051a"
+		},
+		{
+			"name": "Retrieve User Balance",
+			"item": [
+				{
+					"name": "Retrieve User Balance Member 1",
+					"id": "707217dc-faaa-451b-a1be-895df0726b47",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/group/:groupId/user/:userId/balance",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"group",
+								":groupId",
+								"user",
+								":userId",
+								"balance"
+							],
+							"variable": [
+								{
+									"id": "5bca8eca-68d8-4a28-8774-9b51bb83757e",
+									"key": "groupId",
+									"value": "{{test_group_id}}"
+								},
+								{
+									"id": "9e92799b-a141-41b6-9627-273e8f09e44c",
+									"key": "userId",
+									"value": "{{test_member_id}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "07ee882f-26f6-4d60-826d-008a5c1eafed",
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/group/:groupId/expense",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"group",
+										":groupId",
+										"expense"
+									],
+									"variable": [
+										{
+											"key": "groupId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "[]"
+						},
+						{
+							"id": "88a755c5-068a-4881-a471-7f0a80cd0791",
+							"name": "Group not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/group/:groupId/expense",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"group",
+										":groupId",
+										"expense"
+									],
+									"variable": [
+										{
+											"key": "groupId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"responseTime": null,
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Retrieve User Balance Member 2",
+					"id": "4e80a6d0-fe4f-4264-acb3-f413eecc001c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/group/:groupId/user/:userId/balance",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"group",
+								":groupId",
+								"user",
+								":userId",
+								"balance"
+							],
+							"variable": [
+								{
+									"key": "groupId",
+									"value": "{{test_group_id}}"
+								},
+								{
+									"key": "userId",
+									"value": "{{test_membe_id_2}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "0d56e375-08de-4afa-bf2e-f8f46b9b5fee",
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/group/:groupId/expense",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"group",
+										":groupId",
+										"expense"
+									],
+									"variable": [
+										{
+											"key": "groupId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "[]"
+						},
+						{
+							"id": "7403b27a-9464-406d-b1a9-8a2286830652",
+							"name": "Group not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/group/:groupId/expense",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"group",
+										":groupId",
+										"expense"
+									],
+									"variable": [
+										{
+											"key": "groupId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"responseTime": null,
+							"body": ""
+						}
+					]
+				}
+			],
+			"id": "e9fbb7e2-41e8-45b7-8a92-e616e8365417"
+		}
+	],
+	"variable": [
+		{
+			"key": "owner_id",
+			"value": ""
+		},
+		{
+			"key": "member_1_id",
+			"value": ""
+		},
+		{
+			"key": "member_2_id",
+			"value": ""
+		},
+		{
+			"key": "group_name",
+			"value": ""
+		},
+		{
+			"key": "group_id",
+			"value": ""
+		},
+		{
+			"key": "user_id",
+			"value": ""
+		}
+	]
+}
