@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cfdadc1-3b9b-4e03-8177-25fe6428ff12" name="Changes" comment="Fix merge issues">
+    <list default="true" id="0cfdadc1-3b9b-4e03-8177-25fe6428ff12" name="Changes" comment="Exposed probe endpoint">
+      <change afterPath="$PROJECT_DIR$/expenses-app/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,23 +26,19 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHome" value="$PROJECT_DIR$/../../../../../DevTools/apache-maven" />
-      </MavenGeneralSettings>
-    </option>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -55,17 +53,18 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "corretto-17",
     "last_directory_selection": "C:/Users/ciriu/Documents/Projects/expense-app-v3/expense-domain/src/test/java/com/clt/domain/ledger",
-    "last_opened_file_path": "C:/Users/ciriu/Documents/Projects/expense-app-v3/pom.xml",
+    "last_opened_file_path": "/mnt/01D9106B4D5CE920/Projects/expense-app-v3/deploy",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "MavenSettings"
   },
   "keyToStringList": {
     "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
@@ -78,6 +77,9 @@
       <recent name="com.clt.usecase" />
       <recent name="com.clt.expenses.domain.group" />
       <recent name="com.clt.domain.ledger" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/deploy" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -98,7 +100,7 @@
       <command value="ExpenseApp" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ExpenseChargeStoreImplTest">
+  <component name="RunManager" selected="Application.ExpenseApp">
     <configuration name="ExpenseApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.clt.expenses.ExpenseApp" />
       <module name="expenses-app" />
@@ -168,9 +170,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ExpenseApp" />
         <item itemvalue="JUnit.ExpenseChargeStoreImplTest" />
         <item itemvalue="JUnit.RetrieveSplitPerExpenseTest.retrieve_expense_charge_per_expense_test" />
-        <item itemvalue="Application.ExpenseApp" />
         <item itemvalue="JUnit.RetrieveUserBalancePerGroupTest" />
         <item itemvalue="JUnit.All in expenses-persistence-h2" />
       </list>
@@ -417,7 +419,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698909302257</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Exposed probe endpoint">
+      <option name="closed" value="true" />
+      <created>1699125077385</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1699125077385</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -432,7 +442,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[NEW] Find Person API" />
     <MESSAGE value="[FIX] Find Person API now hadles the producer₹properly" />
     <MESSAGE value="[NEW] Fing Group By Id Use case" />
     <MESSAGE value="[NEW] Fing Group By Id API" />
@@ -457,7 +466,8 @@
     <MESSAGE value="[NEW] Retrieve split outcome for an expense" />
     <MESSAGE value="[NEW] Retrieve split outcome for an expense Use Case" />
     <MESSAGE value="Fix merge issues" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix merge issues" />
+    <MESSAGE value="Exposed probe endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="Exposed probe endpoint" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -486,8 +496,8 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/expense_app_v3$All_in_expense_domain__1_.ic" NAME="All in expense-domain (1) Coverage Results" MODIFIED="1697736911187" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/expense_app_v3$All_in_expenses_persistence_h2__1_.ic" NAME="All in expenses-persistence-h2 (1) Coverage Results" MODIFIED="1697736940478" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/expense_app_v3$All_in_expense_domain__1_.ic" NAME="All in expense-domain (1) Coverage Results" MODIFIED="1697736911187" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/expense_app_v3$All_in_expenses_app_v3.ic" NAME="All in expenses-app-v3 Coverage Results" MODIFIED="1697806632884" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
