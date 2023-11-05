@@ -1,6 +1,7 @@
 package com.clt.domain.expense;
 
 import com.clt.domain.group.Person;
+import com.clt.view.ExpenseAggregate;
 import java.math.BigDecimal;
 import java.util.Random;
 import java.util.UUID;
