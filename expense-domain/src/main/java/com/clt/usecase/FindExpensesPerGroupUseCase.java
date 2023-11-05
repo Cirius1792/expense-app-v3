@@ -18,7 +18,9 @@ public class FindExpensesPerGroupUseCase {
 
     public Flux<ExpenseAggregate> retrieve(String groupId, int pageNumber, int pageSize) {
         return expenseStore.retrieveByGroup(groupId, new Page(pageSize, pageNumber))
+                .log()
                 .flatMap(e -> personStore.retrieve(e.owner())
+                        .log()
                         .map(p -> ExpenseAggregateFactory.fromDomain(e, p)));
     }
 }

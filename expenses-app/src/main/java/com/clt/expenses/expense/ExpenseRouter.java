@@ -5,6 +5,7 @@ import com.clt.expenses.expense.request.CreateExpenseRequestDto;
 import com.clt.expenses.expense.response.ExpenseResponse;
 import com.clt.usecase.AddExpenseUseCase;
 import com.clt.usecase.FindExpenseUseCase;
+import com.clt.usecase.FindExpensesPerGroupUseCase;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.server.RouterFunction;
@@ -25,66 +26,68 @@ public class ExpenseRouter {
   private final ExpenseMapper expenseMapper;
   private final AddExpenseUseCase addExpenseUseCase;
   private final FindExpenseUseCase findExpenseUseCase;
+  private final FindExpensesPerGroupUseCase findExpensesPerGroupUseCase;
 
   public ExpenseRouter(
-      ExpenseMapper expenseMapper,
-      AddExpenseUseCase addExpenseUseCase,
-      FindExpenseUseCase findExpenseUseCase) {
+          ExpenseMapper expenseMapper,
+          AddExpenseUseCase addExpenseUseCase,
+          FindExpenseUseCase findExpenseUseCase, FindExpensesPerGroupUseCase findExpensesPerGroupUseCase) {
     this.expenseMapper = expenseMapper;
     this.addExpenseUseCase = addExpenseUseCase;
     this.findExpenseUseCase = findExpenseUseCase;
+    this.findExpensesPerGroupUseCase = findExpensesPerGroupUseCase;
   }
 
   public RouterFunction<ServerResponse> createRoutes() {
     return route()
-            .POST(
-                    "/group/{groupId}/expense",
-                    this::addExpense,
-                    ops ->
-                            ops.operationId("addExpense")
-                                    .tag(EXPENSE_TAG)
-                                    .parameter(
-                                            parameterBuilder()
-                                                    .in(ParameterIn.PATH)
-                                                    .name(GROUP_ID_PARAMETER)
-                                                    .description("Group Id"))
-                                    .requestBody(requestBodyBuilder().implementation(CreateExpenseRequestDto.class))
-                                    .response(
-                                            responseBuilder().responseCode("201").implementation(ExpenseResponse.class))
-                                    .response(responseBuilder().responseCode("404").description("Group not found")))
-            .GET(
-                    "/group/{groupId}/expense",
-                    this::retrieveExpenses,
-                    ops ->
-                            ops.operationId("retrieveExpenses")
-                                    .tag(EXPENSE_TAG)
-                                    .parameter(
-                                            parameterBuilder()
-                                                    .in(ParameterIn.PATH)
-                                                    .name(GROUP_ID_PARAMETER)
-                                                    .description("Group Unique Identifier"))
-                                    .response(
-                                            responseBuilder()
-                                                    .responseCode("200")
-                                                    .implementationArray(ExpenseResponse.class))
-                                    .response(responseBuilder().responseCode("404").description("Group not found")))
-            .GET(
-                    "/expense/{expenseId}",
-                    this::retrieveExpense,
-                    ops ->
-                            ops.operationId("retrieveExpense")
-                                    .tag(EXPENSE_TAG)
-                                    .parameter(
-                                            parameterBuilder()
-                                                    .in(ParameterIn.PATH)
-                                                    .name("expenseId")
-                                                    .description("Expense Unique Identifier"))
-                                    .response(
-                                            responseBuilder()
-                                                    .responseCode("200")
-                                                    .implementationArray(ExpenseResponse.class))
-                                    .response(responseBuilder().responseCode("404").description("Group not found")))
-            .build();
+        .POST(
+            "/group/{groupId}/expense",
+            this::addExpense,
+            ops ->
+                ops.operationId("addExpense")
+                    .tag(EXPENSE_TAG)
+                    .parameter(
+                        parameterBuilder()
+                            .in(ParameterIn.PATH)
+                            .name(GROUP_ID_PARAMETER)
+                            .description("Group Id"))
+                    .requestBody(requestBodyBuilder().implementation(CreateExpenseRequestDto.class))
+                    .response(
+                        responseBuilder().responseCode("201").implementation(ExpenseResponse.class))
+                    .response(responseBuilder().responseCode("404").description("Group not found")))
+        .GET(
+            "/group/{groupId}/expense",
+            this::retrieveExpenses,
+            ops ->
+                ops.operationId("retrieveExpenses")
+                    .tag(EXPENSE_TAG)
+                    .parameter(
+                        parameterBuilder()
+                            .in(ParameterIn.PATH)
+                            .name(GROUP_ID_PARAMETER)
+                            .description("Group Unique Identifier"))
+                    .response(
+                        responseBuilder()
+                            .responseCode("200")
+                            .implementationArray(ExpenseResponse.class))
+                    .response(responseBuilder().responseCode("404").description("Group not found")))
+        .GET(
+            "/expense/{expenseId}",
+            this::retrieveExpense,
+            ops ->
+                ops.operationId("retrieveExpense")
+                    .tag(EXPENSE_TAG)
+                    .parameter(
+                        parameterBuilder()
+                            .in(ParameterIn.PATH)
+                            .name("expenseId")
+                            .description("Expense Unique Identifier"))
+                    .response(
+                        responseBuilder()
+                            .responseCode("200")
+                            .implementation(ExpenseResponse.class))
+                    .response(responseBuilder().responseCode("404").description("Group not found")))
+        .build();
   }
 
   private Mono<ServerResponse> addExpense(ServerRequest serverRequest) {
@@ -116,9 +119,8 @@ public class ExpenseRouter {
   }
 
   private Mono<ServerResponse> retrieveExpenses(ServerRequest serverRequest) {
-    String expenseId = serverRequest.pathVariable(GROUP_ID_PARAMETER);
-    return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).build();
+    String groupId = serverRequest.pathVariable(GROUP_ID_PARAMETER);
+    return ServerResponse.ok()
+            .body(this.findExpensesPerGroupUseCase.retrieve(groupId, 1, 10), ExpenseResponse.class);
   }
-
-
 }
