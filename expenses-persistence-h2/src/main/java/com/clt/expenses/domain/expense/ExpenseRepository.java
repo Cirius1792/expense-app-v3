@@ -7,5 +7,5 @@ import reactor.core.publisher.Flux;
 
 @Repository
 public interface ExpenseRepository extends ReactiveCrudRepository<ExpenseEntity, String> {
-    Flux<ExpenseEntity> findByGroupId(String groupId, Pageable page);
+  Flux<ExpenseEntity> findByGroupId(String groupId, Pageable page);
 }

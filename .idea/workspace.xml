@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cfdadc1-3b9b-4e03-8177-25fe6428ff12" name="Changes" comment=" [FIX] fixed problem that caused a new expense to be not saved properly">
+    <list default="true" id="0cfdadc1-3b9b-4e03-8177-25fe6428ff12" name="Changes" comment="[FIX] The pages where not properly managed when retrieving the expenses">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expense-domain/src/main/java/com/clt/usecase/FindExpensesPerGroupUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/expense-domain/src/main/java/com/clt/usecase/FindExpensesPerGroupUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/expense/ExpenseRouter.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/expense/ExpenseRouter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/expense/ExpenseStoreImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/expense/ExpenseStoreImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build_and_deploy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/build_and_deploy.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expense-domain/src/test/java/com/clt/usecase/AddExpenseUseCaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/expense-domain/src/test/java/com/clt/usecase/AddExpenseUseCaseTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +99,7 @@
       <command value="ExpenseApp" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.ExpenseApp">
+  <component name="RunManager" selected="JUnit.AddExpenseUseCaseTest">
     <configuration name="ExpenseApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.clt.expenses.ExpenseApp" />
       <module name="expenses-app" />
@@ -110,6 +109,21 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AddExpenseUseCaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="expense-domain" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.clt.usecase.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.clt.usecase" />
+      <option name="MAIN_CLASS_NAME" value="com.clt.usecase.AddExpenseUseCaseTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -159,29 +173,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RetrieveSplitPerExpenseTest.retrieve_expense_charge_per_expense_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="expense-domain" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.clt.usecase.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.clt.usecase" />
-      <option name="MAIN_CLASS_NAME" value="com.clt.usecase.RetrieveSplitPerExpenseTest" />
-      <option name="METHOD_NAME" value="retrieve_expense_charge_per_expense_test" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AddExpenseUseCaseTest" />
         <item itemvalue="Application.ExpenseApp" />
         <item itemvalue="JUnit.ExpenseStoreImplTest" />
         <item itemvalue="JUnit.FindExpensesPerGroupUseCaseTest" />
         <item itemvalue="JUnit.ExpenseChargeStoreImplTest" />
-        <item itemvalue="JUnit.RetrieveSplitPerExpenseTest.retrieve_expense_charge_per_expense_test" />
       </list>
     </recent_temporary>
   </component>
@@ -466,7 +464,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699200633099</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="[FIX] The pages where not properly managed when retrieving the expenses">
+      <option name="closed" value="true" />
+      <created>1699201082160</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1699201082160</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -481,7 +487,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[NEW] GroupStore H2 Implementation" />
     <MESSAGE value="[NEW] GroupStore retrieve group H2 Implementation" />
     <MESSAGE value="Code Reformatted" />
     <MESSAGE value="[NEW] Retrieve Expense Use Case" />
@@ -506,7 +511,8 @@
     <MESSAGE value="Refactoring to put the routes declaration on top of the ExpenseRouter class" />
     <MESSAGE value="[NEW] Retrieve Expenses by group id use case" />
     <MESSAGE value=" [FIX] fixed problem that caused a new expense to be not saved properly" />
-    <option name="LAST_COMMIT_MESSAGE" value=" [FIX] fixed problem that caused a new expense to be not saved properly" />
+    <MESSAGE value="[FIX] The pages where not properly managed when retrieving the expenses" />
+    <option name="LAST_COMMIT_MESSAGE" value="[FIX] The pages where not properly managed when retrieving the expenses" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -533,7 +539,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/expense-domain/src/test/java/com/clt/usecase/FindExpensesPerGroupUseCaseTest.java</url>
-          <line>46</line>
+          <line>53</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

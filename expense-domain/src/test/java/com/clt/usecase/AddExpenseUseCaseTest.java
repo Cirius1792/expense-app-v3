@@ -1,10 +1,7 @@
 package com.clt.usecase;
 
 import com.clt.domain.commons.UUIDIdFactory;
-import com.clt.domain.expense.ExpenseFactory;
-import com.clt.domain.expense.ExpenseRecord;
-import com.clt.domain.expense.ExpenseStore;
-import com.clt.domain.expense.Money;
+import com.clt.domain.expense.*;
 import com.clt.domain.group.*;
 import com.clt.event.Notifier;
 import com.clt.view.ExpenseAggregate;
@@ -38,7 +35,8 @@ class AddExpenseUseCaseTest {
     Mockito.when(groupStore.retrieve(GROUP.id())).thenReturn(Mono.just(GROUP));
 
     expenseStore = Mockito.mock(ExpenseStore.class);
-    newExpenseNotifier = Mockito.mock(Notifier.class);
+    Mockito.when(expenseStore.store(Mockito.any())).thenReturn(Mono.empty());
+    newExpenseNotifier = Mockito.spy(new NewExpenseNotifierNop());
 
     useCase =
         new AddExpenseUseCase(
