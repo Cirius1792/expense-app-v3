@@ -52,13 +52,18 @@ public class ExpenseRouter {
                     .body(Mono.just(r), ExpenseResponse.class));
   }
 
-  private Mono<ServerResponse> retrieveExpenses(ServerRequest serverRequest) {
+  private Mono<ServerResponse> retrieveExpense(ServerRequest serverRequest) {
     String expenseId = serverRequest.pathVariable("expenseId");
     return ServerResponse.ok()
         .contentType(MediaType.APPLICATION_JSON)
         .body(
             findExpenseUseCase.retrieveExpense(expenseId).map(expenseMapper::toDto),
             ExpenseResponse.class);
+  }
+
+  private Mono<ServerResponse> retrieveExpenses(ServerRequest serverRequest) {
+    String expenseId = serverRequest.pathVariable("groupId");
+    return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).build();
   }
 
   public RouterFunction<ServerResponse> createRoutes() {
@@ -79,10 +84,26 @@ public class ExpenseRouter {
                         responseBuilder().responseCode("201").implementation(ExpenseResponse.class))
                     .response(responseBuilder().responseCode("404").description("Group not found")))
         .GET(
-            "/expense/{expenseId}",
+            "/group/{groupId}/expense",
             this::retrieveExpenses,
             ops ->
                 ops.operationId("retrieveExpenses")
+                    .tag(EXPENSE_TAG)
+                    .parameter(
+                        parameterBuilder()
+                            .in(ParameterIn.PATH)
+                            .name("groupId")
+                            .description("Group Unique Identifier"))
+                    .response(
+                        responseBuilder()
+                            .responseCode("200")
+                            .implementationArray(ExpenseResponse.class))
+                    .response(responseBuilder().responseCode("404").description("Group not found")))
+        .GET(
+            "/expense/{expenseId}",
+            this::retrieveExpense,
+            ops ->
+                ops.operationId("retrieveExpense")
                     .tag(EXPENSE_TAG)
                     .parameter(
                         parameterBuilder()

@@ -1,12 +1,12 @@
 package com.clt.expenses.probe;
 
+import static org.springdoc.core.fn.builders.apiresponse.Builder.responseBuilder;
+import static org.springdoc.webflux.core.fn.SpringdocRouteBuilder.route;
+
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
-
-import static org.springdoc.core.fn.builders.apiresponse.Builder.responseBuilder;
-import static org.springdoc.webflux.core.fn.SpringdocRouteBuilder.route;
 
 public class IAmAliveRoute {
   public RouterFunction<ServerResponse> createRoutes() {
