@@ -42,8 +42,8 @@ public class ExpenseStoreImpl implements ExpenseStore {
     @Override
     public Flux<Expense> retrieveByGroup(String groupId, Page page) {
         return this.expenseRepository.findByGroupId(groupId, Pageable.ofSize(page.getPageSize())
-                .withPage(page.getPageNumber()))
-                .log()
+                .withPage(page.getPageNumber()-1)
+                )
                 .map(expenseMapper::toDomain);
     }
 }

@@ -121,6 +121,7 @@ public class ExpenseRouter {
   private Mono<ServerResponse> retrieveExpenses(ServerRequest serverRequest) {
     String groupId = serverRequest.pathVariable(GROUP_ID_PARAMETER);
     return ServerResponse.ok()
-            .body(this.findExpensesPerGroupUseCase.retrieve(groupId, 1, 10), ExpenseResponse.class);
+            .body(this.findExpensesPerGroupUseCase.retrieve(groupId, 1, 10)
+                    .map(expenseMapper::toDto), ExpenseResponse.class);
   }
 }
