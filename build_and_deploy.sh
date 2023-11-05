@@ -1,5 +1,5 @@
 #!/bin/sh
-#mvn clean package -B
+mvn clean package -B
 
 cp expenses-app/target/expenses-app.jar deploy/expenses-app.jar
 
