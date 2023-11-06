@@ -1,16 +1,15 @@
 package com.clt.usecase;
 
 import com.clt.domain.group.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 class RetrieveGroupPerUserUseCaseTest {
 

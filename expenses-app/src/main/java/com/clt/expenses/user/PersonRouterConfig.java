@@ -24,8 +24,9 @@ public class PersonRouterConfig {
   FindUserUseCase findUserUseCase(PersonStore personStore) {
     return new FindUserUseCase(personStore);
   }
+
   @Bean
-  RetrieveGroupPerUserUseCase retrieveGroupPerUserUseCase(GroupStore groupStore){
+  RetrieveGroupPerUserUseCase retrieveGroupPerUserUseCase(GroupStore groupStore) {
     return new RetrieveGroupPerUserUseCase(groupStore);
   }
 

@@ -1,5 +1,10 @@
 package com.clt.expenses.user;
 
+import static org.springdoc.core.fn.builders.apiresponse.Builder.responseBuilder;
+import static org.springdoc.core.fn.builders.parameter.Builder.parameterBuilder;
+import static org.springdoc.core.fn.builders.requestbody.Builder.requestBodyBuilder;
+import static org.springdoc.webflux.core.fn.SpringdocRouteBuilder.route;
+
 import com.clt.expenses.user.request.CreateUserRequestDto;
 import com.clt.expenses.user.response.UserGroupDto;
 import com.clt.expenses.user.response.UserResponseDto;
@@ -12,11 +17,6 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
-
-import static org.springdoc.core.fn.builders.apiresponse.Builder.responseBuilder;
-import static org.springdoc.core.fn.builders.parameter.Builder.parameterBuilder;
-import static org.springdoc.core.fn.builders.requestbody.Builder.requestBodyBuilder;
-import static org.springdoc.webflux.core.fn.SpringdocRouteBuilder.route;
 
 public class PersonRoute {
   private static final String USER_TAG = "Users";
