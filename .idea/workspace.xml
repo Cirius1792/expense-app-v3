@@ -4,10 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cfdadc1-3b9b-4e03-8177-25fe6428ff12" name="Changes" comment="[FIX] The pages where not properly managed when retrieving the expenses">
+    <list default="true" id="0cfdadc1-3b9b-4e03-8177-25fe6428ff12" name="Changes" comment="[NEW] Retrieve Groups containing a user Use Case">
+      <change afterPath="$PROJECT_DIR$/expense-domain/src/main/java/com/clt/usecase/RetrieveGroupPerUserUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/expense-domain/src/test/java/com/clt/usecase/RetrieveGroupPerUserUseCaseTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/user/PersonGroupMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/user/response/UserGroupDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build_and_deploy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/build_and_deploy.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expense-domain/src/test/java/com/clt/usecase/AddExpenseUseCaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/expense-domain/src/test/java/com/clt/usecase/AddExpenseUseCaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expense-domain/src/main/java/com/clt/domain/group/GroupStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/expense-domain/src/main/java/com/clt/domain/group/GroupStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/user/PersonRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/user/PersonRoute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/user/PersonRouterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/user/PersonRouterConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/group/GroupRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/group/GroupRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/group/GroupStoreImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/group/GroupStoreImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/test/java/com/clt/expenses/domain/group/GroupStoreImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2/src/test/java/com/clt/expenses/domain/group/GroupStoreImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +107,7 @@
       <command value="ExpenseApp" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.AddExpenseUseCaseTest">
+  <component name="RunManager" selected="Application.ExpenseApp">
     <configuration name="ExpenseApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.clt.expenses.ExpenseApp" />
       <module name="expenses-app" />
@@ -128,21 +136,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ExpenseChargeStoreImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="expenses-persistence-h2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.clt.expenses.domain.ledger.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.clt.expenses.domain.ledger" />
-      <option name="MAIN_CLASS_NAME" value="com.clt.expenses.domain.ledger.ExpenseChargeStoreImplTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ExpenseStoreImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="expenses-persistence-h2" />
       <extension name="coverage">
@@ -158,7 +151,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FindExpensesPerGroupUseCaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GroupStoreImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="expenses-persistence-h2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.clt.expenses.domain.group.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.clt.expenses.domain.group" />
+      <option name="MAIN_CLASS_NAME" value="com.clt.expenses.domain.group.GroupStoreImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RetrieveGroupPerUserUseCaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="expense-domain" />
       <extension name="coverage">
         <pattern>
@@ -167,7 +175,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.clt.usecase" />
-      <option name="MAIN_CLASS_NAME" value="com.clt.usecase.FindExpensesPerGroupUseCaseTest" />
+      <option name="MAIN_CLASS_NAME" value="com.clt.usecase.RetrieveGroupPerUserUseCaseTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -175,11 +183,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AddExpenseUseCaseTest" />
         <item itemvalue="Application.ExpenseApp" />
+        <item itemvalue="JUnit.GroupStoreImplTest" />
+        <item itemvalue="JUnit.RetrieveGroupPerUserUseCaseTest" />
+        <item itemvalue="JUnit.AddExpenseUseCaseTest" />
         <item itemvalue="JUnit.ExpenseStoreImplTest" />
-        <item itemvalue="JUnit.FindExpensesPerGroupUseCaseTest" />
-        <item itemvalue="JUnit.ExpenseChargeStoreImplTest" />
       </list>
     </recent_temporary>
   </component>
@@ -487,7 +495,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[NEW] GroupStore retrieve group H2 Implementation" />
     <MESSAGE value="Code Reformatted" />
     <MESSAGE value="[NEW] Retrieve Expense Use Case" />
     <MESSAGE value="[NEW] Create Expense Use Case now uses the Expense Aggregate view" />
@@ -512,7 +519,8 @@
     <MESSAGE value="[NEW] Retrieve Expenses by group id use case" />
     <MESSAGE value=" [FIX] fixed problem that caused a new expense to be not saved properly" />
     <MESSAGE value="[FIX] The pages where not properly managed when retrieving the expenses" />
-    <option name="LAST_COMMIT_MESSAGE" value="[FIX] The pages where not properly managed when retrieving the expenses" />
+    <MESSAGE value="[NEW] Retrieve Groups containing a user Use Case" />
+    <option name="LAST_COMMIT_MESSAGE" value="[NEW] Retrieve Groups containing a user Use Case" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

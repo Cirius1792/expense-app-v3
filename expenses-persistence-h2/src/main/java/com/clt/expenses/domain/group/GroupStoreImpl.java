@@ -4,6 +4,7 @@ import com.clt.domain.group.Group;
 import com.clt.domain.group.GroupNotFound;
 import com.clt.domain.group.GroupStore;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Repository
@@ -27,5 +28,10 @@ public class GroupStoreImpl implements GroupStore {
         .findById(groupId)
         .switchIfEmpty(Mono.error(new GroupNotFound(groupId)))
         .map(mapper::toDomain);
+  }
+
+  @Override
+  public Flux<Group> retrieveByMember(String userId) {
+    return groupRepository.findByMember(userId).map(mapper::toDomain);
   }
 }
