@@ -1,10 +1,5 @@
 package com.clt.expenses.user;
 
-import static org.springdoc.core.fn.builders.apiresponse.Builder.responseBuilder;
-import static org.springdoc.core.fn.builders.parameter.Builder.parameterBuilder;
-import static org.springdoc.core.fn.builders.requestbody.Builder.requestBodyBuilder;
-import static org.springdoc.webflux.core.fn.SpringdocRouteBuilder.route;
-
 import com.clt.expenses.user.request.CreateUserRequestDto;
 import com.clt.expenses.user.response.UserGroupDto;
 import com.clt.expenses.user.response.UserResponseDto;
@@ -18,8 +13,14 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
+import static org.springdoc.core.fn.builders.apiresponse.Builder.responseBuilder;
+import static org.springdoc.core.fn.builders.parameter.Builder.parameterBuilder;
+import static org.springdoc.core.fn.builders.requestbody.Builder.requestBodyBuilder;
+import static org.springdoc.webflux.core.fn.SpringdocRouteBuilder.route;
+
 public class PersonRoute {
   private static final String USER_TAG = "Users";
+  public static final String USER_ID_PARAM = "userId";
 
   private final RegisterPersonUseCase registerPersonUseCase;
   private final FindUserUseCase findUserUseCase;
@@ -61,7 +62,7 @@ public class PersonRoute {
                     .parameter(
                         parameterBuilder()
                             .in(ParameterIn.PATH)
-                            .name("userId")
+                            .name(USER_ID_PARAM)
                             .description("User Unique Identifier"))
                     .response(
                         responseBuilder().responseCode("200").implementation(UserResponseDto.class))
@@ -78,7 +79,7 @@ public class PersonRoute {
                     .parameter(
                         parameterBuilder()
                             .in(ParameterIn.PATH)
-                            .name("userId")
+                            .name(USER_ID_PARAM)
                             .description("User Unique Identifier"))
                     .response(
                         responseBuilder()
@@ -92,7 +93,7 @@ public class PersonRoute {
   }
 
   private Mono<ServerResponse> retrieveUserGroups(ServerRequest serverRequest) {
-    String userId = serverRequest.pathVariable("userId");
+    String userId = serverRequest.pathVariable(USER_ID_PARAM);
     return ServerResponse.ok()
         .body(
             retrieveGroupPerUserUseCase.retrieveGroups(userId).map(personGroupMapper::toDto),
@@ -112,7 +113,7 @@ public class PersonRoute {
   }
 
   private Mono<ServerResponse> retrieveUser(ServerRequest serverRequest) {
-    String userId = serverRequest.pathVariable("userId");
+    String userId = serverRequest.pathVariable(USER_ID_PARAM);
     return findUserUseCase
         .retrieve(userId)
         .map(personMapper::toDto)
