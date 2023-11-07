@@ -48,11 +48,13 @@ class AddExpenseUseCaseTest {
   }
 
   @DisplayName(
-      "Given a valid person"
-          + "And a valid group "
-          + "When registering a new expense "
-          + "The the new expense is created "
-          + "And the new expense is stored")
+      """
+      	       	Given a valid person
+	          And a valid group
+	          When registering a new expense
+	          The the new expense is created
+	          And the new expense is stored
+	  """)
   @Test
   void test_create_and_store_new_expense() {
     Mono<ExpenseAggregate> producer = useCase.create(DESCRIPTION, AMOUNT, OWNER.id(), GROUP.id());
@@ -68,9 +70,11 @@ class AddExpenseUseCaseTest {
   }
 
   @DisplayName(
-      "Given an invalid owner "
-          + "When creating an expense "
-          + "Then a PersonNotFoundError is thrown")
+      """
+      		Given an invalid owner
+          	When creating an expense
+          	Then a PersonNotFoundError is thrown
+	  """)
   @Test
   void invalid_owner_test() {
     String invalidOwnerId = "not-existent-id";
