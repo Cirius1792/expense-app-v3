@@ -1,4 +1,4 @@
-package clt.com.expense.ledger.response;
+package com.clt.expenses.ledger.response;
 
 import java.math.BigDecimal;
 
