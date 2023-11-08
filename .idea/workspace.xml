@@ -4,76 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cfdadc1-3b9b-4e03-8177-25fe6428ff12" name="Changes" comment="[NEW] Retrieve Groups containing a user Use Case">
-      <change afterPath="$PROJECT_DIR$/expenses-ledger-rest-adapter/src/main/java/com/clt/expenses/ledger/LedgerRouteConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/expenses-rest-adapter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-app/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/expense/ExpenseMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/expense/ExpenseMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/expense/ExpenseRouteConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/expense/ExpenseRouteConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/expense/ExpenseRouter.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/expense/ExpenseRouter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/expense/request/CreateExpenseRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/expense/request/CreateExpenseRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/expense/request/MoneyDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/expense/request/MoneyDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/expense/response/ExpenseResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/expense/response/ExpenseResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/group/GroupMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/group/GroupMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/group/GroupRouter.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/group/GroupRouter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/group/GroupRouterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/group/GroupRouterConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/group/request/CreateGroupRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/group/request/CreateGroupRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/group/response/BalanceResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/group/response/BalanceResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/group/response/GroupResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/group/response/GroupResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/probe/IAmAliveRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/probe/IAmAliveRoute.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/probe/ManagementRouteConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/probe/ManagementRouteConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/user/PersonGroupMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/user/PersonGroupMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/user/PersonMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/user/PersonMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/user/PersonRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/user/PersonRoute.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/user/PersonRouterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/user/PersonRouterConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/user/request/CreateUserRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/user/request/CreateUserRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/user/response/UserGroupDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/user/response/UserGroupDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/java/com/clt/expenses/user/response/UserResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/user/response/UserResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-event-driver/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-event-adapter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-event-driver/src/main/java/com/clt/expenses/ExpenseQueueConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-event-adapter/src/main/java/com/clt/expenses/ExpenseQueueConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-event-driver/src/main/java/com/clt/expenses/NewExpenseNotifierImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-event-adapter/src/main/java/com/clt/expenses/NewExpenseNotifierImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/common/PersistenceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/main/java/com/clt/expenses/domain/common/PersistenceMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/expense/ExpenseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/main/java/com/clt/expenses/domain/expense/ExpenseEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/expense/ExpenseEntityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/main/java/com/clt/expenses/domain/expense/ExpenseEntityMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/expense/ExpenseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/main/java/com/clt/expenses/domain/expense/ExpenseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/expense/ExpenseStoreImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/main/java/com/clt/expenses/domain/expense/ExpenseStoreImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/expense/StoredPerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/main/java/com/clt/expenses/domain/expense/StoredPerson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/group/GroupEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/main/java/com/clt/expenses/domain/group/GroupEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/group/GroupPersistenceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/main/java/com/clt/expenses/domain/group/GroupPersistenceMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/group/GroupRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/main/java/com/clt/expenses/domain/group/GroupRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/group/GroupStoreImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/main/java/com/clt/expenses/domain/group/GroupStoreImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/group/PersonEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/main/java/com/clt/expenses/domain/group/PersonEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/group/PersonPersistenceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/main/java/com/clt/expenses/domain/group/PersonPersistenceMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/group/PersonRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/main/java/com/clt/expenses/domain/group/PersonRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/group/PersonStoreImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/main/java/com/clt/expenses/domain/group/PersonStoreImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/ledger/ExpenseChargeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/main/java/com/clt/expenses/domain/ledger/ExpenseChargeEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/ledger/ExpenseChargePersistenceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/main/java/com/clt/expenses/domain/ledger/ExpenseChargePersistenceMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/ledger/ExpenseChargeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/main/java/com/clt/expenses/domain/ledger/ExpenseChargeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/java/com/clt/expenses/domain/ledger/ExpenseChargeStoreImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/main/java/com/clt/expenses/domain/ledger/ExpenseChargeStoreImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/main/resources/data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/main/resources/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/test/java/com/clt/expenses/domain/expense/ExpenseStoreImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/test/java/com/clt/expenses/domain/expense/ExpenseStoreImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/test/java/com/clt/expenses/domain/expense/StoreTestConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/test/java/com/clt/expenses/domain/expense/StoreTestConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/test/java/com/clt/expenses/domain/group/GroupStoreImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/test/java/com/clt/expenses/domain/group/GroupStoreImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/test/java/com/clt/expenses/domain/group/GroupTestConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/test/java/com/clt/expenses/domain/group/GroupTestConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/test/java/com/clt/expenses/domain/group/PersonStoreImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/test/java/com/clt/expenses/domain/group/PersonStoreImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/test/java/com/clt/expenses/domain/ledger/ExpenseChargeStoreImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/test/java/com/clt/expenses/domain/ledger/ExpenseChargeStoreImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/test/java/com/clt/expenses/domain/ledger/ExpenseChargeStoreTestConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/test/java/com/clt/expenses/domain/ledger/ExpenseChargeStoreTestConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-persistence-h2/src/test/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-persistence-h2-adapter/src/test/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ledger-app/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-ledger-rest-adapter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ledger-app/src/main/java/com/clt/expenses/ledger/ExpenseSplitMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-ledger-rest-adapter/src/main/java/com/clt/expenses/ledger/ExpenseSplitMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ledger-app/src/main/java/com/clt/expenses/ledger/LedgerRouteConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ledger-app/src/main/java/com/clt/expenses/ledger/LedgerRouter.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-ledger-rest-adapter/src/main/java/com/clt/expenses/ledger/LedgerRouter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ledger-app/src/main/java/com/clt/expenses/ledger/response/ExpenseSplitDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-ledger-rest-adapter/src/main/java/com/clt/expenses/ledger/response/ExpenseSplitDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ledger-event-port/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-ledger-event-adapter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="0cfdadc1-3b9b-4e03-8177-25fe6428ff12" name="Changes" comment="Reorganized project modules" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -539,7 +470,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699201082160</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Reorganized project modules">
+      <option name="closed" value="true" />
+      <created>1699444853104</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1699444853105</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -554,7 +493,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Code Reformatted" />
     <MESSAGE value="[NEW] Retrieve Expense Use Case" />
     <MESSAGE value="[NEW] Create Expense Use Case now uses the Expense Aggregate view" />
     <MESSAGE value="Added schema definition for group an person tables" />
@@ -579,7 +517,8 @@
     <MESSAGE value=" [FIX] fixed problem that caused a new expense to be not saved properly" />
     <MESSAGE value="[FIX] The pages where not properly managed when retrieving the expenses" />
     <MESSAGE value="[NEW] Retrieve Groups containing a user Use Case" />
-    <option name="LAST_COMMIT_MESSAGE" value="[NEW] Retrieve Groups containing a user Use Case" />
+    <MESSAGE value="Reorganized project modules" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reorganized project modules" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

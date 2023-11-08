@@ -6,8 +6,8 @@ import com.clt.domain.group.GroupStore;
 import com.clt.domain.group.PersonNotFound;
 import com.clt.domain.group.PersonStore;
 import com.clt.event.Notifier;
-import com.clt.view.ExpenseAggregate;
-import com.clt.view.ExpenseAggregateFactory;
+import com.clt.domain.view.ExpenseAggregate;
+import com.clt.domain.view.ExpenseAggregateFactory;
 import reactor.core.publisher.Mono;
 
 public class AddExpenseUseCase {

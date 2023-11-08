@@ -3,7 +3,7 @@ package com.clt.expenses.expense;
 import com.clt.expenses.expense.request.MoneyDto;
 import com.clt.expenses.expense.response.ExpenseResponse;
 import com.clt.expenses.user.PersonMapper;
-import com.clt.view.ExpenseAggregate;
+import com.clt.domain.view.ExpenseAggregate;
 import org.springframework.stereotype.Component;
 
 @Component

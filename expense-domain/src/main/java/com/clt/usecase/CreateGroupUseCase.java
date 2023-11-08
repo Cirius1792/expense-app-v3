@@ -1,8 +1,8 @@
 package com.clt.usecase;
 
 import com.clt.domain.group.*;
-import com.clt.view.GroupAggregate;
-import com.clt.view.GroupAggregateFactory;
+import com.clt.domain.view.GroupAggregate;
+import com.clt.domain.view.GroupAggregateFactory;
 import java.util.List;
 import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple3;

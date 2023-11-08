@@ -2,7 +2,7 @@ package com.clt.expenses.group;
 
 import com.clt.expenses.group.response.GroupResponse;
 import com.clt.expenses.user.PersonMapper;
-import com.clt.view.GroupAggregate;
+import com.clt.domain.view.GroupAggregate;
 import org.springframework.stereotype.Component;
 
 @Component
