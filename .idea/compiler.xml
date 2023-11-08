@@ -6,12 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="expenses-event-driver" />
+        <module name="expenses-ledger-rest-adapter" />
+        <module name="expenses-persistence-h2-adapter" />
         <module name="expenses-app" />
-        <module name="ledger-event-port" />
         <module name="expense-domain" />
-        <module name="ledger-app" />
-        <module name="expenses-persistence-h2" />
+        <module name="expenses-rest-adapter" />
+        <module name="expenses-ledger-event-adapter" />
+        <module name="expenses-event-adapter" />
       </profile>
     </annotationProcessing>
   </component>
