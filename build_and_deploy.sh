@@ -1,4 +1,5 @@
 #!/bin/sh
+
 mvn clean package -B
 
 if [ ! $? -eq 0 ]; then
