@@ -6,6 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="0cfdadc1-3b9b-4e03-8177-25fe6428ff12" name="Changes" comment="Refactoring of domain views">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expense-domain/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/expense-domain/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expense-domain/src/main/java/com/clt/domain/expense/Expense.java" beforeDir="false" afterPath="$PROJECT_DIR$/expense-domain/src/main/java/com/clt/domain/expense/Expense.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expense-domain/src/main/java/com/clt/domain/group/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/expense-domain/src/main/java/com/clt/domain/group/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expense-domain/src/main/java/com/clt/domain/group/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/expense-domain/src/main/java/com/clt/domain/group/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expenses-app/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-app/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-app/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expenses-event-adapter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-event-adapter/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expenses-event-adapter/src/main/java/com/clt/expenses/ExpenseQueueConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-event-adapter/src/main/java/com/clt/expenses/ExpenseQueueConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expenses-event-adapter/src/main/java/com/clt/expenses/NewExpenseNotifierImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-event-adapter/src/main/java/com/clt/expenses/NewExpenseNotifierImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/expense/ExpenseRouteConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/expense/ExpenseRouteConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +81,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.clt.expenses" />
       <recent name="com.clt.usecase" />
       <recent name="com.clt.expenses.domain.group" />
       <recent name="com.clt.domain.ledger" />

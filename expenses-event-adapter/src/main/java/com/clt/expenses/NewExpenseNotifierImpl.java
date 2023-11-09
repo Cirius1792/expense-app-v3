@@ -3,18 +3,25 @@ package com.clt.expenses;
 import com.clt.domain.expense.ExpenseRecord;
 import com.clt.event.GenericEvent;
 import com.clt.event.Notifier;
-import java.util.UUID;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
+import java.util.UUID;
+
+@Service
 public class NewExpenseNotifierImpl implements Notifier<ExpenseRecord> {
+  private static final Logger logger = LoggerFactory.getLogger(NewExpenseNotifierImpl.class);
   private final RabbitTemplate template;
 
   private final Queue newExpenseQueue;
 
   public NewExpenseNotifierImpl(RabbitTemplate template, Queue newExpenseQueue) {
+    logger.info("Initializing Expense Notifier");
     this.template = template;
     this.newExpenseQueue = newExpenseQueue;
   }
@@ -26,6 +33,7 @@ public class NewExpenseNotifierImpl implements Notifier<ExpenseRecord> {
   }
 
   private GenericEvent<ExpenseRecord> sendEvent(ExpenseRecord expenseRecord) {
+    logger.info("Sending: {}", expenseRecord);
     GenericEvent<ExpenseRecord> event =
         new GenericEvent<>(UUID.randomUUID().toString(), expenseRecord);
     this.template.convertAndSend(this.newExpenseQueue.getName(), event);

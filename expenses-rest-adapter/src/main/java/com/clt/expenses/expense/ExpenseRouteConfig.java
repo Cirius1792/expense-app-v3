@@ -2,9 +2,11 @@ package com.clt.expenses.expense;
 
 import com.clt.domain.commons.UUIDIdFactory;
 import com.clt.domain.expense.ExpenseFactory;
+import com.clt.domain.expense.ExpenseRecord;
 import com.clt.domain.expense.ExpenseStore;
 import com.clt.domain.group.GroupStore;
 import com.clt.domain.group.PersonStore;
+import com.clt.event.Notifier;
 import com.clt.usecase.AddExpenseUseCase;
 import com.clt.usecase.FindExpenseUseCase;
 import com.clt.usecase.FindExpensesPerGroupUseCase;
@@ -25,8 +27,9 @@ public class ExpenseRouteConfig {
       GroupStore groupStore,
       PersonStore personStore,
       ExpenseFactory expenseFactory,
-      ExpenseStore expenseStore) {
-    return new AddExpenseUseCase(personStore, groupStore, expenseFactory, expenseStore);
+      ExpenseStore expenseStore,
+      Notifier<ExpenseRecord> newExpenseNotifier) {
+    return new AddExpenseUseCase(personStore, groupStore, expenseFactory, expenseStore, newExpenseNotifier);
   }
 
   @Bean
