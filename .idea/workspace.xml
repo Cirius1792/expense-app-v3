@@ -4,18 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cfdadc1-3b9b-4e03-8177-25fe6428ff12" name="Changes" comment="Refactoring of domain views">
+    <list default="true" id="0cfdadc1-3b9b-4e03-8177-25fe6428ff12" name="Changes" comment="SplitExpense Use Case Triggered by events">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expense-domain/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/expense-domain/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expense-domain/src/main/java/com/clt/domain/expense/Expense.java" beforeDir="false" afterPath="$PROJECT_DIR$/expense-domain/src/main/java/com/clt/domain/expense/Expense.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expense-domain/src/main/java/com/clt/domain/group/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/expense-domain/src/main/java/com/clt/domain/group/Group.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expense-domain/src/main/java/com/clt/domain/group/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/expense-domain/src/main/java/com/clt/domain/group/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-app/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-app/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-event-adapter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-event-adapter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-event-adapter/src/main/java/com/clt/expenses/ExpenseQueueConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-event-adapter/src/main/java/com/clt/expenses/ExpenseQueueConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-event-adapter/src/main/java/com/clt/expenses/NewExpenseNotifierImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-event-adapter/src/main/java/com/clt/expenses/NewExpenseNotifierImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/expense/ExpenseRouteConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/expenses-rest-adapter/src/main/java/com/clt/expenses/expense/ExpenseRouteConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +106,7 @@
       <module name="expenses-app" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.clt.expenses.*" />
+          <option name="PATTERN" value="com.clt.port.out.expenses.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -139,32 +129,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ExpenseStoreImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="expenses-persistence-h2-adapter" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.clt.expenses.domain.expense.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.clt.expenses.domain.expense" />
-      <option name="MAIN_CLASS_NAME" value="com.clt.expenses.domain.expense.ExpenseStoreImplTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GroupStoreImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="expenses-persistence-h2-adapter" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.clt.expenses.domain.group.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.clt.expenses.domain.group" />
-      <option name="MAIN_CLASS_NAME" value="com.clt.expenses.domain.group.GroupStoreImplTest" />
-      <option name="TEST_OBJECT" value="class" />
+    <configuration name="All in expense-domain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="expense-domain" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -184,13 +152,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
+      <method v="2" />
+    </configuration>
+    <configuration name="expenses-event-adapter: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="envFilePath" value="" />
+          <option name="sourceFilePath" value="expenses-event-adapter/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ExpenseApp" />
-        <item itemvalue="JUnit.RetrieveGroupPerUserUseCaseTest" />
-        <item itemvalue="JUnit.GroupStoreImplTest" />
-        <item itemvalue="JUnit.ExpenseStoreImplTest" />
+        <item itemvalue="Docker.expenses-event-adapter: Compose Deployment" />
         <item itemvalue="JUnit.AddExpenseUseCaseTest" />
+        <item itemvalue="JUnit.All in expense-domain" />
+        <item itemvalue="JUnit.RetrieveGroupPerUserUseCaseTest" />
       </list>
     </recent_temporary>
   </component>
@@ -499,12 +480,125 @@
       <option name="project" value="LOCAL" />
       <updated>1699449804794</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Revert &quot;Fixed typo in feature definition&quot;&#10;&#10;This reverts commit 8ff39deb">
+      <option name="closed" value="true" />
+      <created>1699626884522</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1699626884522</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Revert &quot;Integrated Cucumber&quot;&#10;&#10;This reverts commit a55f7884">
+      <option name="closed" value="true" />
+      <created>1699626905056</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1699626905056</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Revert &quot;Fixed typo in feature definition&quot;&#10;&#10;This reverts commit 88ee97ed">
+      <option name="closed" value="true" />
+      <created>1699626915204</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1699626915204</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Revert &quot;Integrated Cucumber&quot;&#10;&#10;This reverts commit a3581d3c">
+      <option name="closed" value="true" />
+      <created>1699626926765</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1699626926765</updated>
+    </task>
+    <task id="LOCAL-00042" summary="[FIX] Now if there is an error when notifying an expense, the expense is not created &#10;&#10;This ensures that there are no orphan expenses waiting for secondary process to be triggered from events that failed to start">
+      <option name="closed" value="true" />
+      <created>1699628768792</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1699628768792</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Added docker compose file to start a local rabbitmq for testing">
+      <option name="closed" value="true" />
+      <created>1699632137375</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1699632137375</updated>
+    </task>
+    <task id="LOCAL-00044" summary="[FIX] Error in object serialization when sending the event on the queue">
+      <option name="closed" value="true" />
+      <created>1699632319229</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1699632319229</updated>
+    </task>
+    <task id="LOCAL-00045" summary="[NEW] Configure split trigger on new expense event received">
+      <option name="closed" value="true" />
+      <created>1699634290635</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1699634290635</updated>
+    </task>
+    <task id="LOCAL-00046" summary="SplitExpense Use Case Triggered by events">
+      <option name="closed" value="true" />
+      <created>1699636311981</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1699636311981</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="13ebfcd1-71ca-44bf-9462-69bcceb246e3" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
+        <entry key="13ebfcd1-71ca-44bf-9462-69bcceb246e3">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State />
@@ -514,15 +608,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[NEW] Create Expense Use Case now uses the Expense Aggregate view" />
-    <MESSAGE value="Added schema definition for group an person tables" />
-    <MESSAGE value="[NEW] Added data preparation for integration tests" />
-    <MESSAGE value="[NEW] Retrieve Expense API" />
-    <MESSAGE value="[FIX] Create Expense Api response code set to 201" />
-    <MESSAGE value="[FIX] Retrieve Group Use Case throw an error if a group with the given id does not exists" />
-    <MESSAGE value="Code formatted" />
-    <MESSAGE value="[FIX] Create Group: group store operation was not subscribed and therefore never executed" />
-    <MESSAGE value="Refactoring to isolate the Aggregates View object used" />
     <MESSAGE value="Code Clean up" />
     <MESSAGE value="[NEW] Retrieve user balance per group API" />
     <MESSAGE value="Added test data for expense charge" />
@@ -539,7 +624,16 @@
     <MESSAGE value="[NEW] Retrieve Groups containing a user Use Case" />
     <MESSAGE value="Reorganized project modules" />
     <MESSAGE value="Refactoring of domain views" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring of domain views" />
+    <MESSAGE value="Revert &quot;Fixed typo in feature definition&quot;&#10;&#10;This reverts commit 8ff39deb" />
+    <MESSAGE value="Revert &quot;Integrated Cucumber&quot;&#10;&#10;This reverts commit a55f7884" />
+    <MESSAGE value="Revert &quot;Fixed typo in feature definition&quot;&#10;&#10;This reverts commit 88ee97ed" />
+    <MESSAGE value="Revert &quot;Integrated Cucumber&quot;&#10;&#10;This reverts commit a3581d3c" />
+    <MESSAGE value="[FIX] Now if there is an error when notifying an expense, the expense is not created &#10;&#10;This ensures that there are no orphan expenses waiting for secondary process to be triggered from events that failed to start" />
+    <MESSAGE value="Added docker compose file to start a local rabbitmq for testing" />
+    <MESSAGE value="[FIX] Error in object serialization when sending the event on the queue" />
+    <MESSAGE value="[NEW] Configure split trigger on new expense event received" />
+    <MESSAGE value="SplitExpense Use Case Triggered by events" />
+    <option name="LAST_COMMIT_MESSAGE" value="SplitExpense Use Case Triggered by events" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -575,14 +669,14 @@
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/expense-domain/src/main/java/com/clt/domain/view/ExpenseAggregateFactory.java</url>
-          <line>7</line>
-          <option name="timeStamp" value="16" />
+          <url>file://$PROJECT_DIR$/expenses-event-adapter/src/main/java/com/clt/expenses/port/in/ledger/NewExpenseListener.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/expenses-ledger-rest-adapter/src/main/java/com/clt/expenses/ledger/LedgerRouteConfig.java</url>
-          <line>21</line>
-          <option name="timeStamp" value="17" />
+          <url>file://$PROJECT_DIR$/expense-domain/src/main/java/com/clt/domain/ledger/ExpenseSplitter.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
