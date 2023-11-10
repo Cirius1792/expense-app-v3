@@ -7,7 +7,8 @@ if [ ! $? -eq 0 ]; then
     exit 1
 fi
 
-git add ./expenses-app/target/expenses-app.jar
+cp ./expense-app/target/expense-app.jar ./deploy/
+git add ./deploy/expenses-app.jar
 git add Dockerfile
 
 git commit -a -m "updated deploy files"
