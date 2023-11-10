@@ -7,7 +7,7 @@ if [ ! $? -eq 0 ]; then
     exit 1
 fi
 
-cp ./expenses-app/target/expense-app.jar ./deploy/
+cp ./expenses-app/target/expenses-app.jar ./deploy/
 git add ./deploy/expenses-app.jar
 git add Dockerfile
 

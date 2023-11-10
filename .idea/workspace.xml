@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cfdadc1-3b9b-4e03-8177-25fe6428ff12" name="Changes" comment="SplitExpense Use Case Triggered by events">
-      <change afterPath="$PROJECT_DIR$/expenses-app/src/main/resources/application-dev.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build_and_deploy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/build_and_deploy.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expenses-app/Dockerfile" beforeDir="false" />
-    </list>
+    <list default="true" id="0cfdadc1-3b9b-4e03-8177-25fe6428ff12" name="Changes" comment="Prepared configuration for local env" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -566,7 +559,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699636311981</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Prepared configuration for local env">
+      <option name="closed" value="true" />
+      <created>1699639456696</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1699639456696</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -622,7 +623,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Code Clean up" />
     <MESSAGE value="[NEW] Retrieve user balance per group API" />
     <MESSAGE value="Added test data for expense charge" />
     <MESSAGE value="Formatted code" />
@@ -647,7 +647,8 @@
     <MESSAGE value="[FIX] Error in object serialization when sending the event on the queue" />
     <MESSAGE value="[NEW] Configure split trigger on new expense event received" />
     <MESSAGE value="SplitExpense Use Case Triggered by events" />
-    <option name="LAST_COMMIT_MESSAGE" value="SplitExpense Use Case Triggered by events" />
+    <MESSAGE value="Prepared configuration for local env" />
+    <option name="LAST_COMMIT_MESSAGE" value="Prepared configuration for local env" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
