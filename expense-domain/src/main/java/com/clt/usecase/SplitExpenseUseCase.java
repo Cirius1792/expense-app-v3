@@ -1,12 +1,13 @@
 package com.clt.usecase;
 
+import com.clt.domain.commons.UseCase;
 import com.clt.domain.expense.ExpenseRecord;
 import com.clt.domain.ledger.ExpenseCharge;
 import com.clt.domain.ledger.ExpenseChargeStore;
 import com.clt.domain.ledger.ExpenseSplitter;
 import reactor.core.publisher.Flux;
 
-public class SplitExpenseUseCase {
+public class SplitExpenseUseCase implements UseCase {
     private final ExpenseSplitter splitter;
     private final ExpenseChargeStore expenseChargeStore;
 

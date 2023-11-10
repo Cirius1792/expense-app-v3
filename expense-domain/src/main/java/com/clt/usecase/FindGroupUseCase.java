@@ -1,5 +1,6 @@
 package com.clt.usecase;
 
+import com.clt.domain.commons.UseCase;
 import com.clt.domain.group.*;
 import com.clt.domain.view.GroupAggregate;
 import com.clt.domain.view.GroupAggregateFactory;
@@ -8,7 +9,7 @@ import java.util.List;
 import org.reactivestreams.Publisher;
 import reactor.core.publisher.Mono;
 
-public class FindGroupUseCase {
+public class FindGroupUseCase implements UseCase {
 
   private final GroupStore groupStore;
   private final PersonStore personStore;

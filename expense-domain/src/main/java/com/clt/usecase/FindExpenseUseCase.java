@@ -1,5 +1,6 @@
 package com.clt.usecase;
 
+import com.clt.domain.commons.UseCase;
 import com.clt.domain.expense.ExpenseNotFound;
 import com.clt.domain.expense.ExpenseStore;
 import com.clt.domain.group.PersonStore;
@@ -7,7 +8,7 @@ import com.clt.domain.view.ExpenseAggregate;
 import com.clt.domain.view.ExpenseAggregateFactory;
 import reactor.core.publisher.Mono;
 
-public class FindExpenseUseCase {
+public class FindExpenseUseCase implements UseCase {
   private final ExpenseStore expenseStore;
   private final PersonStore personStore;
 

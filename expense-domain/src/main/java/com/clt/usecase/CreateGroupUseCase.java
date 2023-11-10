@@ -1,5 +1,6 @@
 package com.clt.usecase;
 
+import com.clt.domain.commons.UseCase;
 import com.clt.domain.group.*;
 import com.clt.domain.view.GroupAggregate;
 import com.clt.domain.view.GroupAggregateFactory;
@@ -7,7 +8,7 @@ import java.util.List;
 import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple3;
 
-public class CreateGroupUseCase {
+public class CreateGroupUseCase implements UseCase {
   private final GroupFactory groupFactory;
   private final PersonStore personStore;
   private final GroupStore groupStore;

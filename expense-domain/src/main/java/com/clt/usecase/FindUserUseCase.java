@@ -1,11 +1,12 @@
 package com.clt.usecase;
 
+import com.clt.domain.commons.UseCase;
 import com.clt.domain.group.Person;
 import com.clt.domain.group.PersonNotFound;
 import com.clt.domain.group.PersonStore;
 import reactor.core.publisher.Mono;
 
-public class FindUserUseCase {
+public class FindUserUseCase implements UseCase {
   private final PersonStore personStore;
 
   public FindUserUseCase(PersonStore personStore) {

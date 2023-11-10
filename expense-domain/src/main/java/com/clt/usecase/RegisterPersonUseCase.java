@@ -1,11 +1,12 @@
 package com.clt.usecase;
 
+import com.clt.domain.commons.UseCase;
 import com.clt.domain.group.Person;
 import com.clt.domain.group.PersonFactory;
 import com.clt.domain.group.PersonStore;
 import reactor.core.publisher.Mono;
 
-public class RegisterPersonUseCase {
+public class RegisterPersonUseCase implements UseCase {
 
   private final PersonFactory personFactory;
   private final PersonStore store;

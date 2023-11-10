@@ -1,5 +1,6 @@
 package com.clt.usecase;
 
+import com.clt.domain.commons.UseCase;
 import com.clt.domain.expense.Money;
 import com.clt.domain.group.PersonNotFound;
 import com.clt.domain.group.PersonStore;
@@ -7,7 +8,7 @@ import com.clt.domain.ledger.Balance;
 import com.clt.domain.ledger.ExpenseChargeStore;
 import reactor.core.publisher.Mono;
 
-public class RetrieveUserBalancePerGroupUseCase {
+public class RetrieveUserBalancePerGroupUseCase implements UseCase {
   private final PersonStore personStore;
   private final ExpenseChargeStore expenseChargeStore;
 
