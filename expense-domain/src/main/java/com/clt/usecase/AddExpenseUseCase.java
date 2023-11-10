@@ -55,8 +55,8 @@ public class AddExpenseUseCase {
                     person,
                     expenseFactory.create(description, amount, person.id(), group.id()),
                     group))
-        .doOnNext(er -> expenseStore.store(er.expense()).subscribe())
-        .doOnNext(er -> newExpenseNotifier.notify(er).subscribe())
+        .flatMap(er -> expenseStore.store(er.expense()).thenReturn(er))
+        .flatMap(er -> newExpenseNotifier.notify(er).thenReturn(er))
         .map(er -> ExpenseAggregateFactory.fromDomain(er.expense(), er.expenseOwner()));
   }
 }

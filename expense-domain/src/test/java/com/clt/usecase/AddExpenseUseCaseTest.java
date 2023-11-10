@@ -107,9 +107,10 @@ class AddExpenseUseCaseTest {
                 .verifyComplete();
     }
 
-    @DisplayName(
-            "When a new expense can't be stored for any reason "
-                    + "Then the new_expense_created event is not notified")
+    @DisplayName("""
+                    When a new expense can't be stored for any reason
+                    Then the new_expense_created event is not notified
+                   """ )
     @Test
     void not_notify_on_expense_store_failure() {
         Mockito.when(expenseStore.store(Mockito.any())).thenReturn(Mono.error(new RuntimeException()));
@@ -119,4 +120,19 @@ class AddExpenseUseCaseTest {
                 .assertNext(e -> Mockito.verify(newExpenseNotifier, Mockito.never()).notify(Mockito.any()))
                 .expectError();
     }
+    @DisplayName("""
+            When the notification of the new expense fails 
+            Then no new expense should be created 
+            And an error should be returned 
+            """)
+    @Test
+    void should_fail_on_notification_fail(){
+        Mockito.when(newExpenseNotifier.notify(Mockito.any()))
+                .thenThrow(new RuntimeException());
+        useCase
+                .create(DESCRIPTION, AMOUNT, OWNER.id(), GROUP.id())
+                .as(StepVerifier::create)
+                .expectError();
+    }
+
 }
