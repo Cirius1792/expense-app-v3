@@ -10,6 +10,7 @@ import com.clt.domain.group.GroupStore;
 import com.clt.domain.group.PersonFactory;
 import com.clt.domain.group.PersonStore;
 import com.clt.domain.ledger.ExpenseChargeStore;
+import com.clt.domain.ledger.ExpenseSplitter;
 import com.clt.event.Notifier;
 import com.clt.usecase.*;
 import org.springframework.context.annotation.Bean;
@@ -89,6 +90,11 @@ public class UseCasesConfiguration {
     FindExpensesPerGroupUseCase findExpensesPerGroupUseCase(
             ExpenseStore expenseStore, PersonStore personStore) {
         return new FindExpensesPerGroupUseCase(expenseStore, personStore);
+    }
+
+    @Bean
+    SplitExpenseUseCase splitExpenseUseCase(ExpenseChargeStore expenseChargeStore) {
+        return new SplitExpenseUseCase(new ExpenseSplitter(new UUIDIdFactory()), expenseChargeStore);
     }
 
 }

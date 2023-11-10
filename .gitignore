@@ -137,3 +137,10 @@ buildNumber.properties
 # End of https://www.toptal.com/developers/gitignore/api/maven,intellij
 **/target/
 /expenses-app/expenses-app.iml
+/expenses-event-driver.iml
+/ledger-event-port.iml
+/expenses-event-adapter/expenses-event-adapter.iml
+/expenses-ledger-event-adapter/expenses-ledger-event-adapter.iml
+/expenses-ledger-rest-adapter/expenses-ledger-rest-adapter.iml
+/expenses-persistence-h2-adapter/expenses-persistence-h2-adapter.iml
+/expenses-rest-adapter/expenses-rest-adapter.iml

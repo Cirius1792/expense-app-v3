@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
@@ -14,6 +15,7 @@ import reactor.core.scheduler.Schedulers;
 import java.util.UUID;
 
 @Service
+@Profile("rabbit")
 public class NewExpenseRabbitNotifier implements Notifier<ExpenseRecord> {
   private static final Logger logger = LoggerFactory.getLogger(NewExpenseRabbitNotifier.class);
   private final RabbitTemplate template;
