@@ -9,11 +9,6 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 
 @Configuration
 public class LedgerRouteConfig {
-    @Bean
-    public RetrieveSplitPerExpenseUseCase retrieveSplitPerExpenseUseCase(
-            ExpenseChargeStore expenseChargeStore) {
-        return new RetrieveSplitPerExpenseUseCase(expenseChargeStore);
-    }
 
     @Bean
     public RouterFunction<ServerResponse> ledgerRoute(

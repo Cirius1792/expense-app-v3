@@ -14,13 +14,13 @@ import reactor.core.scheduler.Schedulers;
 import java.util.UUID;
 
 @Service
-public class NewExpenseNotifierImpl implements Notifier<ExpenseRecord> {
-  private static final Logger logger = LoggerFactory.getLogger(NewExpenseNotifierImpl.class);
+public class NewExpenseRabbitNotifier implements Notifier<ExpenseRecord> {
+  private static final Logger logger = LoggerFactory.getLogger(NewExpenseRabbitNotifier.class);
   private final RabbitTemplate template;
 
   private final Queue newExpenseQueue;
 
-  public NewExpenseNotifierImpl(RabbitTemplate template, Queue newExpenseQueue) {
+  public NewExpenseRabbitNotifier(RabbitTemplate template, Queue newExpenseQueue) {
     logger.info("Initializing Expense Notifier");
     this.template = template;
     this.newExpenseQueue = newExpenseQueue;

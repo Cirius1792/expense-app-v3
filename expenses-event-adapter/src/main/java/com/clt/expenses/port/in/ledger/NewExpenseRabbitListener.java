@@ -12,11 +12,11 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 @Service
-public class NewExpenseListener implements Listener<ExpenseRecord> {
-    private static final Logger log = LoggerFactory.getLogger(NewExpenseListener.class);
+public class NewExpenseRabbitListener implements Listener<ExpenseRecord> {
+    private static final Logger log = LoggerFactory.getLogger(NewExpenseRabbitListener.class);
     private final SplitExpenseUseCase splitExpenseUseCase;
 
-    public NewExpenseListener(SplitExpenseUseCase splitExpenseUseCase) {
+    public NewExpenseRabbitListener(SplitExpenseUseCase splitExpenseUseCase) {
         this.splitExpenseUseCase = splitExpenseUseCase;
     }
 

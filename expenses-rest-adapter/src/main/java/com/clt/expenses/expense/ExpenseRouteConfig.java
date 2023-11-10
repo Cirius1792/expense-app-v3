@@ -17,31 +17,6 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 
 @Configuration
 public class ExpenseRouteConfig {
-  @Bean
-  ExpenseFactory expenseFactory() {
-    return new ExpenseFactory(new UUIDIdFactory());
-  }
-
-  @Bean
-  AddExpenseUseCase addExpenseUseCase(
-      GroupStore groupStore,
-      PersonStore personStore,
-      ExpenseFactory expenseFactory,
-      ExpenseStore expenseStore,
-      Notifier<ExpenseRecord> newExpenseNotifier) {
-    return new AddExpenseUseCase(personStore, groupStore, expenseFactory, expenseStore, newExpenseNotifier);
-  }
-
-  @Bean
-  FindExpenseUseCase findExpenseUseCase(ExpenseStore expenseStore, PersonStore personStore) {
-    return new FindExpenseUseCase(expenseStore, personStore);
-  }
-
-  @Bean
-  FindExpensesPerGroupUseCase findExpensesPerGroupUseCase(
-      ExpenseStore expenseStore, PersonStore personStore) {
-    return new FindExpensesPerGroupUseCase(expenseStore, personStore);
-  }
 
   @Bean
   RouterFunction<ServerResponse> expensesRouter(

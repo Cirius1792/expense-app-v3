@@ -16,27 +16,6 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 @Configuration
 public class GroupRouterConfig {
 
-  @Bean
-  GroupFactory groupFactory() {
-    return new GroupFactory(new UUIDIdFactory());
-  }
-
-  @Bean
-  CreateGroupUseCase createGroupUseCase(
-      GroupFactory groupFactory, PersonStore personStore, GroupStore groupStore) {
-    return new CreateGroupUseCase(groupFactory, personStore, groupStore);
-  }
-
-  @Bean
-  FindGroupUseCase findGroupUseCase(PersonStore personStore, GroupStore groupStore) {
-    return new FindGroupUseCase(groupStore, personStore);
-  }
-
-  @Bean
-  RetrieveUserBalancePerGroupUseCase retrieveUserBalancePerGroupUseCase(
-      PersonStore personStore, ExpenseChargeStore expenseChargeStore) {
-    return new RetrieveUserBalancePerGroupUseCase(personStore, expenseChargeStore);
-  }
 
   @Bean
   RouterFunction<ServerResponse> groupRoutes(

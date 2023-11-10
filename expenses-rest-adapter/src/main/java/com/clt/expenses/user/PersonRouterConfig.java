@@ -15,20 +15,6 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 @Configuration
 public class PersonRouterConfig {
 
-  @Bean
-  RegisterPersonUseCase registerPersonUseCase(PersonStore personStore) {
-    return new RegisterPersonUseCase(new PersonFactory(new UUIDIdFactory()), personStore);
-  }
-
-  @Bean
-  FindUserUseCase findUserUseCase(PersonStore personStore) {
-    return new FindUserUseCase(personStore);
-  }
-
-  @Bean
-  RetrieveGroupPerUserUseCase retrieveGroupPerUserUseCase(GroupStore groupStore) {
-    return new RetrieveGroupPerUserUseCase(groupStore);
-  }
 
   @Bean
   RouterFunction<ServerResponse> userRouter(
