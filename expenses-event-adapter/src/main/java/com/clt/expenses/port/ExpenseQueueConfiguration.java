@@ -1,5 +1,8 @@
 package com.clt.expenses.port;
 
+import com.clt.domain.commons.UUIDIdFactory;
+import com.clt.domain.ledger.ExpenseChargeStore;
+import com.clt.domain.ledger.ExpenseSplitter;
 import com.clt.expenses.port.in.ledger.NewExpenseListener;
 import com.clt.usecase.SplitExpenseUseCase;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,6 +27,7 @@ public class ExpenseQueueConfiguration {
     @Bean
     public Jackson2JsonMessageConverter jsonMessageConverter(ObjectMapper objectMapper) {
         Jackson2JsonMessageConverter jsonConverter = new Jackson2JsonMessageConverter(objectMapper);
+        jsonConverter.setAlwaysConvertToInferredType(true);
         return jsonConverter;
     }
 
@@ -34,6 +38,10 @@ public class ExpenseQueueConfiguration {
         return new Queue(newExpenseQueueName);
     }
 
+    @Bean
+    SplitExpenseUseCase splitExpenseUseCase(ExpenseChargeStore expenseChargeStore){
+        return new SplitExpenseUseCase(new ExpenseSplitter(new UUIDIdFactory()), expenseChargeStore);
+    }
     @Bean
     NewExpenseListener newExpenseListener(SplitExpenseUseCase splitExpenseUseCase) {
         return new NewExpenseListener(splitExpenseUseCase);

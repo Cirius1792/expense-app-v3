@@ -7,9 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import reactor.core.scheduler.Schedulers;
 
-@RabbitListener(queues = "${expenses.topic.new-expense.name:new-expenses}")
 public class NewExpenseListener {
     private static final Logger log = LoggerFactory.getLogger(NewExpenseListener.class);
     private final SplitExpenseUseCase splitExpenseUseCase;
@@ -19,10 +17,11 @@ public class NewExpenseListener {
     }
 
     @RabbitHandler
+    @RabbitListener(queues = "${expenses.topic.new-expense.name:new-expenses}")
     public void receive(GenericEvent<ExpenseRecord> expenseRecord) {
         log.info("Received Event: [{}] - {}", expenseRecord.id(), expenseRecord.event());
         splitExpenseUseCase.split(expenseRecord.event())
-                .subscribeOn(Schedulers.boundedElastic());
+                .subscribe();
     }
 
 }

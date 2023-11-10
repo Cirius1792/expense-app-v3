@@ -1,8 +1,5 @@
 package com.clt.expenses.ledger;
 
-import static org.springdoc.core.fn.builders.apiresponse.Builder.responseBuilder;
-import static org.springdoc.webflux.core.fn.SpringdocRouteBuilder.route;
-
 import com.clt.expenses.ledger.response.ExpenseSplitDto;
 import com.clt.usecase.RetrieveSplitPerExpenseUseCase;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -11,6 +8,9 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
+
+import static org.springdoc.core.fn.builders.apiresponse.Builder.responseBuilder;
+import static org.springdoc.webflux.core.fn.SpringdocRouteBuilder.route;
 
 public class LedgerRouter {
   public static final String EXPENSES_TAG = "Expenses";

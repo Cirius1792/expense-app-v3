@@ -1,10 +1,15 @@
 package com.clt.domain.expense;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.immutables.value.Value;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 @Value.Immutable
+@JsonSerialize(as = ImmutableMoney.class)
+@JsonDeserialize(as = ImmutableMoney.class)
 public abstract class Money {
 
   public abstract BigDecimal getAmount();
