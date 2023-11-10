@@ -26,11 +26,7 @@ class RegisterPersonUseCaseTest {
   }
 
   @DisplayName(
-      """
-      Given valid data
-      When creating a person
-      Then the new person is create and stored
-      """)
+      "Given valid data " + "When creating a person " + "Then the new person is create and stored")
   @Test
   void store_person_test() {
     var producer = useCase.register(USER_NAME);
