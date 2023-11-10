@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0cfdadc1-3b9b-4e03-8177-25fe6428ff12" name="Changes" comment="SplitExpense Use Case Triggered by events">
+      <change afterPath="$PROJECT_DIR$/expenses-app/src/main/resources/application-dev.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build_and_deploy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/build_and_deploy.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expenses-app/Dockerfile" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,6 +107,9 @@
   </component>
   <component name="RunManager" selected="Application.ExpenseApp">
     <configuration name="ExpenseApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="SPRING_PROFILES_ACTIVE" value="dev" />
+      </envs>
       <option name="MAIN_CLASS_NAME" value="com.clt.expenses.ExpenseApp" />
       <module name="expenses-app" />
       <extension name="coverage">
@@ -114,64 +122,70 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AddExpenseUseCaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="expense-domain" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.clt.usecase.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.clt.usecase" />
-      <option name="MAIN_CLASS_NAME" value="com.clt.usecase.AddExpenseUseCaseTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="All in expense-domain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="expense-domain" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RetrieveGroupPerUserUseCaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="expense-domain" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.clt.usecase.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.clt.usecase" />
-      <option name="MAIN_CLASS_NAME" value="com.clt.usecase.RetrieveGroupPerUserUseCaseTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml" />
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.accounts: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="accounts" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.rabbitmq: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="rabbitmq" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
       <method v="2" />
     </configuration>
     <configuration name="expenses-event-adapter: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="envFilePath" value="" />
+          <option name="commandLineOptions" value="--build" />
           <option name="sourceFilePath" value="expenses-event-adapter/docker-compose.yml" />
         </settings>
       </deployment>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.ExpenseApp" />
+      <item itemvalue="Docker.docker-compose.yml.accounts: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml.rabbitmq: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      <item itemvalue="Docker.expenses-event-adapter: Compose Deployment" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ExpenseApp" />
+        <item itemvalue="Docker.docker-compose.yml.accounts: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="Docker.expenses-event-adapter: Compose Deployment" />
-        <item itemvalue="JUnit.AddExpenseUseCaseTest" />
-        <item itemvalue="JUnit.All in expense-domain" />
-        <item itemvalue="JUnit.RetrieveGroupPerUserUseCaseTest" />
+        <item itemvalue="Docker.docker-compose.yml.rabbitmq: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -682,8 +696,8 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/expense_app_v3$All_in_expense_domain__1_.ic" NAME="All in expense-domain (1) Coverage Results" MODIFIED="1697736911187" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/expense_app_v3$All_in_expenses_persistence_h2__1_.ic" NAME="All in expenses-persistence-h2 (1) Coverage Results" MODIFIED="1697736940478" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/expense_app_v3$All_in_expense_domain__1_.ic" NAME="All in expense-domain (1) Coverage Results" MODIFIED="1697736911187" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/expense_app_v3$All_in_expenses_app_v3.ic" NAME="All in expenses-app-v3 Coverage Results" MODIFIED="1697806632884" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

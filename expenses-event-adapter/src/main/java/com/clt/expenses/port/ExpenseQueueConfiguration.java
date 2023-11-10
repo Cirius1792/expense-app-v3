@@ -7,6 +7,8 @@ import com.clt.expenses.port.in.ledger.NewExpenseListener;
 import com.clt.usecase.SplitExpenseUseCase;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ExpenseQueueConfiguration {
+    private static final Logger logger = LoggerFactory.getLogger(ExpenseQueueConfiguration.class);
 
     @Bean
     public ObjectMapper objectMapper() {
@@ -39,9 +42,10 @@ public class ExpenseQueueConfiguration {
     }
 
     @Bean
-    SplitExpenseUseCase splitExpenseUseCase(ExpenseChargeStore expenseChargeStore){
+    SplitExpenseUseCase splitExpenseUseCase(ExpenseChargeStore expenseChargeStore) {
         return new SplitExpenseUseCase(new ExpenseSplitter(new UUIDIdFactory()), expenseChargeStore);
     }
+
     @Bean
     NewExpenseListener newExpenseListener(SplitExpenseUseCase splitExpenseUseCase) {
         return new NewExpenseListener(splitExpenseUseCase);
