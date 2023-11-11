@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 import java.util.UUID;
 
 @Service
-@Profile("local")
+@Profile({"local", "test"})
 public class NewExpenseInAppNotifier implements Notifier<ExpenseRecord> {
 
     private final Listener<ExpenseRecord> expenseRecordListener;

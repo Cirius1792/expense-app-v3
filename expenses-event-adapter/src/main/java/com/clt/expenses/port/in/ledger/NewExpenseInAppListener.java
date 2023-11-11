@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 @Service
-@Profile("local")
+@Profile({"local", "test"})
 public class NewExpenseInAppListener implements Listener<ExpenseRecord> {
 
     private final SplitExpenseUseCase splitExpenseUseCase;

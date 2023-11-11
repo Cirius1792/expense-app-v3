@@ -13,30 +13,32 @@ import reactor.test.StepVerifier;
 
 class RegisterPersonUseCaseTest {
 
-  private static final String USER_NAME = "Mario";
-  private static PersonStore store;
+    private static final String USER_NAME = "Mario";
+    private static PersonStore store;
 
-  private static RegisterPersonUseCase useCase;
+    private static RegisterPersonUseCase useCase;
 
-  @BeforeEach
-  void initMocks() {
-    store = Mockito.mock(PersonStore.class);
-    Mockito.when(store.store(Mockito.any())).thenAnswer(args -> Mono.just(args.getArgument(0)));
-    useCase = new RegisterPersonUseCase(new PersonFactory(new UUIDIdFactory()), store);
-  }
+    @BeforeEach
+    void initMocks() {
+        store = Mockito.mock(PersonStore.class);
+        Mockito.when(store.store(Mockito.any())).thenAnswer(args -> Mono.just(args.getArgument(0)));
+        useCase = new RegisterPersonUseCase(new PersonFactory(new UUIDIdFactory()), store);
+    }
 
-  @DisplayName(
-      "Given valid data " + "When creating a person " + "Then the new person is create and stored")
-  @Test
-  void store_person_test() {
-    var producer = useCase.register(USER_NAME);
-    StepVerifier.create(producer)
-        .assertNext(
-            actual -> {
-              Assertions.assertNotNull(actual);
-              Assertions.assertEquals(USER_NAME, actual.username(), "Username does not match");
-              Mockito.verify(store, Mockito.atLeastOnce()).store(actual);
-            })
-        .verifyComplete();
-  }
+    @DisplayName("""
+                    When creating a person 
+                    Then the new person is create and stored
+                    """)
+    @Test
+    void store_person_test() {
+        var producer = useCase.register(USER_NAME);
+        StepVerifier.create(producer)
+                .assertNext(
+                        actual -> {
+                            Assertions.assertNotNull(actual);
+                            Assertions.assertEquals(USER_NAME, actual.username(), "Username does not match");
+                            Mockito.verify(store, Mockito.atLeastOnce()).store(actual);
+                        })
+                .verifyComplete();
+    }
 }
