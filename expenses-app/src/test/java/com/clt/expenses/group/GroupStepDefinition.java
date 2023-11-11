@@ -2,6 +2,7 @@ package com.clt.expenses.group;
 
 import com.clt.domain.group.Person;
 import com.clt.domain.view.GroupAggregate;
+import com.clt.usecase.AddMembersToAGroupUseCase;
 import com.clt.usecase.CreateGroupUseCase;
 import com.clt.usecase.FindGroupUseCase;
 import com.clt.usecase.RegisterPersonUseCase;
@@ -10,6 +11,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -22,6 +24,8 @@ public class GroupStepDefinition {
     private CreateGroupUseCase createGroupUseCase;
     @Autowired
     private FindGroupUseCase findGroupUseCase;
+    @Autowired
+    private AddMembersToAGroupUseCase addMembersToAGroupUseCase;
 
     private Map<String, Person> users = new HashMap<>();
     private GroupAggregate newGroup;
@@ -75,11 +79,11 @@ public class GroupStepDefinition {
     @Given("a group {string} with the owner {string} and members:")
     public void a_group_with_the_owner_and_members(String groupName, String ownerUsername, List<String> usernames) {
         this.newGroup = this.createGroupUseCase.create(
-                groupName,
-                this.users.get(ownerUsername).id(),
-                usernames.stream().map(un -> this.users.get(un))
-                        .map(Person::id)
-                        .toList())
+                        groupName,
+                        this.users.get(ownerUsername).id(),
+                        usernames.stream().map(un -> this.users.get(un))
+                                .map(Person::id)
+                                .toList())
                 .block();
     }
 
@@ -94,4 +98,8 @@ public class GroupStepDefinition {
         Assertions.assertEquals(this.newGroup, this.retrievedGroup);
     }
 
+    @When("{string} is added to the group")
+    public void isAddedToTheGroup(String username) {
+        this.newGroup = addMembersToAGroupUseCase.addMember(this.newGroup.id(), List.of(this.users.get(username).id())).block();
+    }
 }

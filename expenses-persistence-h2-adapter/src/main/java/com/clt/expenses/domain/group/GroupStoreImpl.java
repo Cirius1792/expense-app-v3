@@ -3,9 +3,12 @@ package com.clt.expenses.domain.group;
 import com.clt.domain.group.Group;
 import com.clt.domain.group.GroupNotFound;
 import com.clt.domain.group.GroupStore;
+import com.clt.domain.group.Person;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @Repository
 public class GroupStoreImpl implements GroupStore {
@@ -34,4 +37,10 @@ public class GroupStoreImpl implements GroupStore {
   public Flux<Group> retrieveByMember(String userId) {
     return groupRepository.findByMember(userId).map(mapper::toDomain);
   }
+
+  @Override
+  public Mono<Group> addMembers(String groupId, List<String> members) {
+    return null;
+  }
+
 }

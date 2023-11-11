@@ -4,6 +4,7 @@ Feature: Handle Group
     Given a user "Alice"
     And a user "John"
     And a user "Bob"
+    And a user "Mark"
 
   Scenario: Create a new Group
     When "Alice" creates the group "Friends" with the members:
@@ -26,15 +27,14 @@ Feature: Handle Group
       | Bob  |
       | John |
 
-#  Scenario: Add a member to a group
-#    Given a group "LoL" with the owner "Bob" and members:
-#      | John |
-#      | Bob  |
-#    When "Mark" is added to the group
-#    And the members of the group are:
-#      | Bob  |
-#      | Mark |
-#      | John |
-#
+  Scenario: Add a member to a group
+    Given a group "LoL" with the owner "Bob" and members:
+      | John |
+      | Bob  |
+    When "Mark" is added to the group
+    Then the members of the group are:
+      | Bob  |
+      | Mark |
+      | John |
 
 

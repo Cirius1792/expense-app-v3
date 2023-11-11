@@ -96,5 +96,9 @@ public class UseCasesConfiguration {
     SplitExpenseUseCase splitExpenseUseCase(ExpenseChargeStore expenseChargeStore) {
         return new SplitExpenseUseCase(new ExpenseSplitter(new UUIDIdFactory()), expenseChargeStore);
     }
+    @Bean
+    AddMembersToAGroupUseCase addMembersToAGroupUseCase(GroupStore groupStore, PersonStore personStore, FindGroupUseCase findGroupUseCase){
+        return new AddMembersToAGroupUseCase(personStore, groupStore, findGroupUseCase);
+    }
 
 }
