@@ -48,6 +48,13 @@
             <artifactId>expenses-event-adapter</artifactId>
             <version>${parent.version}</version>
         </dependency>
+        <!--        Test-->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-spring</artifactId>
+            <version>7.14.0</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
     <build>
