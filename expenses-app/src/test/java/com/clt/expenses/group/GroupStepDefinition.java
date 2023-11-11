@@ -1,16 +1,15 @@
 package com.clt.expenses.group;
 
-import com.clt.domain.group.Group;
 import com.clt.domain.group.Person;
 import com.clt.domain.view.GroupAggregate;
 import com.clt.usecase.CreateGroupUseCase;
+import com.clt.usecase.FindGroupUseCase;
 import com.clt.usecase.RegisterPersonUseCase;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
-import reactor.test.StepVerifier;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -21,13 +20,17 @@ public class GroupStepDefinition {
     private RegisterPersonUseCase registerPersonUseCase;
     @Autowired
     private CreateGroupUseCase createGroupUseCase;
+    @Autowired
+    private FindGroupUseCase findGroupUseCase;
+
     private Map<String, Person> users = new HashMap<>();
-    private GroupAggregate group;
-    private String ownerUsername;
+    private GroupAggregate newGroup;
+
+    private GroupAggregate retrievedGroup;
 
     @Given("a user {string}")
     public void a_user(String username) {
-        Person person =  this.registerPersonUseCase.register(username).block();
+        Person person = this.registerPersonUseCase.register(username).block();
         Assertions.assertNotNull(person);
         this.users.put(person.username(), person);
     }
@@ -41,14 +44,14 @@ public class GroupStepDefinition {
                 .map(Person::id)
                 .toList();
         Assertions.assertEquals(members.size(), usernames.size(), "Users not founds");
-        this.group = this.createGroupUseCase.create(groupName, owner.id(), members)
+        this.newGroup = this.createGroupUseCase.create(groupName, owner.id(), members)
                 .block();
 
     }
 
     @Then("{string} is the owner of the group")
     public void is_the_owner_of_the_group(String ownerUsername) {
-        Assertions.assertEquals(this.users.get(ownerUsername).id(), this.group.owner().id(), "Owner id does not match");
+        Assertions.assertEquals(this.users.get(ownerUsername).id(), this.newGroup.owner().id(), "Owner id does not match");
     }
 
     @Then("the members of the group are:")
@@ -58,14 +61,37 @@ public class GroupStepDefinition {
                 .map(Map.Entry::getValue)
                 .map(Person::id)
                 .collect(Collectors.toSet());
-        Assertions.assertTrue(memebrIds.containsAll(this.group.members()
+        Assertions.assertTrue(memebrIds.containsAll(this.newGroup.members()
                 .stream().map(Person::id)
                 .toList()), "Expected members does not match");
     }
 
     @Then("the group id is not null")
     public void the_group_id_is_not_null() {
-        Assertions.assertNotNull(this.group.id());
+        Assertions.assertNotNull(this.newGroup.id());
+    }
+
+
+    @Given("a group {string} with the owner {string} and members:")
+    public void a_group_with_the_owner_and_members(String groupName, String ownerUsername, List<String> usernames) {
+        this.newGroup = this.createGroupUseCase.create(
+                groupName,
+                this.users.get(ownerUsername).id(),
+                usernames.stream().map(un -> this.users.get(un))
+                        .map(Person::id)
+                        .toList())
+                .block();
+    }
+
+    @When("looking for the group {string} by id")
+    public void looking_for_the_group_by_id(String groupName) {
+        this.retrievedGroup = this.findGroupUseCase.retrieve(this.newGroup.id())
+                .block();
+    }
+
+    @Then("the group {string} is returned")
+    public void the_group_is_returned(String groupName) {
+        Assertions.assertEquals(this.newGroup, this.retrievedGroup);
     }
 
 }

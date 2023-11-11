@@ -51,10 +51,11 @@ class FindGroupUseCaseTest {
     useCase = new FindGroupUseCase(groupStore, personStore);
   }
 
-  @DisplayName(
-      "Given the is of an existing group "
-          + "When looking for the group by id "
-          + "Then the group is returned")
+  @DisplayName("""
+          Given the id of an existing group 
+          When looking for the group by id 
+          Then the group is returned
+          """)
   @Test
   void retrieve_group_test() {
     useCase

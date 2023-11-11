@@ -16,4 +16,25 @@ Feature: Handle Group
       | John  |
     And the group id is not null
 
+  Scenario: Find group by id
+    Given a group "LoL" with the owner "Bob" and members:
+      | John |
+      | Bob  |
+    When looking for the group "LoL" by id
+    Then the group "LoL" is returned
+    And the members of the group are:
+      | Bob  |
+      | John |
+
+#  Scenario: Add a member to a group
+#    Given a group "LoL" with the owner "Bob" and members:
+#      | John |
+#      | Bob  |
+#    When "Mark" is added to the group
+#    And the members of the group are:
+#      | Bob  |
+#      | Mark |
+#      | John |
+#
+
 
