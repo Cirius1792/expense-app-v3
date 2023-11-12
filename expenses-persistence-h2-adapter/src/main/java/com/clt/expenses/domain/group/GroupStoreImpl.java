@@ -39,8 +39,8 @@ public class GroupStoreImpl implements GroupStore {
   }
 
   @Override
-  public Mono<Group> addMembers(String groupId, List<String> members) {
-    return null;
+  public Mono<Void> addMembers(String groupId, List<String> members) {
+    return this.groupRepository.addMember(groupId, members);
   }
 
 }

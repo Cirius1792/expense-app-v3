@@ -1,5 +1,6 @@
 package com.clt.expenses.domain.group;
 
+import com.clt.domain.group.Group;
 import io.r2dbc.spi.Readable;
 
 import java.util.List;
@@ -85,19 +86,21 @@ public class GroupRepository {
                 .rowsUpdated()
                 .concatWith(
                         Flux.fromIterable(entity.getMembers())
-                                .flatMap(
-                                        m ->
-                                                databaseClient
-                                                        .sql(
-                                                                """
-                                                                        INSERT INTO group_member (group_id, member )
-                                                                        VALUES( :groupId, :member)
-                                                                        """)
-                                                        .bind("groupId", entity.getId())
-                                                        .bind("member", m)
-                                                        .fetch()
-                                                        .rowsUpdated()))
+                                .flatMap(m -> this.addMember(entity.getId(), m)))
                 .subscribe();
+    }
+
+    public Mono<Long> addMember(String groupId, String memberId) {
+        return databaseClient
+                .sql(
+                        """
+                                INSERT INTO group_member (group_id, member )
+                                VALUES( :groupId, :member)
+                                """)
+                .bind("groupId", groupId)
+                .bind("member", memberId)
+                .fetch()
+                .rowsUpdated();
     }
 
     private static Function<Readable, String> memberRowMapper() {
@@ -110,5 +113,11 @@ public class GroupRepository {
                         row.get("id", String.class),
                         row.get("name", String.class),
                         row.get("owner", String.class));
+    }
+
+    public Mono<Void> addMember(String groupId, List<String> members) {
+        return Flux.fromIterable(members)
+                .flatMap(m -> addMember(groupId, members))
+                .last();
     }
 }

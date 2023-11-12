@@ -28,6 +28,5 @@ public class AddMembersToAGroupUseCase implements UseCase {
         return Mono.zip(groupProducer, newMembersProducer,
                 (g, ms) -> groupStore.addMembers(g.id(), ms.stream().map(Person::id).toList()))
                 .flatMap(g -> findGroupUseCase.retrieve(groupId));
-
     }
 }

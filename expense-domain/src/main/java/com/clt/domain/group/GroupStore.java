@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface GroupStore extends Store<Group, String> {
   Flux<Group> retrieveByMember(String userId);
-  Mono<Group> addMembers(String groupId, List<String> members);
+  Mono<Void> addMembers(String groupId, List<String> members);
 }
