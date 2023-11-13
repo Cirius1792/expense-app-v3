@@ -155,10 +155,9 @@ class GroupStoreImplTest {
     void add_member_test() {
         insertGroupIntoDb();
         String NEW_MEMBER_1 = "nm1";
-        String NEW_MEMBER_2 = "nm1";
+        String NEW_MEMBER_2 = "nm2";
         groupStore.addMembers(GROUP_ID, List.of(NEW_MEMBER_1, NEW_MEMBER_2))
                 .as(StepVerifier::create)
-                .expectNextCount(1)
                 .verifyComplete();
         database.sql("""
                         SELECT 1 

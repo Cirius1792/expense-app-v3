@@ -117,7 +117,7 @@ public class GroupRepository {
 
     public Mono<Void> addMember(String groupId, List<String> members) {
         return Flux.fromIterable(members)
-                .flatMap(m -> addMember(groupId, members))
-                .last();
+                .flatMap(m -> addMember(groupId, m))
+                .then();
     }
 }
