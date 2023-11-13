@@ -7,7 +7,7 @@ import com.clt.domain.expense.ExpenseRecord;
 import com.clt.domain.expense.ExpenseStore;
 import com.clt.domain.group.GroupFactory;
 import com.clt.domain.group.GroupStore;
-import com.clt.domain.group.PersonFactory;
+import com.clt.domain.group.UserFactory;
 import com.clt.domain.group.UserStore;
 import com.clt.domain.ledger.ExpenseChargeStore;
 import com.clt.domain.ledger.ExpenseSplitter;
@@ -30,8 +30,8 @@ public class UseCasesConfiguration {
     }
 
     @Bean
-    RegisterPersonUseCase registerPersonUseCase(IdFactory idFactory, UserStore personStore) {
-        return new RegisterPersonUseCase(new PersonFactory(idFactory), personStore);
+    RegisterUserUseCase registerPersonUseCase(IdFactory idFactory, UserStore personStore) {
+        return new RegisterUserUseCase(new UserFactory(idFactory), personStore);
     }
 
     @Bean

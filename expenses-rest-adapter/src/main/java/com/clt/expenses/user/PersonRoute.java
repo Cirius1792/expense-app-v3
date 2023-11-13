@@ -4,7 +4,7 @@ import com.clt.expenses.user.request.CreateUserRequestDto;
 import com.clt.expenses.user.response.UserGroupDto;
 import com.clt.expenses.user.response.UserResponseDto;
 import com.clt.usecase.FindUserUseCase;
-import com.clt.usecase.RegisterPersonUseCase;
+import com.clt.usecase.RegisterUserUseCase;
 import com.clt.usecase.RetrieveGroupPerUserUseCase;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import org.springframework.http.MediaType;
@@ -22,14 +22,14 @@ public class PersonRoute {
   private static final String USER_TAG = "Users";
   public static final String USER_ID_PARAM = "userId";
 
-  private final RegisterPersonUseCase registerPersonUseCase;
+  private final RegisterUserUseCase registerPersonUseCase;
   private final FindUserUseCase findUserUseCase;
   private final RetrieveGroupPerUserUseCase retrieveGroupPerUserUseCase;
   private final PersonMapper personMapper;
   private final PersonGroupMapper personGroupMapper;
 
   public PersonRoute(
-      RegisterPersonUseCase registerPersonUseCase,
+      RegisterUserUseCase registerPersonUseCase,
       FindUserUseCase findUserUseCase,
       RetrieveGroupPerUserUseCase retrieveGroupPerUserUseCase,
       PersonMapper personMapper,

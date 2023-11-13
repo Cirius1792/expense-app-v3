@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class UserFactoryTest {
   private static final String USER_NAME = "Mario";
-  private final PersonFactory personFactory = new PersonFactory(new UUIDIdFactory());
+  private final UserFactory userFactory = new UserFactory(new UUIDIdFactory());
 
   @DisplayName(
       "Given a valid name"
@@ -15,7 +15,7 @@ class UserFactoryTest {
           + "Then a new Person is created with an unique Id and a name")
   @Test
   void test_create_person_with_name_and_id() {
-    User actual = personFactory.create(USER_NAME);
+    User actual = userFactory.create(USER_NAME);
     Assertions.assertNotNull(actual.getId(), "User id should not be null");
     Assertions.assertEquals(USER_NAME, actual.getUsername(), "Username does not match");
   }

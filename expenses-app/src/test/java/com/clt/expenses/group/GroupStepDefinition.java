@@ -6,7 +6,7 @@ import com.clt.expenses.ApplicationDriver;
 import com.clt.usecase.AddMembersToAGroupUseCase;
 import com.clt.usecase.CreateGroupUseCase;
 import com.clt.usecase.FindGroupUseCase;
-import com.clt.usecase.RegisterPersonUseCase;
+import com.clt.usecase.RegisterUserUseCase;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class GroupStepDefinition {
 
     @Autowired
-    private RegisterPersonUseCase registerPersonUseCase;
+    private RegisterUserUseCase registerPersonUseCase;
     @Autowired
     private CreateGroupUseCase createGroupUseCase;
     @Autowired

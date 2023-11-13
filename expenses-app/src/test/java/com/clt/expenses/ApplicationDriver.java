@@ -5,7 +5,7 @@ import com.clt.domain.view.GroupAggregate;
 import com.clt.usecase.CreateGroupUseCase;
 import com.clt.usecase.FindGroupUseCase;
 import com.clt.usecase.FindUserUseCase;
-import com.clt.usecase.RegisterPersonUseCase;
+import com.clt.usecase.RegisterUserUseCase;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -16,12 +16,12 @@ import java.util.Map;
 public class ApplicationDriver {
     private final CreateGroupUseCase createGroupUseCase;
     private final FindGroupUseCase findGroupUseCase;
-    private final RegisterPersonUseCase registerPersonUseCase;
+    private final RegisterUserUseCase registerPersonUseCase;
     private final FindUserUseCase findUserUseCase;
     private Map<String, String> groupNameToIdMap = new HashMap<>();
     private Map<String, String> usernameToIdMap = new HashMap<>();
 
-    public ApplicationDriver(CreateGroupUseCase createGroupUseCase, FindGroupUseCase findGroupUseCase, RegisterPersonUseCase registerPersonUseCase, FindUserUseCase findUserUseCase) {
+    public ApplicationDriver(CreateGroupUseCase createGroupUseCase, FindGroupUseCase findGroupUseCase, RegisterUserUseCase registerPersonUseCase, FindUserUseCase findUserUseCase) {
         this.createGroupUseCase = createGroupUseCase;
         this.findGroupUseCase = findGroupUseCase;
         this.registerPersonUseCase = registerPersonUseCase;

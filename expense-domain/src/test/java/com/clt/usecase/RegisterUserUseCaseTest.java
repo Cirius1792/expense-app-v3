@@ -1,7 +1,7 @@
 package com.clt.usecase;
 
 import com.clt.domain.commons.UUIDIdFactory;
-import com.clt.domain.group.PersonFactory;
+import com.clt.domain.group.UserFactory;
 import com.clt.domain.group.UserStore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,13 +16,13 @@ class RegisterUserUseCaseTest {
     private static final String USER_NAME = "Mario";
     private static UserStore store;
 
-    private static RegisterPersonUseCase useCase;
+    private static RegisterUserUseCase useCase;
 
     @BeforeEach
     void initMocks() {
         store = Mockito.mock(UserStore.class);
         Mockito.when(store.store(Mockito.any())).thenAnswer(args -> Mono.just(args.getArgument(0)));
-        useCase = new RegisterPersonUseCase(new PersonFactory(new UUIDIdFactory()), store);
+        useCase = new RegisterUserUseCase(new UserFactory(new UUIDIdFactory()), store);
     }
 
     @DisplayName("""
