@@ -11,7 +11,7 @@ public interface ExpenseCharge {
 
   String groupId();
 
-  Money dueAmount();
+  Money amount();
 
   String debtor();
 

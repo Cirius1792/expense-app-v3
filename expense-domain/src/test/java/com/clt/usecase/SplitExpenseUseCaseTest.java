@@ -68,13 +68,13 @@ class SplitExpenseUseCaseTest {
         .assertNext(
             split -> {
               Assertions.assertEquals(split.debtor(), JACK.id());
-              Assertions.assertEquals(Money.euros(new BigDecimal(dueAmount1)), split.dueAmount());
+              Assertions.assertEquals(Money.euros(new BigDecimal(dueAmount1)), split.amount());
               Assertions.assertEquals(AL.id(), split.creditor());
             })
         .assertNext(
             split -> {
               Assertions.assertEquals(JOHN.id(), split.debtor());
-              Assertions.assertEquals(Money.euros(new BigDecimal(dueAmount2)), split.dueAmount());
+              Assertions.assertEquals(Money.euros(new BigDecimal(dueAmount2)), split.amount());
               Assertions.assertEquals(AL.id(), split.creditor());
             })
         .verifyComplete();

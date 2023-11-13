@@ -27,14 +27,14 @@ public class Balance {
   private Money debits() {
     return this.charges.stream()
         .filter(c -> this.owner.id().equals(c.debtor()))
-        .map(ExpenseCharge::dueAmount)
+        .map(ExpenseCharge::amount)
         .reduce(Money.euros(0), Money::plus);
   }
 
   private Money credits() {
     return this.charges.stream()
         .filter(c -> this.owner.id().equals(c.creditor()))
-        .map(ExpenseCharge::dueAmount)
+        .map(ExpenseCharge::amount)
         .reduce(Money.euros(0), Money::plus);
   }
 
@@ -48,12 +48,12 @@ public class Balance {
     Money debits =
         this.charges.stream()
             .filter(c -> person.id().equals(c.creditor()))
-            .map(ExpenseCharge::dueAmount)
+            .map(ExpenseCharge::amount)
             .reduce(Money.euros(0), Money::plus);
     Money credits =
         this.charges.stream()
             .filter(c -> person.id().equals(c.debtor()))
-            .map(ExpenseCharge::dueAmount)
+            .map(ExpenseCharge::amount)
             .reduce(Money.euros(0), Money::plus);
     return credits.minus(debits).negate();
   }

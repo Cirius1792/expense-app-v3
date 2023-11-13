@@ -26,7 +26,7 @@ public class ExpenseSplitter {
                     .id(idFactory.newId())
                     .debtor(debtor)
                     .creditor(expense.owner())
-                    .dueAmount(dueProCapite)
+                    .amount(dueProCapite)
                     .expense(expense.id())
                     .groupId(group.id())
                     .build())

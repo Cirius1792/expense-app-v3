@@ -31,7 +31,7 @@ class ExpenseChargeStoreImplTest {
           .debtor("d-id")
           .creditor("c-id")
           .groupId("g-id-A")
-          .dueAmount(Money.euros(BigDecimal.TEN))
+          .amount(Money.euros(BigDecimal.TEN))
           .build();
   private static final ExpenseCharge EXPENSE_CHARGE_GROUP_B =
       ImmutableExpenseCharge.builder()
@@ -40,7 +40,7 @@ class ExpenseChargeStoreImplTest {
           .debtor("d-id")
           .creditor("c-id")
           .groupId("g-id-B")
-          .dueAmount(Money.euros(BigDecimal.TEN))
+          .amount(Money.euros(BigDecimal.TEN))
           .build();
 
   @Autowired DatabaseClient databaseClient;
@@ -99,7 +99,7 @@ class ExpenseChargeStoreImplTest {
         .bind("id", EXPENSE_CHARGE_GROUP_A.id())
         .bind("expense", EXPENSE_CHARGE_GROUP_A.expense())
         .bind("group_id", EXPENSE_CHARGE_GROUP_A.groupId())
-        .bind("due_amount", EXPENSE_CHARGE_GROUP_A.dueAmount().getAmount().toString())
+        .bind("due_amount", EXPENSE_CHARGE_GROUP_A.amount().getAmount().toString())
         .bind("debtor", EXPENSE_CHARGE_GROUP_A.debtor())
         .bind("creditor", EXPENSE_CHARGE_GROUP_A.creditor())
         .fetch()
@@ -124,7 +124,7 @@ class ExpenseChargeStoreImplTest {
         .bind("id", EXPENSE_CHARGE_GROUP_A.id())
         .bind("expense", EXPENSE_CHARGE_GROUP_A.expense())
         .bind("group_id", EXPENSE_CHARGE_GROUP_A.groupId())
-        .bind("due_amount", EXPENSE_CHARGE_GROUP_A.dueAmount().getAmount().toString())
+        .bind("due_amount", EXPENSE_CHARGE_GROUP_A.amount().getAmount().toString())
         .bind("debtor", EXPENSE_CHARGE_GROUP_A.debtor())
         .bind("creditor", EXPENSE_CHARGE_GROUP_A.creditor())
         .fetch()
@@ -138,7 +138,7 @@ class ExpenseChargeStoreImplTest {
         .bind("id", EXPENSE_CHARGE_GROUP_B.id())
         .bind("expense", EXPENSE_CHARGE_GROUP_B.expense())
         .bind("group_id", EXPENSE_CHARGE_GROUP_B.groupId())
-        .bind("due_amount", EXPENSE_CHARGE_GROUP_B.dueAmount().getAmount().toString())
+        .bind("due_amount", EXPENSE_CHARGE_GROUP_B.amount().getAmount().toString())
         .bind("debtor", EXPENSE_CHARGE_GROUP_B.debtor())
         .bind("creditor", EXPENSE_CHARGE_GROUP_B.creditor())
         .fetch()
@@ -168,7 +168,7 @@ class ExpenseChargeStoreImplTest {
         .bind("id", EXPENSE_CHARGE_GROUP_A.id())
         .bind("expense", EXPENSE_CHARGE_GROUP_A.expense())
         .bind("group_id", EXPENSE_CHARGE_GROUP_A.groupId())
-        .bind("due_amount", EXPENSE_CHARGE_GROUP_A.dueAmount().getAmount().toString())
+        .bind("due_amount", EXPENSE_CHARGE_GROUP_A.amount().getAmount().toString())
         .bind("debtor", EXPENSE_CHARGE_GROUP_A.debtor())
         .bind("creditor", EXPENSE_CHARGE_GROUP_A.creditor())
         .fetch()
@@ -182,7 +182,7 @@ class ExpenseChargeStoreImplTest {
         .bind("id", EXPENSE_CHARGE_GROUP_B.id())
         .bind("expense", EXPENSE_CHARGE_GROUP_B.expense())
         .bind("group_id", EXPENSE_CHARGE_GROUP_B.groupId())
-        .bind("due_amount", EXPENSE_CHARGE_GROUP_B.dueAmount().getAmount().toString())
+        .bind("due_amount", EXPENSE_CHARGE_GROUP_B.amount().getAmount().toString())
         .bind("debtor", EXPENSE_CHARGE_GROUP_B.debtor())
         .bind("creditor", EXPENSE_CHARGE_GROUP_B.creditor())
         .fetch()

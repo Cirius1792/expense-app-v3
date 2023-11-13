@@ -10,7 +10,9 @@ sequenceDiagram
     activate Ledger
     Ledger ->> Ledger: splitExpense
     loop for every person in the group
-     Ledger -->> Broker: EXPENSE_CHARGE
+        Ledger ->>+ ExpenseChargeStore: ExpenseCharge
+        ExpenseChargeStore ->>- Ledger: ExpenseCharge
+        Ledger -->> Broker: EXPENSE_CHARGE
     end
     deactivate Ledger
 ```
@@ -28,9 +30,25 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     actor User
-    User ->>+ Balance: retrieve(userId)
-    Balance ->>+ BalanceStore: retrieveExpenseChargeForUser(userId)
-    BalanceStore ->>- Balance: Collection<ExpenseCharge>
-    Balance ->> Balance: reduce(Collection<ExpenseCharge>)
-    Balance ->>- User: Balance
+    User ->>+ Ledger: retrieve(userId)
+    Ledger ->>+ ExpenseChargeStore: retrieveExpenseChargeForUser(userId)
+    ExpenseChargeStore ->>- Ledger: Collection<ExpenseCharge>
+    Ledger ->> Ledger: reduce(Collection<ExpenseCharge>)
+    Ledger ->>- User: Balance
+```
+
+## Pay Expense
+```mermaid
+sequenceDiagram
+    actor User
+    User ->>+ Expenses: pay(List of expenses)
+    Expenses -->> Broker: PAYED_EXPENSE
+    Expenses ->>- User: PayedExpenses
+    Broker -->> Ledger: PAYED_EXPENSE
+    activate Ledger
+    Ledger ->> Ledger: payExpense
+    Ledger ->>+ ExpenseChargeStore: PayedExpenseCharge
+    ExpenseChargeStore ->>- Ledger: PayedExpenseCharge
+    Ledger -->> Broker: PAYED_EXPENSE_CHARGE
+    deactivate Ledger
 ```

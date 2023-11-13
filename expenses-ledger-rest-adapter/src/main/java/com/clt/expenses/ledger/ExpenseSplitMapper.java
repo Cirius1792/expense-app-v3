@@ -11,7 +11,7 @@ public class ExpenseSplitMapper {
         domain.id(),
         domain.expense(),
         domain.groupId(),
-        domain.dueAmount().getAmount(),
+        domain.amount().getAmount(),
         "EUR",
         domain.debtor(),
         domain.creditor());

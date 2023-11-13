@@ -25,7 +25,7 @@ class RetrieveUserBalancePerGroupTest {
           .creditor(PersonUtil.newPerson().id())
           .debtor(PERSON.id())
           .expense("e-id")
-          .dueAmount(Money.euros("12.4"))
+          .amount(Money.euros("12.4"))
           .build();
   private PersonStore personStore;
   private ExpenseChargeStore expenseChargeStore;
@@ -51,7 +51,7 @@ class RetrieveUserBalancePerGroupTest {
     useCase
         .retrieve(PERSON.id(), EXPENSE_CHARGE.groupId())
         .as(StepVerifier::create)
-        .expectNext(EXPENSE_CHARGE.dueAmount().negate())
+        .expectNext(EXPENSE_CHARGE.amount().negate())
         .verifyComplete();
   }
 }

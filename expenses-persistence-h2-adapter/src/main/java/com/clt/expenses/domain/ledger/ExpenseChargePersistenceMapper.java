@@ -16,7 +16,7 @@ public class ExpenseChargePersistenceMapper
     entity.setExpense(domain.expense());
     entity.setCreditor(domain.creditor());
     entity.setDebtor(domain.debtor());
-    entity.setDueAmount(domain.dueAmount().getAmount().toString());
+    entity.setDueAmount(domain.amount().getAmount().toString());
     entity.setGroupId(domain.groupId());
     return entity;
   }
@@ -29,7 +29,7 @@ public class ExpenseChargePersistenceMapper
         .groupId(expenseChargeEntity.getGroupId())
         .debtor(expenseChargeEntity.getDebtor())
         .creditor(expenseChargeEntity.getCreditor())
-        .dueAmount(Money.euros(expenseChargeEntity.getDueAmount()))
+        .amount(Money.euros(expenseChargeEntity.getDueAmount()))
         .build();
   }
 }

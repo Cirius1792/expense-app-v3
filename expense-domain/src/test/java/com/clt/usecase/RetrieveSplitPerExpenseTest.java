@@ -19,7 +19,7 @@ class RetrieveSplitPerExpenseTest {
           .id("ec-1")
           .expense(EXPENSE)
           .groupId("g1")
-          .dueAmount(Money.euros("0.50"))
+          .amount(Money.euros("0.50"))
           .debtor("s1")
           .creditor("s2")
           .build();
@@ -29,7 +29,7 @@ class RetrieveSplitPerExpenseTest {
           .id("ec-2")
           .expense(EXPENSE)
           .groupId("g1")
-          .dueAmount(Money.euros("4.50"))
+          .amount(Money.euros("4.50"))
           .debtor("s1")
           .creditor("s2")
           .build();
