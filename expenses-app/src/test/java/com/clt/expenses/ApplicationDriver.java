@@ -1,6 +1,6 @@
 package com.clt.expenses;
 
-import com.clt.domain.group.Person;
+import com.clt.domain.group.User;
 import com.clt.domain.view.GroupAggregate;
 import com.clt.usecase.CreateGroupUseCase;
 import com.clt.usecase.FindGroupUseCase;
@@ -48,7 +48,7 @@ public class ApplicationDriver {
         String id;
         if ((id = this.usernameToIdMap.get(username)) != null)
             return id;
-        id = this.registerPersonUseCase.register(username).map(Person::id).block();
+        id = this.registerPersonUseCase.register(username).map(User::getId).block();
         this.usernameToIdMap.putIfAbsent(username, id);
         return id;
     }

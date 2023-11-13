@@ -1,15 +1,15 @@
 package com.clt.expenses.user;
 
-import com.clt.domain.group.Person;
+import com.clt.domain.group.User;
 import com.clt.expenses.user.response.UserResponseDto;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PersonMapper {
-  public UserResponseDto toDto(Person user) {
+  public UserResponseDto toDto(User user) {
     UserResponseDto response = new UserResponseDto();
-    response.setId(user.id());
-    response.setUsername(user.username());
+    response.setId(user.getId());
+    response.setUsername(user.getUsername());
     return response;
   }
 }

@@ -16,15 +16,15 @@ class FindGroupUseCaseTest {
 
   private static final String GROUP_ID = "g-id";
   private static final String GROUP_NAME = "My friends";
-  private static final Person OWNER = PersonUtil.newPerson();
+  private static final User OWNER = PersonUtil.newPerson();
 
-  private static final Person MEMBER = PersonUtil.newPerson();
+  private static final User MEMBER = PersonUtil.newPerson();
   private static final Group GROUP =
       ImmutableGroup.builder()
           .id(GROUP_ID)
           .name(GROUP_NAME)
-          .owner(OWNER.id())
-          .addMembers(OWNER.id(), MEMBER.id())
+          .owner(OWNER.getId())
+          .addMembers(OWNER.getId(), MEMBER.getId())
           .build();
 
   private static final GroupAggregate GROUP_AGGREGATE =
@@ -34,8 +34,8 @@ class FindGroupUseCaseTest {
 
   @BeforeEach
   void initMocks() {
-    PersonStore personStore = Mockito.mock(PersonStore.class);
-    Mockito.when(personStore.retrieve(Arrays.asList(MEMBER.id(), OWNER.id())))
+    UserStore personStore = Mockito.mock(UserStore.class);
+    Mockito.when(personStore.retrieve(Arrays.asList(MEMBER.getId(), OWNER.getId())))
         .thenReturn(Flux.just(MEMBER, OWNER));
 
     GroupStore groupStore = Mockito.mock(GroupStore.class);
@@ -45,8 +45,8 @@ class FindGroupUseCaseTest {
                 ImmutableGroup.builder()
                     .id(GROUP_ID)
                     .name(GROUP_NAME)
-                    .owner(OWNER.id())
-                    .addMembers(MEMBER.id())
+                    .owner(OWNER.getId())
+                    .addMembers(MEMBER.getId())
                     .build()));
     useCase = new FindGroupUseCase(groupStore, personStore);
   }

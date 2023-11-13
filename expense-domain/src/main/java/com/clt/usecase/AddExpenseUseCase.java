@@ -5,21 +5,21 @@ import com.clt.domain.expense.*;
 import com.clt.domain.group.GroupNotFound;
 import com.clt.domain.group.GroupStore;
 import com.clt.domain.group.PersonNotFound;
-import com.clt.domain.group.PersonStore;
+import com.clt.domain.group.UserStore;
 import com.clt.event.Notifier;
 import com.clt.domain.view.ExpenseAggregate;
 import com.clt.domain.view.ExpenseAggregateFactory;
 import reactor.core.publisher.Mono;
 
 public class AddExpenseUseCase implements UseCase {
-  private final PersonStore personStore;
+  private final UserStore personStore;
   private final GroupStore groupStore;
   private final ExpenseFactory expenseFactory;
   private final ExpenseStore expenseStore;
   private final Notifier<ExpenseRecord> newExpenseNotifier;
 
   public AddExpenseUseCase(
-      PersonStore personStore,
+      UserStore personStore,
       GroupStore groupStore,
       ExpenseFactory expenseFactory,
       ExpenseStore expenseStore) {
@@ -31,7 +31,7 @@ public class AddExpenseUseCase implements UseCase {
   }
 
   public AddExpenseUseCase(
-      PersonStore personStore,
+      UserStore personStore,
       GroupStore groupStore,
       ExpenseFactory expenseFactory,
       ExpenseStore expenseStore,
@@ -54,7 +54,7 @@ public class AddExpenseUseCase implements UseCase {
             (person, group) ->
                 new ExpenseRecord(
                     person,
-                    expenseFactory.create(description, amount, person.id(), group.id()),
+                    expenseFactory.create(description, amount, person.getId(), group.getId()),
                     group))
         .flatMap(er -> expenseStore.store(er.expense()).thenReturn(er))
         .flatMap(er -> newExpenseNotifier.notify(er).thenReturn(er))

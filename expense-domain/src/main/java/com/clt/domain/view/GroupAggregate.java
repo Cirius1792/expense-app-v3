@@ -1,7 +1,8 @@
 package com.clt.domain.view;
 
-import com.clt.domain.group.Person;
+import com.clt.domain.group.User;
 import java.util.Set;
+
 import org.immutables.value.Value;
 
 @Value.Style(visibility = Value.Style.ImplementationVisibility.PACKAGE)
@@ -11,7 +12,7 @@ public interface GroupAggregate {
 
   String name();
 
-  Person owner();
+  User owner();
 
-  Set<Person> members();
+  Set<User> members();
 }

@@ -19,9 +19,9 @@ class AddExpenseUseCaseTest {
 
     private static final String DESCRIPTION = "Milk";
     private static final Money AMOUNT = Money.euros(10);
-    private static final Person OWNER = PersonUtil.newPerson();
+    private static final User OWNER = PersonUtil.newPerson();
     private static final Group GROUP = GroupUtil.newGroup("gid", List.of(OWNER));
-    private PersonStore personStore;
+    private UserStore personStore;
     private GroupStore groupStore;
     private ExpenseStore expenseStore;
     private AddExpenseUseCase useCase;
@@ -29,11 +29,11 @@ class AddExpenseUseCaseTest {
 
     @BeforeEach
     void initMocks() {
-        personStore = Mockito.mock(PersonStore.class);
-        Mockito.when(personStore.retrieve(OWNER.id())).thenReturn(Mono.just(OWNER));
+        personStore = Mockito.mock(UserStore.class);
+        Mockito.when(personStore.retrieve(OWNER.getId())).thenReturn(Mono.just(OWNER));
 
         groupStore = Mockito.mock(GroupStore.class);
-        Mockito.when(groupStore.retrieve(GROUP.id())).thenReturn(Mono.just(GROUP));
+        Mockito.when(groupStore.retrieve(GROUP.getId())).thenReturn(Mono.just(GROUP));
 
         expenseStore = Mockito.mock(ExpenseStore.class);
         Mockito.when(expenseStore.store(Mockito.any())).thenReturn(Mono.empty());
@@ -50,7 +50,7 @@ class AddExpenseUseCaseTest {
 
     @DisplayName(
             """
-                       	       	Given a valid person
+                       	       	Given a valid user
                             And a valid group
                             When registering a new expense
                             The the new expense is created
@@ -58,13 +58,13 @@ class AddExpenseUseCaseTest {
                     """)
     @Test
     void test_create_and_store_new_expense() {
-        Mono<ExpenseAggregate> producer = useCase.create(DESCRIPTION, AMOUNT, OWNER.id(), GROUP.id());
+        Mono<ExpenseAggregate> producer = useCase.create(DESCRIPTION, AMOUNT, OWNER.getId(), GROUP.getId());
         StepVerifier.create(producer)
                 .assertNext(
                         actual -> {
                             Assertions.assertNotNull(actual);
-                            Assertions.assertEquals(DESCRIPTION, actual.description());
-                            Assertions.assertEquals(AMOUNT, actual.amount());
+                            Assertions.assertEquals(DESCRIPTION, actual.getDescription());
+                            Assertions.assertEquals(AMOUNT, actual.getAmount());
                             Mockito.verify(expenseStore, Mockito.atLeastOnce()).store(Mockito.any());
                         })
                 .verifyComplete();
@@ -80,7 +80,7 @@ class AddExpenseUseCaseTest {
     void invalid_owner_test() {
         String invalidOwnerId = "not-existent-id";
         Mockito.when(personStore.retrieve(invalidOwnerId)).thenReturn(Mono.empty());
-        var producer = useCase.create(DESCRIPTION, AMOUNT, invalidOwnerId, GROUP.id());
+        var producer = useCase.create(DESCRIPTION, AMOUNT, invalidOwnerId, GROUP.getId());
         StepVerifier.create(producer).verifyError(PersonNotFound.class);
     }
 
@@ -92,7 +92,7 @@ class AddExpenseUseCaseTest {
     void invalid_group_test() {
         String invalidGroupId = "not-existent-id";
         Mockito.when(groupStore.retrieve(invalidGroupId)).thenReturn(Mono.empty());
-        var producer = useCase.create(DESCRIPTION, AMOUNT, OWNER.id(), invalidGroupId);
+        var producer = useCase.create(DESCRIPTION, AMOUNT, OWNER.getId(), invalidGroupId);
         StepVerifier.create(producer).verifyError(GroupNotFound.class);
     }
 
@@ -100,7 +100,7 @@ class AddExpenseUseCaseTest {
     @Test
     void notify_expense_creation_on_store() {
         useCase
-                .create(DESCRIPTION, AMOUNT, OWNER.id(), GROUP.id())
+                .create(DESCRIPTION, AMOUNT, OWNER.getId(), GROUP.getId())
                 .as(StepVerifier::create)
                 .assertNext(
                         e -> Mockito.verify(newExpenseNotifier, Mockito.atLeastOnce()).notify(Mockito.any()))
@@ -115,7 +115,7 @@ class AddExpenseUseCaseTest {
     void not_notify_on_expense_store_failure() {
         Mockito.when(expenseStore.store(Mockito.any())).thenReturn(Mono.error(new RuntimeException()));
         useCase
-                .create(DESCRIPTION, AMOUNT, OWNER.id(), GROUP.id())
+                .create(DESCRIPTION, AMOUNT, OWNER.getId(), GROUP.getId())
                 .as(StepVerifier::create)
                 .assertNext(e -> Mockito.verify(newExpenseNotifier, Mockito.never()).notify(Mockito.any()))
                 .expectError();
@@ -130,7 +130,7 @@ class AddExpenseUseCaseTest {
         Mockito.when(newExpenseNotifier.notify(Mockito.any()))
                 .thenThrow(new RuntimeException());
         useCase
-                .create(DESCRIPTION, AMOUNT, OWNER.id(), GROUP.id())
+                .create(DESCRIPTION, AMOUNT, OWNER.getId(), GROUP.getId())
                 .as(StepVerifier::create)
                 .expectError();
     }

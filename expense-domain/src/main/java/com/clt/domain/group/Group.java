@@ -10,11 +10,11 @@ import java.util.List;
 @JsonSerialize(as = ImmutableGroup.class)
 @JsonDeserialize(as = ImmutableGroup.class)
 public interface Group {
-  String id();
+  String getId();
 
-  String name();
+  String getName();
 
-  String owner();
+  String getOwner();
 
-  List<String> members();
+  List<String> getMembers();
 }

@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 public class PersonGroupMapper {
   UserGroupDto toDto(Group group) {
     UserGroupDto dto = new UserGroupDto();
-    dto.setId(group.id());
-    dto.setName(group.name());
-    dto.setOwnerId(group.owner());
-    dto.setMembersIds(group.members());
+    dto.setId(group.getId());
+    dto.setName(group.getName());
+    dto.setOwnerId(group.getOwner());
+    dto.setMembersIds(group.getMembers());
     return dto;
   }
 }

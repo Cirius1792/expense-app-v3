@@ -9,7 +9,7 @@ sequenceDiagram
     Broker -->> Ledger: NEW_EXPENSE
     activate Ledger
     Ledger ->> Ledger: splitExpense
-    loop for every person in the group
+    loop for every user in the group
         Ledger ->>+ ExpenseChargeStore: ExpenseCharge
         ExpenseChargeStore ->>- Ledger: ExpenseCharge
         Ledger -->> Broker: EXPENSE_CHARGE

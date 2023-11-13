@@ -1,7 +1,7 @@
 package com.clt.domain.ledger;
 
 import com.clt.domain.expense.Money;
-import com.clt.domain.group.Person;
+import com.clt.domain.group.User;
 import com.clt.domain.group.PersonUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -9,14 +9,14 @@ import org.junit.jupiter.api.Test;
 
 class BalanceEvaluatorTest {
 
-  private static final Person ALICE = PersonUtil.newPerson();
-  private static final Person BOB = PersonUtil.newPerson();
-  private static final Person SARA = PersonUtil.newPerson();
+  private static final User ALICE = PersonUtil.newPerson();
+  private static final User BOB = PersonUtil.newPerson();
+  private static final User SARA = PersonUtil.newPerson();
   private static final ExpenseCharge EXPENSE_CHARGE_FROM_ALICE_TO_BOB =
       ImmutableExpenseCharge.builder()
           .id("EXPENSE_CHARGE_FROM_ALICE_TO_BOB")
-          .debtor(BOB.id())
-          .creditor(ALICE.id())
+          .debtor(BOB.getId())
+          .creditor(ALICE.getId())
           .expense("e1")
           .groupId("g1")
           .amount(Money.euros(2))
@@ -24,8 +24,8 @@ class BalanceEvaluatorTest {
   private static final ExpenseCharge EXPENSE_CHARGE_FROM_BOB_TO_ALICE =
       ImmutableExpenseCharge.builder()
           .id("EXPENSE_CHARGE_FROM_BOB_TO_ALICE")
-          .creditor(BOB.id())
-          .debtor(ALICE.id())
+          .creditor(BOB.getId())
+          .debtor(ALICE.getId())
           .expense("e2")
           .groupId("g1")
           .amount(Money.euros(1))
@@ -34,8 +34,8 @@ class BalanceEvaluatorTest {
   private static final ExpenseCharge EXPENSE_CHARGE_FROM_BOB_TO_ALICE_2 =
       ImmutableExpenseCharge.builder()
           .id("EXPENSE_CHARGE_FROM_BOB_TO_ALICE_2")
-          .creditor(BOB.id())
-          .debtor(ALICE.id())
+          .creditor(BOB.getId())
+          .debtor(ALICE.getId())
           .expense("e3")
           .groupId("g1")
           .amount(Money.euros(6))
@@ -43,8 +43,8 @@ class BalanceEvaluatorTest {
   private static final ExpenseCharge EXPENSE_CHARGE_FROM_SARA_TO_BOB =
       ImmutableExpenseCharge.builder()
           .id("EXPENSE_CHARGE_FROM_SARA_TO_BOB")
-          .creditor(SARA.id())
-          .debtor(BOB.id())
+          .creditor(SARA.getId())
+          .debtor(BOB.getId())
           .expense("e4")
           .groupId("g1")
           .amount(Money.euros(3))
@@ -60,7 +60,7 @@ class BalanceEvaluatorTest {
     Balance balance = new Balance(BOB);
     balance.addExpenseCharge(EXPENSE_CHARGE_FROM_ALICE_TO_BOB);
     Assertions.assertEquals(
-        EXPENSE_CHARGE_FROM_ALICE_TO_BOB.amount().negate(), balance.balance());
+        EXPENSE_CHARGE_FROM_ALICE_TO_BOB.getAmount().negate(), balance.balance());
   }
 
   @DisplayName(

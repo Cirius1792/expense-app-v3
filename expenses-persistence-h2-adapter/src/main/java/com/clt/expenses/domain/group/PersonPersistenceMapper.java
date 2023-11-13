@@ -1,25 +1,25 @@
 package com.clt.expenses.domain.group;
 
-import com.clt.domain.group.ImmutablePerson;
-import com.clt.domain.group.Person;
+import com.clt.domain.group.ImmutableUser;
+import com.clt.domain.group.User;
 import com.clt.expenses.domain.common.PersistenceMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PersonPersistenceMapper implements PersistenceMapper<PersonEntity, Person> {
+public class PersonPersistenceMapper implements PersistenceMapper<UserEntity, User> {
   @Override
-  public PersonEntity toEntity(Person person) {
-    PersonEntity entity = new PersonEntity();
-    entity.setId(person.id());
-    entity.setUsername(person.username());
+  public UserEntity toEntity(User user) {
+    UserEntity entity = new UserEntity();
+    entity.setId(user.getId());
+    entity.setUsername(user.getUsername());
     return entity;
   }
 
   @Override
-  public Person toDomain(PersonEntity personEntity) {
-    return ImmutablePerson.builder()
-        .id(personEntity.getId())
-        .username(personEntity.getUsername())
+  public User toDomain(UserEntity userEntity) {
+    return ImmutableUser.builder()
+        .id(userEntity.getId())
+        .username(userEntity.getUsername())
         .build();
   }
 }

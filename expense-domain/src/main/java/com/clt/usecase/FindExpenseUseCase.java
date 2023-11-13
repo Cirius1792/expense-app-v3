@@ -3,16 +3,16 @@ package com.clt.usecase;
 import com.clt.domain.commons.UseCase;
 import com.clt.domain.expense.ExpenseNotFound;
 import com.clt.domain.expense.ExpenseStore;
-import com.clt.domain.group.PersonStore;
+import com.clt.domain.group.UserStore;
 import com.clt.domain.view.ExpenseAggregate;
 import com.clt.domain.view.ExpenseAggregateFactory;
 import reactor.core.publisher.Mono;
 
 public class FindExpenseUseCase implements UseCase {
   private final ExpenseStore expenseStore;
-  private final PersonStore personStore;
+  private final UserStore personStore;
 
-  public FindExpenseUseCase(ExpenseStore expenseStore, PersonStore personStore) {
+  public FindExpenseUseCase(ExpenseStore expenseStore, UserStore personStore) {
     this.expenseStore = expenseStore;
     this.personStore = personStore;
   }
@@ -23,6 +23,6 @@ public class FindExpenseUseCase implements UseCase {
         .switchIfEmpty(Mono.error(new ExpenseNotFound()))
         .flatMap(
             e ->
-                personStore.retrieve(e.owner()).map(o -> ExpenseAggregateFactory.fromDomain(e, o)));
+                personStore.retrieve(e.getOwner()).map(o -> ExpenseAggregateFactory.fromDomain(e, o)));
   }
 }

@@ -22,9 +22,9 @@ class GroupFactoryTest {
   void create_new_group_test() {
     Group actual = service.create(GROUP_NAME, GROUP_OWNER);
     Assertions.assertNotNull(actual);
-    Assertions.assertNotNull(actual.id(), "Missing id");
-    Assertions.assertEquals(GROUP_NAME, actual.name(), "Wrong group name");
-    Assertions.assertEquals(GROUP_OWNER, actual.owner(), "Wrong owner");
+    Assertions.assertNotNull(actual.getId(), "Missing id");
+    Assertions.assertEquals(GROUP_NAME, actual.getName(), "Wrong group name");
+    Assertions.assertEquals(GROUP_OWNER, actual.getOwner(), "Wrong owner");
   }
 
   @DisplayName(
@@ -33,7 +33,7 @@ class GroupFactoryTest {
   void owner_of_the_group_should_be_a_member() {
     Group actual = service.create(GROUP_NAME, GROUP_OWNER);
     Assertions.assertTrue(
-        actual.members().contains(GROUP_OWNER), "The owner of the group should also be a member");
+        actual.getMembers().contains(GROUP_OWNER), "The owner of the group should also be a member");
   }
 
   @DisplayName(
@@ -45,6 +45,6 @@ class GroupFactoryTest {
     String newPersonId = "new-id";
     Group actual = service.add(GROUP, newPersonId);
     Assertions.assertNotNull(actual);
-    Assertions.assertTrue(actual.members().contains(newPersonId), "Missing expected group member");
+    Assertions.assertTrue(actual.getMembers().contains(newPersonId), "Missing expected group member");
   }
 }

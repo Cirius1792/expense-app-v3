@@ -1,19 +1,19 @@
 package com.clt.domain.view;
 
 import com.clt.domain.expense.Money;
-import com.clt.domain.group.Person;
+import com.clt.domain.group.User;
 import org.immutables.value.Value;
 
 @Value.Style(visibility = Value.Style.ImplementationVisibility.PACKAGE)
 @Value.Immutable
 public interface ExpenseAggregate {
-  String id();
+  String getId();
 
-  String description();
+  String getDescription();
 
-  Money amount();
+  Money getAmount();
 
-  Person owner();
+  User getOwner();
 
-  String groupId();
+  String getGroupId();
 }

@@ -12,9 +12,9 @@ import reactor.core.publisher.Mono;
 public class FindGroupUseCase implements UseCase {
 
   private final GroupStore groupStore;
-  private final PersonStore personStore;
+  private final UserStore personStore;
 
-  public FindGroupUseCase(GroupStore groupStore, PersonStore personStore) {
+  public FindGroupUseCase(GroupStore groupStore, UserStore personStore) {
     this.groupStore = groupStore;
     this.personStore = personStore;
   }
@@ -31,18 +31,18 @@ public class FindGroupUseCase implements UseCase {
                     .transform(membersProducer -> buildAggregate(g, membersProducer)));
   }
 
-  private Publisher<GroupAggregate> buildAggregate(Group g, Mono<List<Person>> membersProducer) {
+  private Publisher<GroupAggregate> buildAggregate(Group g, Mono<List<User>> membersProducer) {
     return membersProducer.map(
         members ->
             GroupAggregateFactory.fromDomain(
                 g,
-                members.stream().filter(m -> m.id().equals(g.owner())).findFirst().orElseThrow(),
+                members.stream().filter(m -> m.getId().equals(g.getOwner())).findFirst().orElseThrow(),
                 members));
   }
 
   private List<String> allMembers(Group g) {
-    List<String> membersAndOwner = new ArrayList<>(g.members());
-    membersAndOwner.add(g.owner());
+    List<String> membersAndOwner = new ArrayList<>(g.getMembers());
+    membersAndOwner.add(g.getOwner());
     return membersAndOwner;
   }
 }

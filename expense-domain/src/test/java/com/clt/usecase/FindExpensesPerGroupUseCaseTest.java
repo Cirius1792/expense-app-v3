@@ -4,8 +4,8 @@ import com.clt.domain.commons.Page;
 import com.clt.domain.expense.Expense;
 import com.clt.domain.expense.ExpenseStore;
 import com.clt.domain.expense.ExpenseUtil;
-import com.clt.domain.group.Person;
-import com.clt.domain.group.PersonStore;
+import com.clt.domain.group.User;
+import com.clt.domain.group.UserStore;
 import com.clt.domain.group.PersonUtil;
 import com.clt.domain.view.ExpenseAggregate;
 import com.clt.domain.view.ExpenseAggregateFactory;
@@ -23,7 +23,7 @@ import reactor.test.StepVerifier;
 class FindExpensesPerGroupUseCaseTest {
 
   private static final String GROUP_ID = "gid";
-  private static final Person EXPENSE_OWNER = PersonUtil.newPerson();
+  private static final User EXPENSE_OWNER = PersonUtil.newPerson();
   private static final List<Expense> EXPENSES =
       IntStream.range(0, 10).mapToObj($ -> ExpenseUtil.newExpense(EXPENSE_OWNER)).toList();
 
@@ -34,8 +34,8 @@ class FindExpensesPerGroupUseCaseTest {
 
   @BeforeAll
   public static void initMocks() {
-    PersonStore personStore = Mockito.mock(PersonStore.class);
-    Mockito.when(personStore.retrieve(EXPENSE_OWNER.id())).thenReturn(Mono.just(EXPENSE_OWNER));
+    UserStore personStore = Mockito.mock(UserStore.class);
+    Mockito.when(personStore.retrieve(EXPENSE_OWNER.getId())).thenReturn(Mono.just(EXPENSE_OWNER));
 
     ExpenseStore expenseStore = Mockito.mock(ExpenseStore.class);
     Mockito.when(expenseStore.retrieveByGroup(Mockito.eq(GROUP_ID), Mockito.any()))

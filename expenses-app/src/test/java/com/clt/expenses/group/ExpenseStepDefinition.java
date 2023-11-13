@@ -46,8 +46,8 @@ public class ExpenseStepDefinition {
         this.expectedExpenses = expenseList;
         this.expenseList = expenseList.stream()
                 .map(e -> this.addExpenseUseCase.create(
-                        e.description(),
-                        e.amount(),
+                        e.getDescription(),
+                        e.getAmount(),
                         this.applicationDriver.findPersonIdByUsername(expenseOwner),
                         this.group.id()
                 ).block()).toList();
@@ -60,18 +60,18 @@ public class ExpenseStepDefinition {
 
     @And("the new expense has a unique id")
     public void theNewExpenseHasAUniqueId() {
-        this.expenseList.forEach(e -> Assertions.assertNotNull(e.id()));
+        this.expenseList.forEach(e -> Assertions.assertNotNull(e.getId()));
     }
 
     @Given("the expense:")
     public void theExpense(Expense expense) {
         ExpenseAggregate e = this.addExpenseUseCase.create(
-                expense.description(),
-                expense.amount(),
-                this.applicationDriver.findPersonIdByUsername(expense.owner()),
-                this.applicationDriver.retrieveGroup(expense.groupId()).id()
+                expense.getDescription(),
+                expense.getAmount(),
+                this.applicationDriver.findPersonIdByUsername(expense.getOwner()),
+                this.applicationDriver.retrieveGroup(expense.getGroupId()).id()
         ).block();
-        this.expenseIdMap.put(expense.id(), e.id());
+        this.expenseIdMap.put(expense.getId(), e.getId());
     }
 
     @When("looking for the expense {string}")
@@ -81,8 +81,8 @@ public class ExpenseStepDefinition {
 
     @Then("the expense is returned:")
     public void theExpenseIsReturned(Expense expense) {
-        Assertions.assertEquals(expense.description(), this.actualExpense.description());
-        Assertions.assertEquals(this.applicationDriver.findPersonIdByUsername(expense.owner()), this.actualExpense.owner().id());
-        Assertions.assertEquals(expense.amount(), this.actualExpense.amount());
+        Assertions.assertEquals(expense.getDescription(), this.actualExpense.getDescription());
+        Assertions.assertEquals(this.applicationDriver.findPersonIdByUsername(expense.getOwner()), this.actualExpense.getOwner().getId());
+        Assertions.assertEquals(expense.getAmount(), this.actualExpense.getAmount());
     }
 }

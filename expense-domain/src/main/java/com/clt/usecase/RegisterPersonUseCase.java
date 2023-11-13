@@ -1,22 +1,22 @@
 package com.clt.usecase;
 
 import com.clt.domain.commons.UseCase;
-import com.clt.domain.group.Person;
+import com.clt.domain.group.User;
 import com.clt.domain.group.PersonFactory;
-import com.clt.domain.group.PersonStore;
+import com.clt.domain.group.UserStore;
 import reactor.core.publisher.Mono;
 
 public class RegisterPersonUseCase implements UseCase {
 
   private final PersonFactory personFactory;
-  private final PersonStore store;
+  private final UserStore store;
 
-  public RegisterPersonUseCase(PersonFactory personFactory, PersonStore store) {
+  public RegisterPersonUseCase(PersonFactory personFactory, UserStore store) {
     this.personFactory = personFactory;
     this.store = store;
   }
 
-  public Mono<Person> register(String username) {
+  public Mono<User> register(String username) {
     return this.store.store(personFactory.create(username));
   }
 }

@@ -22,7 +22,7 @@ public class ExpenseStoreImpl implements ExpenseStore {
   public Mono<Expense> store(Expense expense) {
     ExpenseEntity entity = expenseMapper.toEntity(expense);
     return this.expenseRepository
-        .findById(expense.id())
+        .findById(expense.getId())
         .map(this::setAsNew)
         .switchIfEmpty(Mono.just(entity))
         .flatMap(expenseRepository::save)

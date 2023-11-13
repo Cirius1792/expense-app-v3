@@ -1,8 +1,8 @@
 package com.clt.usecase;
 
 import com.clt.domain.expense.Money;
-import com.clt.domain.group.Person;
-import com.clt.domain.group.PersonStore;
+import com.clt.domain.group.User;
+import com.clt.domain.group.UserStore;
 import com.clt.domain.group.PersonUtil;
 import com.clt.domain.ledger.ExpenseCharge;
 import com.clt.domain.ledger.ExpenseChargeStore;
@@ -17,26 +17,26 @@ import reactor.test.StepVerifier;
 
 class RetrieveUserBalancePerGroupTest {
 
-  private static Person PERSON = PersonUtil.newPerson();
+  private static User User = PersonUtil.newPerson();
   private static ExpenseCharge EXPENSE_CHARGE =
       ImmutableExpenseCharge.builder()
           .id("s-id")
           .groupId("g-id")
-          .creditor(PersonUtil.newPerson().id())
-          .debtor(PERSON.id())
+          .creditor(PersonUtil.newPerson().getId())
+          .debtor(User.getId())
           .expense("e-id")
           .amount(Money.euros("12.4"))
           .build();
-  private PersonStore personStore;
+  private UserStore personStore;
   private ExpenseChargeStore expenseChargeStore;
   private RetrieveUserBalancePerGroupUseCase useCase;
 
   @BeforeEach
   void initMocks() {
-    personStore = Mockito.mock(PersonStore.class);
-    Mockito.when(personStore.retrieve(PERSON.id())).thenReturn(Mono.just(PERSON));
+    personStore = Mockito.mock(UserStore.class);
+    Mockito.when(personStore.retrieve(User.getId())).thenReturn(Mono.just(User));
     expenseChargeStore = Mockito.mock(ExpenseChargeStore.class);
-    Mockito.when(expenseChargeStore.retrieveBy(PERSON.id(), EXPENSE_CHARGE.groupId()))
+    Mockito.when(expenseChargeStore.retrieveBy(User.getId(), EXPENSE_CHARGE.getGroupId()))
         .thenReturn(Flux.just(EXPENSE_CHARGE));
     useCase = new RetrieveUserBalancePerGroupUseCase(personStore, expenseChargeStore);
   }
@@ -49,9 +49,9 @@ class RetrieveUserBalancePerGroupTest {
   @Test
   void retrieve_user_balance_test() {
     useCase
-        .retrieve(PERSON.id(), EXPENSE_CHARGE.groupId())
+        .retrieve(User.getId(), EXPENSE_CHARGE.getGroupId())
         .as(StepVerifier::create)
-        .expectNext(EXPENSE_CHARGE.amount().negate())
+        .expectNext(EXPENSE_CHARGE.getAmount().negate())
         .verifyComplete();
   }
 }

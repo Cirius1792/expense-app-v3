@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class GroupPersistenceMapper {
   public GroupEntity toEntity(Group group) {
-    return new GroupEntity(group.id(), group.name(), group.owner(), group.members());
+    return new GroupEntity(group.getId(), group.getName(), group.getOwner(), group.getMembers());
   }
 
   public Group toDomain(GroupEntity entity) {

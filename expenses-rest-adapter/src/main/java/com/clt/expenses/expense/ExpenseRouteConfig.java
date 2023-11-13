@@ -1,12 +1,5 @@
 package com.clt.expenses.expense;
 
-import com.clt.domain.commons.UUIDIdFactory;
-import com.clt.domain.expense.ExpenseFactory;
-import com.clt.domain.expense.ExpenseRecord;
-import com.clt.domain.expense.ExpenseStore;
-import com.clt.domain.group.GroupStore;
-import com.clt.domain.group.PersonStore;
-import com.clt.event.Notifier;
 import com.clt.usecase.AddExpenseUseCase;
 import com.clt.usecase.FindExpenseUseCase;
 import com.clt.usecase.FindExpensesPerGroupUseCase;

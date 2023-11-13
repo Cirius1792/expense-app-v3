@@ -16,12 +16,12 @@ public class ExpenseMapper {
 
   public ExpenseResponse toDto(ExpenseAggregate expense) {
     ExpenseResponse expenseResponse = new ExpenseResponse();
-    expenseResponse.setId(expense.id());
-    expenseResponse.setDescription(expense.description());
-    expenseResponse.setGroupId(expense.groupId());
+    expenseResponse.setId(expense.getId());
+    expenseResponse.setDescription(expense.getDescription());
+    expenseResponse.setGroupId(expense.getGroupId());
     expenseResponse.setAmount(
-        new MoneyDto(expense.amount().getAmount(), MoneyDto.CurrencyEnum.EUR));
-    expenseResponse.setOwner(personMapper.toDto(expense.owner()));
+        new MoneyDto(expense.getAmount().getAmount(), MoneyDto.CurrencyEnum.EUR));
+    expenseResponse.setOwner(personMapper.toDto(expense.getOwner()));
     return expenseResponse;
   }
 }

@@ -8,13 +8,13 @@ import org.immutables.value.Value;
 @JsonSerialize(as = ImmutableExpense.class)
 @JsonDeserialize(as = ImmutableExpense.class)
 public interface Expense {
-  String id();
+  String getId();
 
-  String description();
+  String getDescription();
 
-  Money amount();
+  Money getAmount();
 
-  String owner();
+  String getOwner();
 
-  String groupId();
+  String getGroupId();
 }

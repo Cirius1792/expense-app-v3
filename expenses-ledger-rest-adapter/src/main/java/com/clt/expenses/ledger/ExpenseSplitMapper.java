@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 public class ExpenseSplitMapper {
   public ExpenseSplitDto toDto(ExpenseCharge domain) {
     return new ExpenseSplitDto(
-        domain.id(),
-        domain.expense(),
-        domain.groupId(),
-        domain.amount().getAmount(),
+        domain.getId(),
+        domain.getExpense(),
+        domain.getGroupId(),
+        domain.getAmount().getAmount(),
         "EUR",
-        domain.debtor(),
-        domain.creditor());
+        domain.getDebtor(),
+        domain.getCreditor());
   }
 }

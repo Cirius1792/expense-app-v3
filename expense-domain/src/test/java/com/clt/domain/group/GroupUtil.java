@@ -16,23 +16,23 @@ public class GroupUtil {
         .build();
   }
 
-  public static Group newGroup(String name, List<Person> members) {
+  public static Group newGroup(String name, List<User> members) {
     assert members != null && !members.isEmpty();
     return ImmutableGroup.builder()
         .id(UUID.randomUUID().toString())
         .name(name)
-        .owner(members.get(0).id())
-        .members(members.stream().map(Person::id).toList())
+        .owner(members.get(0).getId())
+        .members(members.stream().map(User::getId).toList())
         .build();
   }
 
   public static Group newGroup(int nMembers) {
     assert nMembers > 1;
-    Person owner = PersonUtil.newPerson();
+    User owner = PersonUtil.newPerson();
     return ImmutableGroup.builder()
         .id(UUID.randomUUID().toString())
         .name("Test Group " + new Random().nextInt())
-        .owner(owner.id())
+        .owner(owner.getId())
         .members(
             IntStream.range(0, nMembers)
                 .mapToObj($ -> UUID.randomUUID().toString())

@@ -7,7 +7,7 @@ import com.clt.domain.expense.ImmutableExpense;
 import com.clt.domain.expense.Money;
 import com.clt.domain.group.Group;
 import com.clt.domain.group.GroupUtil;
-import com.clt.domain.group.Person;
+import com.clt.domain.group.User;
 import com.clt.domain.group.PersonUtil;
 import com.clt.domain.ledger.ExpenseChargeStore;
 import com.clt.domain.ledger.ExpenseSplitter;
@@ -28,18 +28,18 @@ class SplitExpenseUseCaseTest {
   private ExpenseChargeStore expenseChargeStore;
   private SplitExpenseUseCase useCase;
 
-  private static final Person AL = PersonUtil.newPerson();
-  private static final Person JOHN = PersonUtil.newPerson();
-  private static final Person JACK = PersonUtil.newPerson();
+  private static final User AL = PersonUtil.newPerson();
+  private static final User JOHN = PersonUtil.newPerson();
+  private static final User JACK = PersonUtil.newPerson();
   private static final Group GROUP = GroupUtil.newGroup("group", Arrays.asList(AL, JACK, JOHN));
 
-  private Expense buildExpense(String cost, Person owner, Group group) {
+  private Expense buildExpense(String cost, User owner, Group group) {
     return ImmutableExpense.builder()
-        .owner(owner.id())
+        .owner(owner.getId())
         .id("x")
         .description("Milk")
         .amount(Money.euros(cost))
-        .groupId(group.id())
+        .groupId(group.getId())
         .build();
   }
 
@@ -67,15 +67,15 @@ class SplitExpenseUseCaseTest {
         .as(StepVerifier::create)
         .assertNext(
             split -> {
-              Assertions.assertEquals(split.debtor(), JACK.id());
-              Assertions.assertEquals(Money.euros(new BigDecimal(dueAmount1)), split.amount());
-              Assertions.assertEquals(AL.id(), split.creditor());
+              Assertions.assertEquals(split.getDebtor(), JACK.getId());
+              Assertions.assertEquals(Money.euros(new BigDecimal(dueAmount1)), split.getAmount());
+              Assertions.assertEquals(AL.getId(), split.getCreditor());
             })
         .assertNext(
             split -> {
-              Assertions.assertEquals(JOHN.id(), split.debtor());
-              Assertions.assertEquals(Money.euros(new BigDecimal(dueAmount2)), split.amount());
-              Assertions.assertEquals(AL.id(), split.creditor());
+              Assertions.assertEquals(JOHN.getId(), split.getDebtor());
+              Assertions.assertEquals(Money.euros(new BigDecimal(dueAmount2)), split.getAmount());
+              Assertions.assertEquals(AL.getId(), split.getCreditor());
             })
         .verifyComplete();
   }

@@ -1,6 +1,6 @@
 package com.clt.expenses.group;
 
-import com.clt.domain.group.Person;
+import com.clt.domain.group.User;
 import com.clt.domain.view.GroupAggregate;
 import com.clt.expenses.ApplicationDriver;
 import com.clt.usecase.AddMembersToAGroupUseCase;
@@ -54,7 +54,7 @@ public class GroupStepDefinition {
 
     @Then("{string} is the owner of the group")
     public void is_the_owner_of_the_group(String ownerUsername) {
-        Assertions.assertEquals(this.users.get(ownerUsername), this.newGroup.owner().id(), "Owner id does not match");
+        Assertions.assertEquals(this.users.get(ownerUsername), this.newGroup.owner().getId(), "Owner id does not match");
     }
 
     @Then("the members of the group are:")
@@ -64,7 +64,7 @@ public class GroupStepDefinition {
                 .map(Map.Entry::getValue)
                 .collect(Collectors.toSet());
         Assertions.assertTrue(memebrIds.containsAll(this.newGroup.members()
-                .stream().map(Person::id)
+                .stream().map(User::getId)
                 .toList()), "Expected members does not match");
     }
 

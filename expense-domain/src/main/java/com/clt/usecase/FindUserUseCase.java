@@ -1,19 +1,19 @@
 package com.clt.usecase;
 
 import com.clt.domain.commons.UseCase;
-import com.clt.domain.group.Person;
+import com.clt.domain.group.User;
 import com.clt.domain.group.PersonNotFound;
-import com.clt.domain.group.PersonStore;
+import com.clt.domain.group.UserStore;
 import reactor.core.publisher.Mono;
 
 public class FindUserUseCase implements UseCase {
-  private final PersonStore personStore;
+  private final UserStore personStore;
 
-  public FindUserUseCase(PersonStore personStore) {
+  public FindUserUseCase(UserStore personStore) {
     this.personStore = personStore;
   }
 
-  public Mono<Person> retrieve(String userId) {
+  public Mono<User> retrieve(String userId) {
     return personStore.retrieve(userId).switchIfEmpty(Mono.error(new PersonNotFound()));
   }
 }

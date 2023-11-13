@@ -85,7 +85,7 @@ class ExpenseChargeStoreImplTest {
         .verifyComplete();
 
     expenseChargeRepository
-        .findById(EXPENSE_CHARGE_GROUP_A.id())
+        .findById(EXPENSE_CHARGE_GROUP_A.getId())
         .as(StepVerifier::create)
         .expectNextCount(1)
         .verifyComplete();
@@ -96,12 +96,12 @@ class ExpenseChargeStoreImplTest {
   void retrieve_existing_expense_by_id_test() {
     databaseClient
         .sql(INSERT_STATEMENT)
-        .bind("id", EXPENSE_CHARGE_GROUP_A.id())
-        .bind("expense", EXPENSE_CHARGE_GROUP_A.expense())
-        .bind("group_id", EXPENSE_CHARGE_GROUP_A.groupId())
-        .bind("due_amount", EXPENSE_CHARGE_GROUP_A.amount().getAmount().toString())
-        .bind("debtor", EXPENSE_CHARGE_GROUP_A.debtor())
-        .bind("creditor", EXPENSE_CHARGE_GROUP_A.creditor())
+        .bind("id", EXPENSE_CHARGE_GROUP_A.getId())
+        .bind("expense", EXPENSE_CHARGE_GROUP_A.getExpense())
+        .bind("group_id", EXPENSE_CHARGE_GROUP_A.getGroupId())
+        .bind("due_amount", EXPENSE_CHARGE_GROUP_A.getAmount().getAmount().toString())
+        .bind("debtor", EXPENSE_CHARGE_GROUP_A.getDebtor())
+        .bind("creditor", EXPENSE_CHARGE_GROUP_A.getCreditor())
         .fetch()
         .rowsUpdated()
         .log()
@@ -110,7 +110,7 @@ class ExpenseChargeStoreImplTest {
         .verifyComplete();
 
     store
-        .retrieve(EXPENSE_CHARGE_GROUP_A.id())
+        .retrieve(EXPENSE_CHARGE_GROUP_A.getId())
         .as(StepVerifier::create)
         .expectNext(EXPENSE_CHARGE_GROUP_A)
         .verifyComplete();
@@ -121,12 +121,12 @@ class ExpenseChargeStoreImplTest {
   void retrieve_existing_expense_by_person_and_group_test() {
     databaseClient
         .sql(INSERT_STATEMENT)
-        .bind("id", EXPENSE_CHARGE_GROUP_A.id())
-        .bind("expense", EXPENSE_CHARGE_GROUP_A.expense())
-        .bind("group_id", EXPENSE_CHARGE_GROUP_A.groupId())
-        .bind("due_amount", EXPENSE_CHARGE_GROUP_A.amount().getAmount().toString())
-        .bind("debtor", EXPENSE_CHARGE_GROUP_A.debtor())
-        .bind("creditor", EXPENSE_CHARGE_GROUP_A.creditor())
+        .bind("id", EXPENSE_CHARGE_GROUP_A.getId())
+        .bind("expense", EXPENSE_CHARGE_GROUP_A.getExpense())
+        .bind("group_id", EXPENSE_CHARGE_GROUP_A.getGroupId())
+        .bind("due_amount", EXPENSE_CHARGE_GROUP_A.getAmount().getAmount().toString())
+        .bind("debtor", EXPENSE_CHARGE_GROUP_A.getDebtor())
+        .bind("creditor", EXPENSE_CHARGE_GROUP_A.getCreditor())
         .fetch()
         .rowsUpdated()
         .as(StepVerifier::create)
@@ -135,12 +135,12 @@ class ExpenseChargeStoreImplTest {
 
     databaseClient
         .sql(INSERT_STATEMENT)
-        .bind("id", EXPENSE_CHARGE_GROUP_B.id())
-        .bind("expense", EXPENSE_CHARGE_GROUP_B.expense())
-        .bind("group_id", EXPENSE_CHARGE_GROUP_B.groupId())
-        .bind("due_amount", EXPENSE_CHARGE_GROUP_B.amount().getAmount().toString())
-        .bind("debtor", EXPENSE_CHARGE_GROUP_B.debtor())
-        .bind("creditor", EXPENSE_CHARGE_GROUP_B.creditor())
+        .bind("id", EXPENSE_CHARGE_GROUP_B.getId())
+        .bind("expense", EXPENSE_CHARGE_GROUP_B.getExpense())
+        .bind("group_id", EXPENSE_CHARGE_GROUP_B.getGroupId())
+        .bind("due_amount", EXPENSE_CHARGE_GROUP_B.getAmount().getAmount().toString())
+        .bind("debtor", EXPENSE_CHARGE_GROUP_B.getDebtor())
+        .bind("creditor", EXPENSE_CHARGE_GROUP_B.getCreditor())
         .fetch()
         .rowsUpdated()
         .as(StepVerifier::create)
@@ -148,13 +148,13 @@ class ExpenseChargeStoreImplTest {
         .verifyComplete();
 
     store
-        .retrieveBy(EXPENSE_CHARGE_GROUP_A.debtor(), EXPENSE_CHARGE_GROUP_A.groupId())
+        .retrieveBy(EXPENSE_CHARGE_GROUP_A.getDebtor(), EXPENSE_CHARGE_GROUP_A.getGroupId())
         .as(StepVerifier::create)
         .expectNext(EXPENSE_CHARGE_GROUP_A)
         .verifyComplete();
 
     store
-        .retrieveBy(EXPENSE_CHARGE_GROUP_B.debtor(), EXPENSE_CHARGE_GROUP_B.groupId())
+        .retrieveBy(EXPENSE_CHARGE_GROUP_B.getDebtor(), EXPENSE_CHARGE_GROUP_B.getGroupId())
         .as(StepVerifier::create)
         .expectNext(EXPENSE_CHARGE_GROUP_B)
         .verifyComplete();
@@ -165,12 +165,12 @@ class ExpenseChargeStoreImplTest {
   void retrieve_charges_by_expense() {
     databaseClient
         .sql(INSERT_STATEMENT)
-        .bind("id", EXPENSE_CHARGE_GROUP_A.id())
-        .bind("expense", EXPENSE_CHARGE_GROUP_A.expense())
-        .bind("group_id", EXPENSE_CHARGE_GROUP_A.groupId())
-        .bind("due_amount", EXPENSE_CHARGE_GROUP_A.amount().getAmount().toString())
-        .bind("debtor", EXPENSE_CHARGE_GROUP_A.debtor())
-        .bind("creditor", EXPENSE_CHARGE_GROUP_A.creditor())
+        .bind("id", EXPENSE_CHARGE_GROUP_A.getId())
+        .bind("expense", EXPENSE_CHARGE_GROUP_A.getExpense())
+        .bind("group_id", EXPENSE_CHARGE_GROUP_A.getGroupId())
+        .bind("due_amount", EXPENSE_CHARGE_GROUP_A.getAmount().getAmount().toString())
+        .bind("debtor", EXPENSE_CHARGE_GROUP_A.getDebtor())
+        .bind("creditor", EXPENSE_CHARGE_GROUP_A.getCreditor())
         .fetch()
         .rowsUpdated()
         .as(StepVerifier::create)
@@ -179,12 +179,12 @@ class ExpenseChargeStoreImplTest {
 
     databaseClient
         .sql(INSERT_STATEMENT)
-        .bind("id", EXPENSE_CHARGE_GROUP_B.id())
-        .bind("expense", EXPENSE_CHARGE_GROUP_B.expense())
-        .bind("group_id", EXPENSE_CHARGE_GROUP_B.groupId())
-        .bind("due_amount", EXPENSE_CHARGE_GROUP_B.amount().getAmount().toString())
-        .bind("debtor", EXPENSE_CHARGE_GROUP_B.debtor())
-        .bind("creditor", EXPENSE_CHARGE_GROUP_B.creditor())
+        .bind("id", EXPENSE_CHARGE_GROUP_B.getId())
+        .bind("expense", EXPENSE_CHARGE_GROUP_B.getExpense())
+        .bind("group_id", EXPENSE_CHARGE_GROUP_B.getGroupId())
+        .bind("due_amount", EXPENSE_CHARGE_GROUP_B.getAmount().getAmount().toString())
+        .bind("debtor", EXPENSE_CHARGE_GROUP_B.getDebtor())
+        .bind("creditor", EXPENSE_CHARGE_GROUP_B.getCreditor())
         .fetch()
         .rowsUpdated()
         .as(StepVerifier::create)

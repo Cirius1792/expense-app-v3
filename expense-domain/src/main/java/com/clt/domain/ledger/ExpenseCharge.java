@@ -5,15 +5,15 @@ import org.immutables.value.Value;
 
 @Value.Immutable
 public interface ExpenseCharge {
-  String id();
+  String getId();
 
-  String expense();
+  String getExpense();
 
-  String groupId();
+  String getGroupId();
 
-  Money amount();
+  Money getAmount();
 
-  String debtor();
+  String getDebtor();
 
-  String creditor();
+  String getCreditor();
 }

@@ -1,9 +1,5 @@
 package com.clt.expenses.user;
 
-import com.clt.domain.commons.UUIDIdFactory;
-import com.clt.domain.group.GroupStore;
-import com.clt.domain.group.PersonFactory;
-import com.clt.domain.group.PersonStore;
 import com.clt.usecase.FindUserUseCase;
 import com.clt.usecase.RegisterPersonUseCase;
 import com.clt.usecase.RetrieveGroupPerUserUseCase;

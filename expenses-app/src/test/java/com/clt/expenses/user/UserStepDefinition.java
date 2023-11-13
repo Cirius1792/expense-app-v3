@@ -1,6 +1,6 @@
 package com.clt.expenses.user;
 
-import com.clt.domain.group.Person;
+import com.clt.domain.group.User;
 import com.clt.usecase.RegisterPersonUseCase;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -14,7 +14,7 @@ public class UserStepDefinition {
     @Autowired
     private RegisterPersonUseCase registerPersonUseCase;
     private String username;
-    private Person newUser;
+    private User newUser;
 
     @Given("a new user with username {string}")
     public void a_new_user_with_username(String username) {
@@ -29,11 +29,11 @@ public class UserStepDefinition {
 
     @Then("the user unique identifier is returned")
     public void the_user_unique_identifier_is_returned() {
-        Assertions.assertTrue(StringUtils.isNotBlank(newUser.id()), "Missing user identifier");
+        Assertions.assertTrue(StringUtils.isNotBlank(newUser.getId()), "Missing user identifier");
     }
 
     @Then("the username is {string}")
     public void the_username_is(String username) {
-        Assertions.assertEquals(this.newUser.username(), username, "Username does not match");
+        Assertions.assertEquals(this.newUser.getUsername(), username, "Username does not match");
     }
 }

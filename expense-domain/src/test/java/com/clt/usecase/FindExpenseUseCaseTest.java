@@ -1,8 +1,8 @@
 package com.clt.usecase;
 
 import com.clt.domain.expense.*;
-import com.clt.domain.group.Person;
-import com.clt.domain.group.PersonStore;
+import com.clt.domain.group.User;
+import com.clt.domain.group.UserStore;
 import com.clt.domain.group.PersonUtil;
 import com.clt.domain.view.ExpenseAggregate;
 import com.clt.domain.view.ExpenseAggregateFactory;
@@ -17,7 +17,7 @@ class FindExpenseUseCaseTest {
 
   private static final String EXPENSE_ID = "e-id";
   private static final String NOT_VALID_EXPENSE_ID = "not-an-id";
-  private static final Person EXPENSE_OWNER = PersonUtil.newPerson();
+  private static final User EXPENSE_OWNER = PersonUtil.newPerson();
   private static final String GROUP_ID = "g-id";
   private static final Money EXPENSE_AMOUNT = Money.euros("12.50");
   private static final String EXPENSE_DESCRIPTION = "Milk";
@@ -27,7 +27,7 @@ class FindExpenseUseCaseTest {
           .groupId(GROUP_ID)
           .amount(EXPENSE_AMOUNT)
           .description(EXPENSE_DESCRIPTION)
-          .owner(EXPENSE_OWNER.id())
+          .owner(EXPENSE_OWNER.getId())
           .build();
   private static final ExpenseAggregate EXPENSE_AGGREGATE =
       ExpenseAggregateFactory.fromDomain(EXPENSE, EXPENSE_OWNER);
@@ -35,8 +35,8 @@ class FindExpenseUseCaseTest {
 
   @BeforeAll
   static void initMocks() {
-    PersonStore personStore = Mockito.mock(PersonStore.class);
-    Mockito.when(personStore.retrieve(EXPENSE_OWNER.id())).thenReturn(Mono.just(EXPENSE_OWNER));
+    UserStore personStore = Mockito.mock(UserStore.class);
+    Mockito.when(personStore.retrieve(EXPENSE_OWNER.getId())).thenReturn(Mono.just(EXPENSE_OWNER));
 
     ExpenseStore expenseStore = Mockito.mock(ExpenseStore.class);
     Mockito.when(expenseStore.retrieve(EXPENSE_ID)).thenReturn(Mono.just(EXPENSE));

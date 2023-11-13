@@ -9,7 +9,7 @@ public class PersonFactory {
     this.idFactory = idFactory;
   }
 
-  public Person create(String username) {
-    return ImmutablePerson.builder().id(idFactory.newId()).username(username).build();
+  public User create(String username) {
+    return ImmutableUser.builder().id(idFactory.newId()).username(username).build();
   }
 }

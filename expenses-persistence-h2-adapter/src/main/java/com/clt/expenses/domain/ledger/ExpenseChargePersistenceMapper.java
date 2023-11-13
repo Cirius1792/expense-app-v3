@@ -12,12 +12,12 @@ public class ExpenseChargePersistenceMapper
   @Override
   public ExpenseChargeEntity toEntity(ExpenseCharge domain) {
     ExpenseChargeEntity entity = new ExpenseChargeEntity();
-    entity.setId(domain.id());
-    entity.setExpense(domain.expense());
-    entity.setCreditor(domain.creditor());
-    entity.setDebtor(domain.debtor());
-    entity.setDueAmount(domain.amount().getAmount().toString());
-    entity.setGroupId(domain.groupId());
+    entity.setId(domain.getId());
+    entity.setExpense(domain.getExpense());
+    entity.setCreditor(domain.getCreditor());
+    entity.setDebtor(domain.getDebtor());
+    entity.setDueAmount(domain.getAmount().getAmount().toString());
+    entity.setGroupId(domain.getGroupId());
     return entity;
   }
 

@@ -8,7 +8,7 @@ import com.clt.domain.expense.ExpenseStore;
 import com.clt.domain.group.GroupFactory;
 import com.clt.domain.group.GroupStore;
 import com.clt.domain.group.PersonFactory;
-import com.clt.domain.group.PersonStore;
+import com.clt.domain.group.UserStore;
 import com.clt.domain.ledger.ExpenseChargeStore;
 import com.clt.domain.ledger.ExpenseSplitter;
 import com.clt.event.Notifier;
@@ -30,12 +30,12 @@ public class UseCasesConfiguration {
     }
 
     @Bean
-    RegisterPersonUseCase registerPersonUseCase(IdFactory idFactory, PersonStore personStore) {
+    RegisterPersonUseCase registerPersonUseCase(IdFactory idFactory, UserStore personStore) {
         return new RegisterPersonUseCase(new PersonFactory(idFactory), personStore);
     }
 
     @Bean
-    FindUserUseCase findUserUseCase(PersonStore personStore) {
+    FindUserUseCase findUserUseCase(UserStore personStore) {
         return new FindUserUseCase(personStore);
     }
 
@@ -51,18 +51,18 @@ public class UseCasesConfiguration {
 
     @Bean
     CreateGroupUseCase createGroupUseCase(
-            GroupFactory groupFactory, PersonStore personStore, GroupStore groupStore) {
+            GroupFactory groupFactory, UserStore personStore, GroupStore groupStore) {
         return new CreateGroupUseCase(groupFactory, personStore, groupStore);
     }
 
     @Bean
-    FindGroupUseCase findGroupUseCase(PersonStore personStore, GroupStore groupStore) {
+    FindGroupUseCase findGroupUseCase(UserStore personStore, GroupStore groupStore) {
         return new FindGroupUseCase(groupStore, personStore);
     }
 
     @Bean
     RetrieveUserBalancePerGroupUseCase retrieveUserBalancePerGroupUseCase(
-            PersonStore personStore, ExpenseChargeStore expenseChargeStore) {
+            UserStore personStore, ExpenseChargeStore expenseChargeStore) {
         return new RetrieveUserBalancePerGroupUseCase(personStore, expenseChargeStore);
     }
 
@@ -74,7 +74,7 @@ public class UseCasesConfiguration {
     @Bean
     AddExpenseUseCase addExpenseUseCase(
             GroupStore groupStore,
-            PersonStore personStore,
+            UserStore personStore,
             ExpenseFactory expenseFactory,
             ExpenseStore expenseStore,
             Notifier<ExpenseRecord> newExpenseNotifier) {
@@ -82,13 +82,13 @@ public class UseCasesConfiguration {
     }
 
     @Bean
-    FindExpenseUseCase findExpenseUseCase(ExpenseStore expenseStore, PersonStore personStore) {
+    FindExpenseUseCase findExpenseUseCase(ExpenseStore expenseStore, UserStore personStore) {
         return new FindExpenseUseCase(expenseStore, personStore);
     }
 
     @Bean
     FindExpensesPerGroupUseCase findExpensesPerGroupUseCase(
-            ExpenseStore expenseStore, PersonStore personStore) {
+            ExpenseStore expenseStore, UserStore personStore) {
         return new FindExpensesPerGroupUseCase(expenseStore, personStore);
     }
 
@@ -97,7 +97,7 @@ public class UseCasesConfiguration {
         return new SplitExpenseUseCase(new ExpenseSplitter(new UUIDIdFactory()), expenseChargeStore);
     }
     @Bean
-    AddMembersToAGroupUseCase addMembersToAGroupUseCase(GroupStore groupStore, PersonStore personStore, FindGroupUseCase findGroupUseCase){
+    AddMembersToAGroupUseCase addMembersToAGroupUseCase(GroupStore groupStore, UserStore personStore, FindGroupUseCase findGroupUseCase){
         return new AddMembersToAGroupUseCase(personStore, groupStore, findGroupUseCase);
     }
 

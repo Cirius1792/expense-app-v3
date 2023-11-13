@@ -12,11 +12,11 @@ public class ExpenseEntityMapper implements PersistenceMapper<ExpenseEntity, Exp
   @Override
   public ExpenseEntity toEntity(Expense expense) {
     ExpenseEntity entity = new ExpenseEntity();
-    entity.setId(expense.id());
-    entity.setAmount(expense.amount().getAmount().toString());
-    entity.setDescription(expense.description());
-    entity.setGroupId(expense.groupId());
-    entity.setOwnerId(expense.owner());
+    entity.setId(expense.getId());
+    entity.setAmount(expense.getAmount().getAmount().toString());
+    entity.setDescription(expense.getDescription());
+    entity.setGroupId(expense.getGroupId());
+    entity.setOwnerId(expense.getOwner());
     return entity;
   }
 

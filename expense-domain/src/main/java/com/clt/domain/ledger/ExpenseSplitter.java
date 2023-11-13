@@ -16,19 +16,19 @@ public class ExpenseSplitter {
   }
 
   public List<ExpenseCharge> split(Expense expense, Group group) {
-    long debtors = group.members().size();
-    Money dueProCapite = expense.amount().divide(BigDecimal.valueOf(debtors));
-    return group.members().stream()
-        .filter(el -> !expense.owner().equals(el))
+    long debtors = group.getMembers().size();
+    Money dueProCapite = expense.getAmount().divide(BigDecimal.valueOf(debtors));
+    return group.getMembers().stream()
+        .filter(el -> !expense.getOwner().equals(el))
         .map(
             debtor ->
                 ImmutableExpenseCharge.builder()
                     .id(idFactory.newId())
                     .debtor(debtor)
-                    .creditor(expense.owner())
+                    .creditor(expense.getOwner())
                     .amount(dueProCapite)
-                    .expense(expense.id())
-                    .groupId(group.id())
+                    .expense(expense.getId())
+                    .groupId(group.getId())
                     .build())
         .collect(Collectors.toList());
   }
