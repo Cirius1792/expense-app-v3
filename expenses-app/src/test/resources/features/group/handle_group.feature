@@ -8,6 +8,11 @@ Feature: Handle Group, which includes adding and removing members as well as add
     And a group "LoL" with the owner "Bob" and members:
       | John |
       | Bob  |
+    And a group "Friends" with the owner "Bob" and members:
+      | John |
+      | Bob  |
+      | Mark |
+
 
   Scenario: Create a new Group
     When "Alice" creates the group "Friends" with the members:
@@ -52,3 +57,18 @@ Feature: Handle Group, which includes adding and removing members as well as add
     Then the expense is returned:
       | id    | description | owner | amount | groupId |
       | exp-1 | Milk        | Alice | 2.99   | Friends |
+
+  Scenario Outline: Pay a group of expenses
+    Given the group "Friends" having the expenses
+      | description | owner   | amount | groupId |
+      | Milk        | <Owner> | 2.99   | Friends |
+      | Beer        | Alice   | 2.99   | Friends |
+      | Wine        | Alice   | 2.99   | Friends |
+    And "John" retrieves his debt to Alice
+    When "John" pays its debt to "Alice"
+    Then the balance of "John" is "0.00"
+    Examples:
+      | Owner |
+      | Alice |
+      | Bob   |
+

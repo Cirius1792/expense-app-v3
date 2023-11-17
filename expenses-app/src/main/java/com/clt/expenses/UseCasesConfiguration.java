@@ -101,4 +101,8 @@ public class UseCasesConfiguration {
         return new AddMembersToAGroupUseCase(personStore, groupStore, findGroupUseCase);
     }
 
+    @Bean
+    PayUseCase payUseCase(IdFactory idFactory, ExpenseChargeStore expenseChargeStore){
+        return new PayUseCase(idFactory, expenseChargeStore);
+    }
 }

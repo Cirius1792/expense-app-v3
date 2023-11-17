@@ -19,7 +19,6 @@ public class ApplicationDriver {
     private final RegisterUserUseCase registerPersonUseCase;
     private final FindUserUseCase findUserUseCase;
     private Map<String, String> groupNameToIdMap = new HashMap<>();
-    private Map<String, String> usernameToIdMap = new HashMap<>();
 
     public ApplicationDriver(CreateGroupUseCase createGroupUseCase, FindGroupUseCase findGroupUseCase, RegisterUserUseCase registerPersonUseCase, FindUserUseCase findUserUseCase) {
         this.createGroupUseCase = createGroupUseCase;
@@ -36,8 +35,8 @@ public class ApplicationDriver {
         return this.createGroupUseCase.create(groupName, ownerId, membersId).doOnNext( g -> this.groupNameToIdMap.put(g.name(), g.id())).block();
     }
 
-    public String findPersonIdByUsername(String username) {
-        return this.usernameToIdMap.get(username);
+    public String findPerson(String username) {
+        return findUserUseCase.retrieve(username).map(User::getId).block();
     }
 
     public GroupAggregate retrieveGroup(String groupName) {
@@ -45,11 +44,9 @@ public class ApplicationDriver {
     }
 
     public String getOrCreateUserId(String username) {
-        String id;
-        if ((id = this.usernameToIdMap.get(username)) != null)
-            return id;
-        id = this.registerPersonUseCase.register(username).map(User::getId).block();
-        this.usernameToIdMap.putIfAbsent(username, id);
-        return id;
+        return findUserUseCase.retrieve(username)
+                .onErrorResume((e) -> this.registerPersonUseCase.register(username, username))
+                .map(User::getId)
+                .block();
     }
 }

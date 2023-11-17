@@ -48,7 +48,7 @@ public class ExpenseStepDefinition {
                 .map(e -> this.addExpenseUseCase.create(
                         e.getDescription(),
                         e.getAmount(),
-                        this.applicationDriver.findPersonIdByUsername(expenseOwner),
+                        this.applicationDriver.findPerson(expenseOwner),
                         this.group.id()
                 ).block()).toList();
     }
@@ -68,7 +68,7 @@ public class ExpenseStepDefinition {
         ExpenseAggregate e = this.addExpenseUseCase.create(
                 expense.getDescription(),
                 expense.getAmount(),
-                this.applicationDriver.findPersonIdByUsername(expense.getOwner()),
+                this.applicationDriver.findPerson(expense.getOwner()),
                 this.applicationDriver.retrieveGroup(expense.getGroupId()).id()
         ).block();
         this.expenseIdMap.put(expense.getId(), e.getId());
@@ -82,7 +82,7 @@ public class ExpenseStepDefinition {
     @Then("the expense is returned:")
     public void theExpenseIsReturned(Expense expense) {
         Assertions.assertEquals(expense.getDescription(), this.actualExpense.getDescription());
-        Assertions.assertEquals(this.applicationDriver.findPersonIdByUsername(expense.getOwner()), this.actualExpense.getOwner().getId());
+        Assertions.assertEquals(this.applicationDriver.findPerson(expense.getOwner()), this.actualExpense.getOwner().getId());
         Assertions.assertEquals(expense.getAmount(), this.actualExpense.getAmount());
     }
 }
