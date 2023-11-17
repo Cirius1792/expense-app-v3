@@ -2,6 +2,7 @@ package com.clt.expenses.group;
 
 import com.clt.usecase.CreateGroupUseCase;
 import com.clt.usecase.FindGroupUseCase;
+import com.clt.usecase.PayUseCase;
 import com.clt.usecase.RetrieveUserBalancePerGroupUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,12 +15,13 @@ public class GroupRouterConfig {
 
   @Bean
   RouterFunction<ServerResponse> groupRoutes(
-      FindGroupUseCase findGroupUseCase,
-      CreateGroupUseCase createGroupUseCase,
-      GroupMapper groupMapper,
-      RetrieveUserBalancePerGroupUseCase retrieveUserBalancePerGroupUseCase) {
+          FindGroupUseCase findGroupUseCase,
+          CreateGroupUseCase createGroupUseCase,
+          GroupMapper groupMapper,
+          RetrieveUserBalancePerGroupUseCase retrieveUserBalancePerGroupUseCase,
+          PayUseCase payUseCase) {
     return new GroupRouter(
-            findGroupUseCase, createGroupUseCase, retrieveUserBalancePerGroupUseCase, groupMapper)
+            findGroupUseCase, createGroupUseCase, retrieveUserBalancePerGroupUseCase, payUseCase, groupMapper)
         .createRoutes();
   }
 }

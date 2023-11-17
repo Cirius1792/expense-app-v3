@@ -1,11 +1,15 @@
 package com.clt.expenses.group;
 
+import com.clt.domain.expense.Money;
 import com.clt.expenses.expense.request.MoneyDto;
 import com.clt.expenses.group.request.CreateGroupRequestDto;
+import com.clt.expenses.group.request.PaymentRequest;
 import com.clt.expenses.group.response.BalanceResponse;
 import com.clt.expenses.group.response.GroupResponse;
+import com.clt.expenses.group.response.PaymentResponse;
 import com.clt.usecase.CreateGroupUseCase;
 import com.clt.usecase.FindGroupUseCase;
+import com.clt.usecase.PayUseCase;
 import com.clt.usecase.RetrieveUserBalancePerGroupUseCase;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import org.springdoc.core.fn.builders.parameter.Builder;
@@ -23,16 +27,19 @@ public class GroupRouter {
   private final FindGroupUseCase findGroupUseCase;
   private final CreateGroupUseCase createGroupUseCase;
   private final RetrieveUserBalancePerGroupUseCase retrieveUserBalancePerGroupUseCase;
+  private final PayUseCase payUseCase;
   private final GroupMapper groupMapper;
 
   public GroupRouter(
       FindGroupUseCase findGroupUseCase,
       CreateGroupUseCase createGroupUseCase,
       RetrieveUserBalancePerGroupUseCase retrieveUserBalancePerGroupUseCase,
+      PayUseCase payUseCase,
       GroupMapper groupMapper) {
     this.findGroupUseCase = findGroupUseCase;
     this.createGroupUseCase = createGroupUseCase;
     this.retrieveUserBalancePerGroupUseCase = retrieveUserBalancePerGroupUseCase;
+    this.payUseCase = payUseCase;
     this.groupMapper = groupMapper;
   }
 
@@ -90,7 +97,44 @@ public class GroupRouter {
                         responseBuilder()
                             .responseCode("404")
                             .description("No group found for the given id")))
+        .POST(
+            "/group/{groupId}/user/{userId}/pay",
+            this::payUser,
+            ops ->
+                ops.operationId("payUser")
+                    .tag("Group")
+                    .parameter(
+                        Builder.parameterBuilder()
+                            .in(ParameterIn.PATH)
+                            .description("Group unique Id")
+                            .name("groupId"))
+                    .parameter(
+                        Builder.parameterBuilder()
+                            .in(ParameterIn.PATH)
+                            .description("Group unique Id")
+                            .name("userId"))
+                    .requestBody(requestBodyBuilder().implementation(PaymentRequest.class))
+                    .response(
+                        responseBuilder()
+                            .responseCode("200")
+                            .implementation(PaymentResponse.class)))
         .build();
+  }
+
+  private Mono<ServerResponse> payUser(ServerRequest serverRequest) {
+    String groupId = serverRequest.pathVariable("groupId");
+    String payerUser = serverRequest.pathVariable("userId");
+    return serverRequest
+        .bodyToMono(PaymentRequest.class)
+        .flatMap(
+            r ->
+                this.payUseCase.pay(
+                    groupId,
+                    payerUser,
+                    r.getPayedUserId(),
+                    Money.euros(r.getAmountToPay().getAmount())))
+        .map(r -> new PaymentResponse(r.getId(), new MoneyDto(r.getAmount().getAmount(), MoneyDto.CurrencyEnum.EUR)))
+        .transform(r -> ServerResponse.ok().body(r, PaymentResponse.class));
   }
 
   private Mono<ServerResponse> retrieveUserBalance(ServerRequest serverRequest) {

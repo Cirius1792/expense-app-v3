@@ -1,13 +1,14 @@
 package com.clt.usecase;
 
 import com.clt.domain.commons.IdFactory;
+import com.clt.domain.commons.UseCase;
 import com.clt.domain.expense.Money;
 import com.clt.domain.ledger.*;
 import reactor.core.publisher.Mono;
 
 import java.math.BigDecimal;
 
-public class PayUseCase {
+public class PayUseCase implements UseCase {
 
   private final IdFactory idFactory;
   private final ExpenseChargeStore expenseChargeStore;
