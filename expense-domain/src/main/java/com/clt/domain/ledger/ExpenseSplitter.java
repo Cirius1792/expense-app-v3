@@ -15,14 +15,14 @@ public class ExpenseSplitter {
     this.idFactory = idFactory;
   }
 
-  public List<ExpenseCharge> split(Expense expense, Group group) {
+  public List<Charge> split(Expense expense, Group group) {
     long debtors = group.getMembers().size();
     Money dueProCapite = expense.getAmount().divide(BigDecimal.valueOf(debtors));
     return group.getMembers().stream()
         .filter(el -> !expense.getOwner().equals(el))
         .map(
             debtor ->
-                ImmutableExpenseCharge.builder()
+                ImmutableCharge.builder()
                     .id(idFactory.newId())
                     .debtor(debtor)
                     .creditor(expense.getOwner())

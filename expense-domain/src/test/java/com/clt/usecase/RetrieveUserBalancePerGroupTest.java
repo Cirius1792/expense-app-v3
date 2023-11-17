@@ -4,9 +4,9 @@ import com.clt.domain.expense.Money;
 import com.clt.domain.group.User;
 import com.clt.domain.group.UserStore;
 import com.clt.domain.group.PersonUtil;
-import com.clt.domain.ledger.ExpenseCharge;
+import com.clt.domain.ledger.Charge;
 import com.clt.domain.ledger.ExpenseChargeStore;
-import com.clt.domain.ledger.ImmutableExpenseCharge;
+import com.clt.domain.ledger.ImmutableCharge;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,8 +18,8 @@ import reactor.test.StepVerifier;
 class RetrieveUserBalancePerGroupTest {
 
   private static User User = PersonUtil.newPerson();
-  private static ExpenseCharge EXPENSE_CHARGE =
-      ImmutableExpenseCharge.builder()
+  private static Charge EXPENSE_CHARGE =
+      ImmutableCharge.builder()
           .id("s-id")
           .groupId("g-id")
           .creditor(PersonUtil.newPerson().getId())

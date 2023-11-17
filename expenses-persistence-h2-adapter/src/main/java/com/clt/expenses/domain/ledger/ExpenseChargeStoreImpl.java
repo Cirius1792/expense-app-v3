@@ -1,6 +1,6 @@
 package com.clt.expenses.domain.ledger;
 
-import com.clt.domain.ledger.ExpenseCharge;
+import com.clt.domain.ledger.Charge;
 import com.clt.domain.ledger.ExpenseChargeStore;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
@@ -18,19 +18,19 @@ public class ExpenseChargeStoreImpl implements ExpenseChargeStore {
   }
 
   @Override
-  public Mono<ExpenseCharge> store(ExpenseCharge domain) {
+  public Mono<Charge> store(Charge domain) {
     return Mono.just(mapper.toEntity(domain))
         .flatMap(expenseChargeRepository::save)
         .map(mapper::toDomain);
   }
 
   @Override
-  public Mono<ExpenseCharge> retrieve(String id) {
+  public Mono<Charge> retrieve(String id) {
     return expenseChargeRepository.findById(id).map(mapper::toDomain);
   }
 
   @Override
-  public Flux<ExpenseCharge> retrieveBy(String subject, String groupId) {
+  public Flux<Charge> retrieveBy(String subject, String groupId) {
     return expenseChargeRepository
         .findByDebtorAndGroupId(subject, groupId)
         .concatWith(expenseChargeRepository.findByCreditorAndGroupId(subject, groupId))
@@ -38,7 +38,7 @@ public class ExpenseChargeStoreImpl implements ExpenseChargeStore {
   }
 
   @Override
-  public Flux<ExpenseCharge> retrieveBy(String expenseId) {
+  public Flux<Charge> retrieveBy(String expenseId) {
     return expenseChargeRepository.findByExpense(expenseId).map(mapper::toDomain);
   }
 }

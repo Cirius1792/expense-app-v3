@@ -17,11 +17,11 @@ public class PayUseCase {
     this.expenseChargeStore = expenseCharge;
   }
 
-  public Mono<ExpenseCharge> pay(String groupId, String debtorId, String creditorId, Money paidAmount) {
+  public Mono<Charge> pay(String groupId, String debtorId, String creditorId, Money paidAmount) {
     if (BigDecimal.ZERO.compareTo(paidAmount.getAmount()) >= 0)
       return Mono.error(new InvalidAmountError());
     return Mono.just(
-            ImmutableExpenseCharge.builder()
+            ImmutableCharge.builder()
                 .id(idFactory.newId())
                 .groupId(groupId)
                 .creditor(debtorId)

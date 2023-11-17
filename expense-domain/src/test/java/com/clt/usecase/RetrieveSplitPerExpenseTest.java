@@ -1,9 +1,9 @@
 package com.clt.usecase;
 
 import com.clt.domain.expense.Money;
-import com.clt.domain.ledger.ExpenseCharge;
+import com.clt.domain.ledger.Charge;
 import com.clt.domain.ledger.ExpenseChargeStore;
-import com.clt.domain.ledger.ImmutableExpenseCharge;
+import com.clt.domain.ledger.ImmutableCharge;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,8 +14,8 @@ import reactor.test.StepVerifier;
 class RetrieveSplitPerExpenseTest {
 
   private static final String EXPENSE = "e1";
-  private static final ExpenseCharge EXPENSE_CHARGE_1 =
-      ImmutableExpenseCharge.builder()
+  private static final Charge EXPENSE_CHARGE_1 =
+      ImmutableCharge.builder()
           .id("ec-1")
           .expense(EXPENSE)
           .groupId("g1")
@@ -24,8 +24,8 @@ class RetrieveSplitPerExpenseTest {
           .creditor("s2")
           .build();
 
-  private static final ExpenseCharge EXPENSE_CHARGE_2 =
-      ImmutableExpenseCharge.builder()
+  private static final Charge EXPENSE_CHARGE_2 =
+      ImmutableCharge.builder()
           .id("ec-2")
           .expense(EXPENSE)
           .groupId("g1")

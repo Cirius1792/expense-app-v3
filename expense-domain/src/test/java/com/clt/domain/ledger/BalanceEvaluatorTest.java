@@ -12,8 +12,8 @@ class BalanceEvaluatorTest {
   private static final User ALICE = PersonUtil.newPerson();
   private static final User BOB = PersonUtil.newPerson();
   private static final User SARA = PersonUtil.newPerson();
-  private static final ExpenseCharge EXPENSE_CHARGE_FROM_ALICE_TO_BOB =
-      ImmutableExpenseCharge.builder()
+  private static final Charge EXPENSE_CHARGE_FROM_ALICE_TO_BOB =
+      ImmutableCharge.builder()
           .id("EXPENSE_CHARGE_FROM_ALICE_TO_BOB")
           .debtor(BOB.getId())
           .creditor(ALICE.getId())
@@ -21,8 +21,8 @@ class BalanceEvaluatorTest {
           .groupId("g1")
           .amount(Money.euros(2))
           .build();
-  private static final ExpenseCharge EXPENSE_CHARGE_FROM_BOB_TO_ALICE =
-      ImmutableExpenseCharge.builder()
+  private static final Charge EXPENSE_CHARGE_FROM_BOB_TO_ALICE =
+      ImmutableCharge.builder()
           .id("EXPENSE_CHARGE_FROM_BOB_TO_ALICE")
           .creditor(BOB.getId())
           .debtor(ALICE.getId())
@@ -31,8 +31,8 @@ class BalanceEvaluatorTest {
           .amount(Money.euros(1))
           .build();
 
-  private static final ExpenseCharge EXPENSE_CHARGE_FROM_BOB_TO_ALICE_2 =
-      ImmutableExpenseCharge.builder()
+  private static final Charge EXPENSE_CHARGE_FROM_BOB_TO_ALICE_2 =
+      ImmutableCharge.builder()
           .id("EXPENSE_CHARGE_FROM_BOB_TO_ALICE_2")
           .creditor(BOB.getId())
           .debtor(ALICE.getId())
@@ -40,8 +40,8 @@ class BalanceEvaluatorTest {
           .groupId("g1")
           .amount(Money.euros(6))
           .build();
-  private static final ExpenseCharge EXPENSE_CHARGE_FROM_SARA_TO_BOB =
-      ImmutableExpenseCharge.builder()
+  private static final Charge EXPENSE_CHARGE_FROM_SARA_TO_BOB =
+      ImmutableCharge.builder()
           .id("EXPENSE_CHARGE_FROM_SARA_TO_BOB")
           .creditor(SARA.getId())
           .debtor(BOB.getId())

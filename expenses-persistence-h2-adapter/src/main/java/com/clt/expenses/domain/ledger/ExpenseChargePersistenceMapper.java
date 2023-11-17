@@ -1,16 +1,16 @@
 package com.clt.expenses.domain.ledger;
 
 import com.clt.domain.expense.Money;
-import com.clt.domain.ledger.ExpenseCharge;
-import com.clt.domain.ledger.ImmutableExpenseCharge;
+import com.clt.domain.ledger.Charge;
+import com.clt.domain.ledger.ImmutableCharge;
 import com.clt.expenses.domain.common.PersistenceMapper;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ExpenseChargePersistenceMapper
-    implements PersistenceMapper<ExpenseChargeEntity, ExpenseCharge> {
+    implements PersistenceMapper<ExpenseChargeEntity, Charge> {
   @Override
-  public ExpenseChargeEntity toEntity(ExpenseCharge domain) {
+  public ExpenseChargeEntity toEntity(Charge domain) {
     ExpenseChargeEntity entity = new ExpenseChargeEntity();
     entity.setId(domain.getId());
     entity.setExpense(domain.getExpense());
@@ -22,8 +22,8 @@ public class ExpenseChargePersistenceMapper
   }
 
   @Override
-  public ExpenseCharge toDomain(ExpenseChargeEntity expenseChargeEntity) {
-    return ImmutableExpenseCharge.builder()
+  public Charge toDomain(ExpenseChargeEntity expenseChargeEntity) {
+    return ImmutableCharge.builder()
         .id(expenseChargeEntity.getId())
         .expense(expenseChargeEntity.getExpense())
         .groupId(expenseChargeEntity.getGroupId())
