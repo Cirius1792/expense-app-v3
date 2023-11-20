@@ -1,3 +1,9 @@
 package com.clt.domain.ledger;
 
-public class InvalidAmountError extends RuntimeException {}
+import com.clt.domain.expense.Money;
+
+public class InvalidAmountError extends RuntimeException {
+    public InvalidAmountError(Money amount){
+        super("The amount %s is not valid".formatted(amount));
+    }
+}

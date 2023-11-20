@@ -23,7 +23,7 @@ public class PayUseCase implements UseCase {
 
   public Mono<Charge> pay(String groupId, String debtorId, String creditorId, Money paidAmount) {
     if (BigDecimal.ZERO.compareTo(paidAmount.getAmount()) >= 0)
-      return Mono.error(new InvalidAmountError());
+      return Mono.error(new InvalidAmountError(paidAmount));
     return balanceService
         .retrieveBalance(debtorId, groupId)
         .map(balance -> this.verifyAmountToPay(balance, creditorId, paidAmount))
@@ -41,7 +41,7 @@ public class PayUseCase implements UseCase {
 
   private Money verifyAmountToPay(Balance balance, String creditorId, Money paidAmount) {
     if (paidAmount.getAmount().compareTo(balance.getDueTo(creditorId).getAmount()) > 0)
-      throw  new InvalidAmountError();
+      throw  new InvalidAmountError(paidAmount);
     return paidAmount;
   }
 }
