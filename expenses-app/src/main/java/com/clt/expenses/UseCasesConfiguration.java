@@ -9,6 +9,8 @@ import com.clt.domain.group.GroupFactory;
 import com.clt.domain.group.GroupStore;
 import com.clt.domain.group.UserFactory;
 import com.clt.domain.group.UserStore;
+import com.clt.domain.ledger.BalanceService;
+import com.clt.domain.ledger.BalanceServiceImpl;
 import com.clt.domain.ledger.ExpenseChargeStore;
 import com.clt.domain.ledger.ExpenseSplitter;
 import com.clt.event.Notifier;
@@ -102,7 +104,11 @@ public class UseCasesConfiguration {
     }
 
     @Bean
-    PayUseCase payUseCase(IdFactory idFactory, ExpenseChargeStore expenseChargeStore){
-        return new PayUseCase(idFactory, expenseChargeStore);
+    BalanceService balanceService(ExpenseChargeStore expenseChargeStore){
+        return new BalanceServiceImpl(expenseChargeStore);
+    }
+    @Bean
+    PayUseCase payUseCase(IdFactory idFactory, ExpenseChargeStore expenseChargeStore, BalanceService balanceService){
+        return new PayUseCase(idFactory, expenseChargeStore, balanceService);
     }
 }

@@ -23,7 +23,7 @@ public class RetrieveUserBalancePerGroupUseCase implements UseCase {
         .retrieve(user)
         .switchIfEmpty(Mono.error(PersonNotFound::new))
         .zipWith(expenseChargeStore.retrieveBy(user, groupId).collectList())
-        .map(p -> new Balance(p.getT1(), p.getT2()))
+        .map(p -> new Balance(p.getT1().getId(), p.getT2()))
         .map(Balance::balance);
   }
 }

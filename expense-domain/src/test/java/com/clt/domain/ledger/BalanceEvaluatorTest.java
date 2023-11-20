@@ -57,7 +57,7 @@ class BalanceEvaluatorTest {
           + "Then the debits are of 2€")
   @Test
   void add_one_expense_test() {
-    Balance balance = new Balance(BOB);
+    Balance balance = new Balance(BOB.getId());
     balance.addExpenseCharge(EXPENSE_CHARGE_FROM_ALICE_TO_BOB);
     Assertions.assertEquals(
         EXPENSE_CHARGE_FROM_ALICE_TO_BOB.getAmount().negate(), balance.balance());
@@ -71,7 +71,7 @@ class BalanceEvaluatorTest {
           + "Then the debits are of 1€ ")
   @Test
   void add_two_expense_test() {
-    Balance balance = new Balance(BOB);
+    Balance balance = new Balance(BOB.getId());
     balance.addExpenseCharge(EXPENSE_CHARGE_FROM_ALICE_TO_BOB);
     balance.addExpenseCharge(EXPENSE_CHARGE_FROM_BOB_TO_ALICE);
 
@@ -87,7 +87,7 @@ class BalanceEvaluatorTest {
           + "Then the credits are of 1€")
   @Test
   void add_three_expenses_test() {
-    Balance balance = new Balance(BOB);
+    Balance balance = new Balance(BOB.getId());
     balance.addExpenseCharge(EXPENSE_CHARGE_FROM_ALICE_TO_BOB);
     balance.addExpenseCharge(EXPENSE_CHARGE_FROM_BOB_TO_ALICE_2);
     balance.addExpenseCharge(EXPENSE_CHARGE_FROM_SARA_TO_BOB);
@@ -105,12 +105,12 @@ class BalanceEvaluatorTest {
           + "And 3€ are due from BOB to SARA")
   @Test
   void test_balance_per_person() {
-    Balance balance = new Balance(BOB);
+    Balance balance = new Balance(BOB.getId());
     balance.addExpenseCharge(EXPENSE_CHARGE_FROM_ALICE_TO_BOB);
     balance.addExpenseCharge(EXPENSE_CHARGE_FROM_BOB_TO_ALICE_2);
     balance.addExpenseCharge(EXPENSE_CHARGE_FROM_SARA_TO_BOB);
 
-    Assertions.assertEquals(Money.euros(-4), balance.getDueTo(ALICE));
-    Assertions.assertEquals(Money.euros(3), balance.getDueTo(SARA));
+    Assertions.assertEquals(Money.euros(-4), balance.getDueTo(ALICE.getId()));
+    Assertions.assertEquals(Money.euros(3), balance.getDueTo(SARA.getId()));
   }
 }
