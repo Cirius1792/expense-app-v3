@@ -9,10 +9,7 @@ import com.clt.domain.group.GroupFactory;
 import com.clt.domain.group.GroupStore;
 import com.clt.domain.group.UserFactory;
 import com.clt.domain.group.UserStore;
-import com.clt.domain.ledger.BalanceService;
-import com.clt.domain.ledger.BalanceServiceImpl;
-import com.clt.domain.ledger.ExpenseChargeStore;
-import com.clt.domain.ledger.ExpenseSplitter;
+import com.clt.domain.ledger.*;
 import com.clt.event.Notifier;
 import com.clt.usecase.*;
 import org.springframework.context.annotation.Bean;
@@ -110,5 +107,9 @@ public class UseCasesConfiguration {
     @Bean
     PayUseCase payUseCase(IdFactory idFactory, ExpenseChargeStore expenseChargeStore, BalanceService balanceService){
         return new PayUseCase(idFactory, expenseChargeStore, balanceService);
+    }
+    @Bean
+    RetrieveUserDebtUseCase retrieveUserDebtUseCase(BalanceService balanceService){
+        return new RetrieveUserDebtUseCase(balanceService);
     }
 }

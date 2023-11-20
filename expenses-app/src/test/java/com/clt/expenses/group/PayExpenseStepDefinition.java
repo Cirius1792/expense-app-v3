@@ -8,6 +8,7 @@ import com.clt.expenses.ApplicationDriver;
 import com.clt.usecase.AddExpenseUseCase;
 import com.clt.usecase.PayUseCase;
 import com.clt.usecase.RetrieveUserBalancePerGroupUseCase;
+import com.clt.usecase.RetrieveUserDebtUseCase;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -28,6 +29,8 @@ public class PayExpenseStepDefinition {
   @Autowired private AddExpenseUseCase addExpenseUseCase;
   @Autowired private PayUseCase payExpenseUseCase;
   @Autowired private RetrieveUserBalancePerGroupUseCase retrieveUserBalancePerGroupUseCase;
+  @Autowired private RetrieveUserDebtUseCase retrieveUserDebtUseCase;
+
 
   private List<ExpenseAggregate> expenses;
   private GroupAggregate group;
@@ -48,17 +51,17 @@ public class PayExpenseStepDefinition {
                 .verifyComplete());
   }
 
-    @Given("{string} retrieves his debt to Alice")
-    public void retrieves_his_debt_to_alice(String user) {
-      this.balance = retrieveUserBalancePerGroupUseCase.retrieve(user, this.group.id())
+    @Given("{string} retrieves his debt to {string}")
+    public void retrieves_his_debt_to_alice(String user, String creditor) {
+      this.balance = this.retrieveUserDebtUseCase.retrieveFor(this.group.id(), user, creditor)
               .block();
    }
     @When("{string} pays its debt to {string}")
     public void pays_its_debt_to(String payer, String payed) {
     this.payExpenseUseCase
-        .pay(this.group.id(), payer, payed, this.balance.negate())
+        .pay(this.group.id(), payer, payed, this.balance)
         .as(StepVerifier::create)
-        .assertNext(paymentCharge -> Assertions.assertEquals(paymentCharge.getAmount(), this.balance.negate()))
+        .assertNext(paymentCharge -> Assertions.assertEquals(paymentCharge.getAmount(), this.balance))
         .verifyComplete();
     }
   @Then("the balance of {string} is {string}")

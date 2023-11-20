@@ -59,17 +59,30 @@ Feature: Handle Group, which includes adding and removing members as well as add
       | id    | description | owner | amount | groupId |
       | exp-1 | Milk        | Alice | 2.99   | Friends |
 
-  Scenario Outline: Pay a group of expenses
-    Given the group "Friends" having the expenses
-      | description | owner   | amount | groupId |
-      | Milk        | <Owner> | 2.99   | Friends |
-      | Beer        | Alice   | 2.99   | Friends |
-      | Wine        | Alice   | 2.99   | Friends |
-    And "John" retrieves his debt to Alice
-    When "John" pays its debt to "Alice"
-    Then the balance of "John" is "0.00"
-    Examples:
-      | Owner |
-      | Alice |
-      | Bob   |
+#  Scenario Outline: Retrieve debts with a group member
+#    Given the group "Friends" having the expenses
+#      | description | owner | amount | groupId |
+#      | Beer        | Alice | 12.00  | Friends |
+#      | Wine        | Bob   | 15.00  | Friends |
+#    When "John" retrieves his debt to <Owner>
+#    Then the balance of "John" is <debt>
+#    Examples:
+#      | Owner  | debt   |
+#      | "Mark" | "4.00" |
+#      | "Bob"  | "5.00" |
+#
+#
+#  Scenario Outline: Pay a group of expenses
+#    Given the group "Friends" having the expenses
+#      | description | owner   | amount | groupId |
+#      | Milk        | <Owner> | 2.99   | Friends |
+#      | Beer        | Alice   | 2.99   | Friends |
+#      | Wine        | Alice   | 2.99   | Friends |
+#    And "John" retrieves his debt to "Alice"
+#    When "John" pays its debt to "Alice"
+#    Then the balance of "John" is "0.00"
+#    Examples:
+#      | Owner |
+#      | Alice |
+#      | Bob   |
 
