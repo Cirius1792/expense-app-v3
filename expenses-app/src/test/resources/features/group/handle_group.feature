@@ -19,7 +19,7 @@ Feature: Handle Group, which includes adding and removing members as well as add
       | John |
       | Bob  |
     Then "Alice" is the owner of the group
-    And the members of the group are:
+    And the members of the group "Friends" are:
       | Bob   |
       | Alice |
       | John  |
@@ -28,13 +28,14 @@ Feature: Handle Group, which includes adding and removing members as well as add
   Scenario: Find group by id
     When looking for the group "LoL" by id
     Then the group "LoL" is returned
-    And the members of the group are:
+    And the members of the group "LoL" are:
       | Bob  |
       | John |
 
   Scenario: Add a member to a group
+    Given the group "Friends"
     When "Mark" is added to the group
-    Then the members of the group are:
+    Then the members of the group "Friends" are:
       | Bob  |
       | Mark |
       | John |
