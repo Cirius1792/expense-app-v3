@@ -64,13 +64,9 @@ public class PayExpenseStepDefinition {
         .assertNext(paymentCharge -> Assertions.assertEquals(paymentCharge.getAmount(), this.balance))
         .verifyComplete();
     }
-  @Then("the balance of {string} is {string}")
-  public void theBalanceOfIs(String user, String balance) {
-    this.retrieveUserBalancePerGroupUseCase
-        .retrieve(user, this.group.id())
-        .as(StepVerifier::create)
-        .expectNext(Money.euros(balance))
-        .verifyComplete();
-  }
+  @Then("The debt is {string}")
+  public void theDebtIs(String balance) {
+    Assertions.assertEquals(this.balance, Money.euros(balance));
+ }
 
 }
