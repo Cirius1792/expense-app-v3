@@ -73,17 +73,12 @@ Feature: Handle Group, which includes adding and removing members as well as add
       | "Bob"   | "5.00" |
 
 
-#  Scenario Outline: Pay a group of expenses
-#    Given the group "My Best Friends" having the expenses
-#      | description | owner   | amount | groupId |
-#      | Milk        | <Owner> | 2.99   | Friends |
-#      | Beer        | Alice   | 2.99   | Friends |
-#      | Wine        | Alice   | 2.99   | Friends |
-#    And "John" retrieves his debt to "Alice"
-#    When "John" pays its debt to "Alice"
-#    Then the balance of "John" is "0.00"
-#    Examples:
-#      | Owner |
-#      | Alice |
-#      | Bob   |
+  Scenario: Pay a group of expenses
+    Given the group "LoL" having the expenses
+      | description | owner | amount | groupId |
+      | Milk        | Mark  | 2.99   | Friends |
+    And "John" retrieves his debt to "Mark"
+    When "John" pays its debt to "Mark"
+    And "John" retrieves his debt to "Mark"
+    Then The debt is "0.00"
 

@@ -24,13 +24,11 @@ import reactor.test.StepVerifier;
 public class PayExpenseStepDefinition {
   private static final Logger logger = LoggerFactory.getLogger(PayExpenseStepDefinition.class);
 
-  @Autowired
-  private ApplicationDriver applicationDriver;
+  @Autowired private ApplicationDriver applicationDriver;
   @Autowired private AddExpenseUseCase addExpenseUseCase;
   @Autowired private PayUseCase payExpenseUseCase;
   @Autowired private RetrieveUserBalancePerGroupUseCase retrieveUserBalancePerGroupUseCase;
   @Autowired private RetrieveUserDebtUseCase retrieveUserDebtUseCase;
-
 
   private List<ExpenseAggregate> expenses;
   private GroupAggregate group;
@@ -51,22 +49,24 @@ public class PayExpenseStepDefinition {
                 .verifyComplete());
   }
 
-    @Given("{string} retrieves his debt to {string}")
-    public void retrieves_his_debt_to_alice(String user, String creditor) {
-      this.balance = this.retrieveUserDebtUseCase.retrieveFor(this.group.id(), user, creditor)
-              .block();
-   }
-    @When("{string} pays its debt to {string}")
-    public void pays_its_debt_to(String payer, String payed) {
+  @Given("{string} retrieves his debt to {string}")
+  public void retrieves_his_debt_to_alice(String user, String creditor) {
+    this.balance =
+        this.retrieveUserDebtUseCase.retrieveFor(this.group.id(), user, creditor).block();
+  }
+
+  @When("{string} pays its debt to {string}")
+  public void pays_its_debt_to(String payer, String payed) {
     this.payExpenseUseCase
         .pay(this.group.id(), payer, payed, this.balance)
         .as(StepVerifier::create)
-        .assertNext(paymentCharge -> Assertions.assertEquals(paymentCharge.getAmount(), this.balance))
+        .assertNext(
+            paymentCharge -> Assertions.assertEquals(paymentCharge.getAmount(), this.balance))
         .verifyComplete();
-    }
+  }
+
   @Then("The debt is {string}")
   public void theDebtIs(String balance) {
-    Assertions.assertEquals(this.balance, Money.euros(balance));
- }
-
+    Assertions.assertEquals(Money.euros(balance), this.balance);
+  }
 }
