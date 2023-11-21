@@ -14,38 +14,38 @@ public class UserStepDefinition {
 
     @Autowired
     private RegisterUserUseCase registerPersonUseCase;
-    private String username;
-    private String userId;
-    private User newUser;
+    @Autowired
+    private TestUser testUser;
 
     @Given("the user type the username {string}")
     public void a_new_user_with_username(String username) {
-        this.username = username;
+        this.testUser.setUsername(username);
     }
 
     @When("the user submits a register request")
     public void the_user_submits_a_register_request() {
-        newUser = registerPersonUseCase.register(this.userId, this.username)
+        registerPersonUseCase.register(this.testUser.getUserId(), this.testUser.getUsername())
+                .doOnSuccess(this.testUser::set)
                 .block();
     }
 
     @Then("the user unique identifier is returned")
     public void the_user_unique_identifier_is_returned() {
-        Assertions.assertTrue(StringUtils.isNotBlank(newUser.getId()), "Missing user identifier");
+        Assertions.assertTrue(StringUtils.isNotBlank(testUser.getUserId()), "Missing user identifier");
     }
 
     @Then("the username is {string}")
     public void the_username_is(String username) {
-        Assertions.assertEquals(this.newUser.getUsername(), username, "Username does not match");
+        Assertions.assertEquals(this.testUser.getUsername(), username, "Username does not match");
     }
 
     @And("the user type the id {string}")
     public void theUserTypeTheId(String userId) {
-         this.userId = userId;
+        this.testUser.setUserId(userId);
     }
 
     @Then("the user unique identifier is {string}")
     public void theUserUniqueIdentifierIs(String expectedUserId) {
-        Assertions.assertEquals(expectedUserId, this.newUser.getId());
+        Assertions.assertEquals(expectedUserId, this.testUser.getUserId());
     }
 }
