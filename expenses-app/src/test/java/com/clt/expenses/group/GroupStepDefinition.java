@@ -18,32 +18,29 @@ import java.util.stream.Collectors;
 
 public class GroupStepDefinition {
 
-  @Autowired private RegisterUserUseCase registerPersonUseCase;
-  @Autowired private CreateGroupUseCase createGroupUseCase;
   @Autowired private FindGroupUseCase findGroupUseCase;
   @Autowired private AddMembersToAGroupUseCase addMembersToAGroupUseCase;
   @Autowired private ApplicationDriver applicationDriver;
 
-  @Autowired private TestUsersInformation users;
   @Autowired private TestGroupInformation newGroup;
 
   private GroupAggregate retrievedGroup;
 
   @Given("a user {string}")
-  public void a_user(String username) {
-    this.users.put(username, this.applicationDriver.getOrCreateUserId(username));
+  public void a_user(String userId) {
+    this.applicationDriver.getOrCreateUserId(userId);
   }
 
   @When("{string} creates the group {string} with the members:")
   public void creates_the_group_with_the_members(
-      String ownerUsername, String groupName, List<String> usernames) {
-    this.newGroup.set(this.applicationDriver.createGroup(ownerUsername, groupName, usernames));
+      String ownerUserId, String groupName, List<String> userIds) {
+    this.newGroup.set(this.applicationDriver.createGroup(ownerUserId, groupName, userIds));
   }
 
   @Then("{string} is the owner of the group")
-  public void is_the_owner_of_the_group(String ownerUsername) {
+  public void is_the_owner_of_the_group(String ownerUserId) {
     Assertions.assertEquals(
-        this.users.get(ownerUsername),
+        ownerUserId,
         this.newGroup.get().owner().getId(),
         "Owner id does not match");
   }
@@ -52,7 +49,10 @@ public class GroupStepDefinition {
   public void the_members_of_the_group_are(String group, List<String> usernames) {
     Set<String> memebrIds = new HashSet<>(usernames);
     Assertions.assertTrue(
-        memebrIds.containsAll(this.applicationDriver.retrieveGroup(group).members().stream().map(User::getId).toList()),
+        memebrIds.containsAll(
+            this.applicationDriver.retrieveGroup(group).members().stream()
+                .map(User::getId)
+                .toList()),
         "Expected members does not match");
   }
 
@@ -78,10 +78,10 @@ public class GroupStepDefinition {
   }
 
   @When("{string} is added to the group")
-  public void isAddedToTheGroup(String username) {
+  public void isAddedToTheGroup(String userId) {
     this.newGroup.set(
         addMembersToAGroupUseCase
-            .addMember(this.newGroup.get().id(), List.of(this.users.get(username)))
+            .addMember(this.newGroup.get().id(), List.of(this.applicationDriver.findPerson(userId)))
             .block());
   }
 }
