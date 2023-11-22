@@ -33,7 +33,6 @@ Feature: Handle Group, which includes adding and removing members as well as add
       | John |
 
   Scenario: Add a member to a group
-    Given the group "Friends"
     When "Mark" is added to the group
     Then the members of the group "Friends" are:
       | Bob  |
@@ -42,11 +41,10 @@ Feature: Handle Group, which includes adding and removing members as well as add
 
 
   Scenario: Create a new Expense
-    Given the group "Friends"
     When "Alice" adds the expenses:
-      | description | owner | amount |
-      | Milk        | Alice | 2.99   |
-      | Water       | Alice | 0.50   |
+      | description | owner | amount | groupId |
+      | Milk        | Alice | 2.99   | Friends |
+      | Water       | Alice | 0.50   | Friends |
     Then the new expense is created
     And the new expense has a unique id
 
@@ -58,6 +56,8 @@ Feature: Handle Group, which includes adding and removing members as well as add
     Then the expense is returned:
       | id    | description | owner | amount | groupId |
       | exp-1 | Milk        | Alice | 2.99   | Friends |
+
+
 
   Scenario Outline: Retrieve debts with a group member
     Given the group "Friends" having the expenses

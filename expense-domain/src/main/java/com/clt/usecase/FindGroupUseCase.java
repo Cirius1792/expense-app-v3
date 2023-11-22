@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.reactivestreams.Publisher;
 import reactor.core.publisher.Mono;
+import reactor.util.annotation.NonNull;
 
 public class FindGroupUseCase implements UseCase {
 
@@ -19,7 +20,7 @@ public class FindGroupUseCase implements UseCase {
     this.personStore = personStore;
   }
 
-  public Mono<GroupAggregate> retrieve(String groupId) {
+  public Mono<GroupAggregate> retrieve(@NonNull String groupId) {
     return groupStore
         .retrieve(groupId)
         .switchIfEmpty(Mono.error(new GroupNotFound()))

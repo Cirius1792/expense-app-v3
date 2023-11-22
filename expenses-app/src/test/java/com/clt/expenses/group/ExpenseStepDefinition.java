@@ -30,7 +30,6 @@ public class ExpenseStepDefinition {
     private AddExpenseUseCase addExpenseUseCase;
     @Autowired
     private FindExpenseUseCase findExpenseUseCase;
-    private GroupAggregate group;
     private List<ExpenseAggregate> expenseList;
     private List<Expense> expectedExpenses;
     private ExpenseAggregate actualExpense;
@@ -38,7 +37,7 @@ public class ExpenseStepDefinition {
 
     @Given("the group {string}")
     public void theGroup(String groupName) {
-        this.group = applicationDriver.retrieveGroup(groupName);
+        Assertions.assertNotNull(applicationDriver.retrieveGroup(groupName));
     }
 
     @When("{string} adds the expenses:")
@@ -49,7 +48,7 @@ public class ExpenseStepDefinition {
                         e.getDescription(),
                         e.getAmount(),
                         this.applicationDriver.findPerson(expenseOwner),
-                        this.group.id()
+                        this.applicationDriver.retrieveGroup(e.getGroupId()).id()
                 ).block()).toList();
     }
 
