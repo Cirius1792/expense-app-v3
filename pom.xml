@@ -10,7 +10,7 @@
     <name>expenses-app-v3</name>
     <url>https://github.com/Cirius1792/expense-app-v3</url>
     <modules>
-        <module>expense-domain</module>
+        <module>expenses-domain</module>
         <module>expenses-app</module>
         <module>expenses-rest-adapter</module>
         <module>expenses-ledger-rest-adapter</module>

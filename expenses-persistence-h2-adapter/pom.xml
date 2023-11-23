@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>com.clt.expenses</groupId>
-            <artifactId>expense-domain</artifactId>
+            <artifactId>expenses-domain</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
