@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +43,7 @@ public class ExpenseStepDefinition {
 
     @When("{string} adds the expenses:")
     public void addsTheExpenses(String expenseOwner, List<Expense> expenseList) {
-        this.expectedExpenses = expenseList;
+        this.expectedExpenses = new ArrayList<>(expenseList);
         this.expenseList = expenseList.stream()
                 .map(e -> this.addExpenseUseCase.create(
                         e.getDescription(),
@@ -70,6 +71,7 @@ public class ExpenseStepDefinition {
                 this.applicationDriver.findPerson(expense.getOwner()),
                 this.applicationDriver.retrieveGroup(expense.getGroupId()).id()
         ).block();
+        Assertions.assertNotNull(e);
         this.expenseIdMap.put(expense.getId(), e.getId());
     }
 
