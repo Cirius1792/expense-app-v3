@@ -1,7 +1,7 @@
 # expenses-app
 This is a sample project developed mainly to allow me to make practice with hexagonal architecture, cucumber tests and reactive programming. 
 
-The implemented application is inspired by [SplitWisea](https://www.splitwise.com/), which I use and love, so for my practice project I chose to implement a subset of splitwise functionalities. 
+The implemented application is inspired by [SplitWise](https://www.splitwise.com/), which I use and love, so for my practice project I chose to implement a subset of splitwise functionalities. 
 The main feature implemented are: 
 - Create groups to share expenses
 - Create and split expenses 
