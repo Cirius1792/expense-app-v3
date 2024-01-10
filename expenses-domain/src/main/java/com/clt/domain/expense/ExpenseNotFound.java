@@ -1,3 +1,5 @@
 package com.clt.domain.expense;
 
-public class ExpenseNotFound extends RuntimeException {}
+import com.clt.domain.common.error.ResourceNotFoundError;
+
+public class ExpenseNotFound extends ResourceNotFoundError {}

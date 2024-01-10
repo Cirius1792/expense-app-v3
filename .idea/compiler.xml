@@ -10,6 +10,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="expenses-ledger-rest-adapter" />
+        <module name="expenses-domain" />
         <module name="expenses-persistence-h2-adapter" />
         <module name="expenses-app" />
         <module name="expense-domain" />
