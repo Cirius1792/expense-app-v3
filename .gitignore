@@ -144,3 +144,4 @@ buildNumber.properties
 /expenses-ledger-rest-adapter/expenses-ledger-rest-adapter.iml
 /expenses-persistence-h2-adapter/expenses-persistence-h2-adapter.iml
 /expenses-rest-adapter/expenses-rest-adapter.iml
+**/.settings
