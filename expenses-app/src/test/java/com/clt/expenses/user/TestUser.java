@@ -7,19 +7,11 @@ import org.springframework.stereotype.Component;
 @Component
 @ScenarioScope
 public class TestUser {
-    private String username;
     private String userId;
+    private String password;
 
     public void set(User user){
         this.userId = user.getId();
-        this.username = user.getUsername();
-    }
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getUserId() {
@@ -28,5 +20,13 @@ public class TestUser {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

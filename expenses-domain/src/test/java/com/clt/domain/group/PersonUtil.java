@@ -7,7 +7,6 @@ public class PersonUtil {
   public static User newPerson() {
     return ImmutableUser.builder()
         .id(UUID.randomUUID().toString())
-        .username("User_" + new Random().nextInt())
         .build();
   }
 }

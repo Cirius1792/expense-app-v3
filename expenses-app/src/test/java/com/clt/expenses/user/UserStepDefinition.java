@@ -1,7 +1,7 @@
 package com.clt.expenses.user;
 
-import com.clt.domain.group.User;
 import com.clt.usecase.RegisterUserUseCase;
+import com.clt.usecase.pojo.NewUser;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,14 +17,13 @@ public class UserStepDefinition {
     @Autowired
     private TestUser testUser;
 
-    @Given("the user type the username {string}")
-    public void a_new_user_with_username(String username) {
-        this.testUser.setUsername(username);
+    @Given("the user types the password {string}")
+    public void the_user_types_the_password(String password){
+        this.testUser.setPassword(password);
     }
-
     @When("the user submits a register request")
     public void the_user_submits_a_register_request() {
-        registerPersonUseCase.register(this.testUser.getUserId(), this.testUser.getUsername())
+        registerPersonUseCase.register(new NewUser(this.testUser.getUserId(), this.testUser.getPassword()))
                 .doOnSuccess(this.testUser::set)
                 .block();
     }
@@ -36,10 +35,10 @@ public class UserStepDefinition {
 
     @Then("the username is {string}")
     public void the_username_is(String username) {
-        Assertions.assertEquals(this.testUser.getUsername(), username, "Username does not match");
+        Assertions.assertEquals(this.testUser.getUserId(), username, "Username does not match");
     }
 
-    @And("the user type the id {string}")
+    @And("the user types the id {string}")
     public void theUserTypeTheId(String userId) {
         this.testUser.setUserId(userId);
     }

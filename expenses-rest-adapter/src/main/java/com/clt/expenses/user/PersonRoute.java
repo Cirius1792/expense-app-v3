@@ -6,6 +6,7 @@ import com.clt.expenses.user.response.UserResponseDto;
 import com.clt.usecase.FindUserUseCase;
 import com.clt.usecase.RegisterUserUseCase;
 import com.clt.usecase.RetrieveGroupPerUserUseCase;
+import com.clt.usecase.pojo.NewUser;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.server.RouterFunction;
@@ -103,7 +104,7 @@ public class PersonRoute {
   private Mono<ServerResponse> createUser(ServerRequest serverRequest) {
     return serverRequest
         .bodyToMono(CreateUserRequestDto.class)
-        .flatMap(r -> registerPersonUseCase.register(r.getUsername()))
+        .flatMap(r -> registerPersonUseCase.register(new NewUser(r.getUsername(), r.getPassword())))
         .map(personMapper::toDto)
         .flatMap(
             r ->

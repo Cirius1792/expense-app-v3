@@ -9,7 +9,6 @@ public class PersonMapper {
   public UserResponseDto toDto(User user) {
     UserResponseDto response = new UserResponseDto();
     response.setId(user.getId());
-    response.setUsername(user.getUsername());
     return response;
   }
 }

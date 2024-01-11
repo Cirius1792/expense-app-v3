@@ -17,7 +17,6 @@ import reactor.test.StepVerifier;
 @SpringBootTest(classes = GroupTestConfiguration.class)
 class UserStoreImplTest {
   private static final String ID = "id";
-  private static final String USERNAME = "username";
   @Autowired DatabaseClient database;
   @Autowired
   UserStore personStore;
@@ -50,13 +49,12 @@ class UserStoreImplTest {
   }
 
   private User buildPerson() {
-    return ImmutableUser.builder().id(ID).username(USERNAME).build();
+    return ImmutableUser.builder().id(ID).build();
   }
 
   private UserEntity buildPersonEntity() {
     UserEntity entity = new UserEntity();
     entity.setId(ID);
-    entity.setUsername(USERNAME);
     return entity;
   }
 

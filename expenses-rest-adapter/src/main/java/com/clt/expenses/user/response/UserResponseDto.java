@@ -2,7 +2,6 @@ package com.clt.expenses.user.response;
 
 public class UserResponseDto {
   private String id;
-  private String username;
 
   public String getId() {
     return id;
@@ -12,11 +11,4 @@ public class UserResponseDto {
     this.id = id;
   }
 
-  public String getUsername() {
-    return username;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
 }

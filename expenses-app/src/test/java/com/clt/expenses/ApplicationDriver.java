@@ -6,6 +6,7 @@ import com.clt.usecase.CreateGroupUseCase;
 import com.clt.usecase.FindGroupUseCase;
 import com.clt.usecase.FindUserUseCase;
 import com.clt.usecase.RegisterUserUseCase;
+import com.clt.usecase.pojo.NewUser;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -45,7 +46,7 @@ public class ApplicationDriver {
 
     public String getOrCreateUserId(String username) {
         return findUserUseCase.retrieve(username)
-                .onErrorResume((e) -> this.registerPersonUseCase.register(username, username))
+                .onErrorResume((e) -> this.registerPersonUseCase.register(new NewUser(username, "qwerty12")))
                 .map(User::getId)
                 .block();
     }

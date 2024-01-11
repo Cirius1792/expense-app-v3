@@ -9,7 +9,4 @@ import org.immutables.value.Value;
 @JsonDeserialize(as = ImmutableUser.class)
 public interface User {
   String getId();
-
-  @Value.Auxiliary
-  String getUsername();
 }

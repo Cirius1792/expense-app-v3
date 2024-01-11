@@ -9,7 +9,6 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table("Person")
 public class UserEntity implements Persistable<String> {
   @Id private String id;
-  private String username;
   @Transient private boolean isNew = true;
 
   @Override
@@ -24,15 +23,6 @@ public class UserEntity implements Persistable<String> {
   public void setNew(boolean aNew) {
     isNew = aNew;
   }
-
-  public String getUsername() {
-    return username;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
   @Override
   public boolean isNew() {
     return isNew;
@@ -40,16 +30,10 @@ public class UserEntity implements Persistable<String> {
 
   @Override
   public String toString() {
-    return "PersonEntity{"
-        + "id='"
-        + id
-        + '\''
-        + ", username='"
-        + username
-        + '\''
-        + ", isNew="
-        + isNew
-        + '}';
+    return "UserEntity{" +
+            "id='" + id + '\'' +
+            ", isNew=" + isNew +
+            '}';
   }
 
   @Override
@@ -57,11 +41,11 @@ public class UserEntity implements Persistable<String> {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     UserEntity that = (UserEntity) o;
-    return Objects.equals(id, that.id) && Objects.equals(username, that.username);
+    return isNew == that.isNew && Objects.equals(id, that.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, username);
+    return Objects.hash(id);
   }
 }

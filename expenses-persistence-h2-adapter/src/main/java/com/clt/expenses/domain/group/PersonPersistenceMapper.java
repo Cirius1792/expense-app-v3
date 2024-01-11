@@ -11,7 +11,6 @@ public class PersonPersistenceMapper implements PersistenceMapper<UserEntity, Us
   public UserEntity toEntity(User user) {
     UserEntity entity = new UserEntity();
     entity.setId(user.getId());
-    entity.setUsername(user.getUsername());
     return entity;
   }
 
@@ -19,7 +18,6 @@ public class PersonPersistenceMapper implements PersistenceMapper<UserEntity, Us
   public User toDomain(UserEntity userEntity) {
     return ImmutableUser.builder()
         .id(userEntity.getId())
-        .username(userEntity.getUsername())
         .build();
   }
 }

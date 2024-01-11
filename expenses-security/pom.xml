@@ -23,5 +23,17 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-r2dbc</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.clt.expenses</groupId>
+            <artifactId>expenses-domain</artifactId>
+	    <version>${parent.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-core</artifactId>
+            <version>3.5.5</version>
+        </dependency>
     </dependencies>
 </project>

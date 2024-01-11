@@ -17,6 +17,6 @@ class UserFactoryTest {
   void test_create_person_with_name_and_id() {
     User actual = userFactory.create(USER_NAME);
     Assertions.assertNotNull(actual.getId(), "User id should not be null");
-    Assertions.assertEquals(USER_NAME, actual.getUsername(), "Username does not match");
+    Assertions.assertEquals(USER_NAME, actual.getId(), "Username does not match");
   }
 }

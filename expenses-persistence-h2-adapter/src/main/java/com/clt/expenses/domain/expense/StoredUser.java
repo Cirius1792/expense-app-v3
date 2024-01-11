@@ -14,8 +14,4 @@ public class StoredUser implements User {
     return id;
   }
 
-  @Override
-  public String getUsername() {
-    throw new RuntimeException("Not Implemented");
-  }
 }
