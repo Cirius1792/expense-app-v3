@@ -1,46 +1,44 @@
 package com.clt.expenses.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
+import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.core.userdetails.MapReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
-import org.springframework.security.provisioning.UserDetailsManager;
-import org.springframework.security.web.SecurityFilterChain;
-
-import javax.sql.DataSource;
+import org.springframework.security.web.server.SecurityWebFilterChain;
 
 @Configuration
+@EnableWebFluxSecurity
 public class ExpensesSecurityConfig {
 
-    @Autowired
-    public UserDetailsManager userDetailsManager(
-            DataSource dataSource, PasswordEncoder passwordEncoder) throws Exception {
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    @Profile({"test", "local"})
+    public MapReactiveUserDetailsService userDetailsManager(PasswordEncoder passwordEncoder)
+            throws Exception {
         UserDetails user =
                 User.builder()
                         .username("admin")
                         .password(passwordEncoder.encode("admin"))
                         .roles("USER")
                         .build();
-        JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
-        users.createUser(user);
-        return users;
+        return new MapReactiveUserDetailsService(user);
     }
 
     @Bean
-    public SecurityFilterChain filterChain_old(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((authz) -> authz.anyRequest().authenticated())
+    public SecurityWebFilterChain filterChain(ServerHttpSecurity http) throws Exception {
+        http.authorizeExchange(exchanges -> exchanges.anyExchange().authenticated())
                 .httpBasic(Customizer.withDefaults());
         return http.build();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 }
