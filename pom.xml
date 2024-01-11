@@ -16,6 +16,7 @@
         <module>expenses-ledger-rest-adapter</module>
         <module>expenses-persistence-h2-adapter</module>
         <module>expenses-event-adapter</module>
+	<module>expenses-security</module>
     </modules>
     <properties>
         <wiremock.version>2.35.0</wiremock.version>
