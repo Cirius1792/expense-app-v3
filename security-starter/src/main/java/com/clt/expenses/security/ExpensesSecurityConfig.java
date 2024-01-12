@@ -27,7 +27,7 @@ public class ExpensesSecurityConfig {
 
     @Bean
     @Profile({"test"})
-    public MapReactiveUserDetailsService userDetailsManager(PasswordEncoder passwordEncoder){
+    public MapReactiveUserDetailsService userDetailsManager(PasswordEncoder passwordEncoder) {
         UserDetails user =
                 User.builder()
                         .username("admin")
@@ -36,14 +36,23 @@ public class ExpensesSecurityConfig {
                         .build();
         return new MapReactiveUserDetailsService(user);
     }
+
     @Bean
-    public ReactiveUserDetailsService reactiveUserDetailsService(ApplicationCredentialManager applicationCredentialManager){
+    public ReactiveUserDetailsService reactiveUserDetailsService(
+            ApplicationCredentialManager applicationCredentialManager) {
         return new UserDetailService(applicationCredentialManager);
     }
 
     @Bean
     public SecurityWebFilterChain filterChain(ServerHttpSecurity http) throws Exception {
-        http.authorizeExchange(exchanges -> exchanges.anyExchange().authenticated())
+        http.authorizeExchange(
+                        exchanges ->
+                                exchanges
+                                        .pathMatchers("/user")
+                                        .permitAll()
+                                        .anyExchange()
+                                        .authenticated())
+                .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .httpBasic(Customizer.withDefaults());
         return http.build();
     }
