@@ -45,9 +45,7 @@ class RegisterUserUseCaseTest {
                 .thenReturn(Mono.just(new GenericEvent<>("1", NEW_USER)));
         useCase =
                 new RegisterUserUseCase(
-                        new UserFactory(new UUIDIdFactory()),
-                        store,
-                        newUserNotifier);
+                        new UserFactory(new UUIDIdFactory()), store, newUserNotifier);
     }
 
     @DisplayName(
@@ -75,7 +73,7 @@ class RegisterUserUseCaseTest {
                 Given a registered user
                 When another user tries to register with the same username
                 Then an InvalidUserNameError is returned
-""")
+               """)
     @Test
     void should_fail_because_of_unavailable_username() {
         NewUser newUser = new NewUser(USER_NAME_ALREADY_PRESENT, PASSWORD);
@@ -83,16 +81,19 @@ class RegisterUserUseCaseTest {
         StepVerifier.create(producer).expectError(InvalidUsernameError.class).verify();
     }
 
-    @DisplayName("""
-When a new user is registered
-Then a NewUser Event is propagated
-""")
+    @DisplayName(
+            """
+                When a new user is registered
+                Then a NewUser Event is propagated
+                """)
     @Test
     void should_notify_new_user() {
         useCase.register(NEW_USER)
                 .as(StepVerifier::create)
                 .assertNext(
-                        u -> Mockito.verify(newUserNotifier, Mockito.atLeastOnce()).notify(NEW_USER))
+                        u ->
+                                Mockito.verify(newUserNotifier, Mockito.atLeastOnce())
+                                        .notify(NEW_USER))
                 .verifyComplete();
         ;
     }
