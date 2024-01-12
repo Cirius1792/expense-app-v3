@@ -5,10 +5,9 @@ import com.clt.domain.group.ImmutableUser;
 import com.clt.domain.group.UserFactory;
 import com.clt.domain.group.UserStore;
 
-import com.clt.domain.registry.ImmutableRegisteredUser;
 import com.clt.domain.registry.InvalidUsernameError;
-import com.clt.domain.registry.RegisteredUser;
-import com.clt.domain.registry.RegisteredUserStore;
+import com.clt.event.GenericEvent;
+import com.clt.event.Notifier;
 import com.clt.usecase.pojo.NewUser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,24 +18,36 @@ import org.mockito.Mockito;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
+import java.util.Collections;
+
 class RegisterUserUseCaseTest {
 
     private static final String USER_NAME = "Mario";
 
     private static final String USER_NAME_ALREADY_PRESENT = "Fabio";
     private static final String PASSWORD = "qwerty";
+
+    private static final NewUser NEW_USER = new NewUser(USER_NAME, PASSWORD);
     private static UserStore store;
     private static RegisterUserUseCase useCase;
+    private static Notifier<NewUser> newUserNotifier;
 
     @BeforeEach
     void initMocks() {
         store = Mockito.mock(UserStore.class);
         Mockito.when(store.store(Mockito.any())).thenAnswer(args -> Mono.just(args.getArgument(0)));
         Mockito.when(store.retrieve(USER_NAME)).thenReturn(Mono.empty());
-        Mockito.when(store.retrieve(USER_NAME_ALREADY_PRESENT)).thenReturn(Mono.just(ImmutableUser.builder()
-                .id(USER_NAME_ALREADY_PRESENT)
-                .build()));
-        useCase = new RegisterUserUseCase(new UserFactory(new UUIDIdFactory()), store);
+        Mockito.when(store.retrieve(USER_NAME_ALREADY_PRESENT))
+                .thenReturn(
+                        Mono.just(ImmutableUser.builder().id(USER_NAME_ALREADY_PRESENT).build()));
+        newUserNotifier = Mockito.mock(Notifier.class);
+        Mockito.when(newUserNotifier.notify(NEW_USER))
+                .thenReturn(Mono.just(new GenericEvent<>("1", NEW_USER)));
+        useCase =
+                new RegisterUserUseCase(
+                        new UserFactory(new UUIDIdFactory()),
+                        store,
+                        newUserNotifier);
     }
 
     @DisplayName(
@@ -47,8 +58,7 @@ class RegisterUserUseCaseTest {
                     """)
     @Test
     void store_person_test() {
-        NewUser newUser = new NewUser(USER_NAME, PASSWORD);
-        var producer = useCase.register(newUser);
+        var producer = useCase.register(NEW_USER);
         StepVerifier.create(producer)
                 .assertNext(
                         actual -> {
@@ -71,5 +81,19 @@ class RegisterUserUseCaseTest {
         NewUser newUser = new NewUser(USER_NAME_ALREADY_PRESENT, PASSWORD);
         var producer = useCase.register(newUser);
         StepVerifier.create(producer).expectError(InvalidUsernameError.class).verify();
+    }
+
+    @DisplayName("""
+When a new user is registered
+Then a NewUser Event is propagated
+""")
+    @Test
+    void should_notify_new_user() {
+        useCase.register(NEW_USER)
+                .as(StepVerifier::create)
+                .assertNext(
+                        u -> Mockito.verify(newUserNotifier, Mockito.atLeastOnce()).notify(NEW_USER))
+                .verifyComplete();
+        ;
     }
 }
