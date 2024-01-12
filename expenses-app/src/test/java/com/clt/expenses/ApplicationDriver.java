@@ -46,7 +46,7 @@ public class ApplicationDriver {
 
     public String getOrCreateUserId(String username) {
         return findUserUseCase.retrieve(username)
-                .onErrorResume((e) -> this.registerPersonUseCase.register(new NewUser(username, "qwerty12")))
+                .onErrorResume((e) -> this.registerPersonUseCase.register(new NewUser(username)))
                 .map(User::getId)
                 .block();
     }

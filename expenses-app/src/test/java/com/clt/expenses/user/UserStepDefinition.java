@@ -23,7 +23,7 @@ public class UserStepDefinition {
     }
     @When("the user submits a register request")
     public void the_user_submits_a_register_request() {
-        registerPersonUseCase.register(new NewUser(this.testUser.getUserId(), this.testUser.getPassword()))
+        registerPersonUseCase.register(new NewUser(this.testUser.getUserId()))
                 .doOnSuccess(this.testUser::set)
                 .block();
     }

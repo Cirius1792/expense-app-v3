@@ -24,6 +24,15 @@ public class RegisterUserUseCase implements UseCase {
         this.newUserNotifier = newUserNotifier;
     }
 
+    public RegisterUserUseCase(
+            UserFactory userFactory,
+            UserStore store
+            ) {
+        this.userFactory = userFactory;
+        this.store = store;
+        this.newUserNotifier = u -> Mono.empty();
+    }
+
     public Mono<User> register(NewUser newUser) {
         return this.store
                 .retrieve(newUser.getId())

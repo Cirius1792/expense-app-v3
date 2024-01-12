@@ -25,9 +25,8 @@ class RegisterUserUseCaseTest {
     private static final String USER_NAME = "Mario";
 
     private static final String USER_NAME_ALREADY_PRESENT = "Fabio";
-    private static final String PASSWORD = "qwerty";
 
-    private static final NewUser NEW_USER = new NewUser(USER_NAME, PASSWORD);
+    private static final NewUser NEW_USER = new NewUser(USER_NAME);
     private static UserStore store;
     private static RegisterUserUseCase useCase;
     private static Notifier<NewUser> newUserNotifier;
@@ -50,7 +49,7 @@ class RegisterUserUseCaseTest {
 
     @DisplayName(
             """
-                    Given a valid username and password
+                    Given a valid username
                     When creating a user
                     Then the new user is created and stored
                     """)
@@ -76,13 +75,14 @@ class RegisterUserUseCaseTest {
                """)
     @Test
     void should_fail_because_of_unavailable_username() {
-        NewUser newUser = new NewUser(USER_NAME_ALREADY_PRESENT, PASSWORD);
+        NewUser newUser = new NewUser(USER_NAME_ALREADY_PRESENT);
         var producer = useCase.register(newUser);
         StepVerifier.create(producer).expectError(InvalidUsernameError.class).verify();
     }
 
     @DisplayName(
             """
+                Given a registered notifier
                 When a new user is registered
                 Then a NewUser Event is propagated
                 """)

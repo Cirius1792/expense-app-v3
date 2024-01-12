@@ -45,19 +45,14 @@
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.clt.expenses</groupId>
-            <artifactId>expenses-security</artifactId>
-            <version>${parent.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.clt.expenses</groupId>-->
+<!--            <artifactId>expenses-security</artifactId>-->
+<!--            <version>${parent.version}</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.clt.expenses</groupId>
             <artifactId>expenses-ledger-rest-adapter</artifactId>
-            <version>${parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.clt.expenses</groupId>
-            <artifactId>expenses-security</artifactId>
             <version>${parent.version}</version>
         </dependency>
         <dependency>
