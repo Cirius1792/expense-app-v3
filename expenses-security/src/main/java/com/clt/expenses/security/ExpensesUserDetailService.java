@@ -1,23 +1,31 @@
 package com.clt.expenses.security;
 
-import com.clt.domain.group.UserStore;
-
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
 
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
-//@Service
+@Service
 public class ExpensesUserDetailService implements ReactiveUserDetailsService {
 
-    private final UserStore userStore;
+    private final UserDetailsStore userDetailsStore;
 
-    public ExpensesUserDetailService(UserStore userStore) {
-        this.userStore = userStore;
+    public ExpensesUserDetailService(UserDetailsStore userDetailsStore) {
+        this.userDetailsStore = userDetailsStore;
     }
 
     public Mono<UserDetails> findByUsername(String username) {
-        return Mono.empty();
+        return userDetailsStore
+                .findByUsername(username)
+                .switchIfEmpty(
+                        Mono.defer(
+                                () -> Mono.error(new UsernameNotFoundException("User Not Found"))))
+                .map(this::matToUserDetails);
+    }
+
+    private UserDetails matToUserDetails(ApplicationUser applicationUser) {
+        return new AuthenticatedUser(applicationUser.id(), applicationUser.password());
     }
 }
