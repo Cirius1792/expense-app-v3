@@ -8,17 +8,18 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 @Service
-public class ExpensesUserDetailService implements ReactiveUserDetailsService {
+public class UserDetailService implements ReactiveUserDetailsService {
 
-    private final UserDetailsStore userDetailsStore;
+    private final ApplicationCredentialManager applicationCredentialManager;
 
-    public ExpensesUserDetailService(UserDetailsStore userDetailsStore) {
-        this.userDetailsStore = userDetailsStore;
+    public UserDetailService(ApplicationCredentialManager applicationCredentialManager) {
+        this.applicationCredentialManager = applicationCredentialManager;
     }
 
+    @Override
     public Mono<UserDetails> findByUsername(String username) {
-        return userDetailsStore
-                .findByUsername(username)
+        return applicationCredentialManager
+                .retrieve(username)
                 .switchIfEmpty(
                         Mono.defer(
                                 () -> Mono.error(new UsernameNotFoundException("User Not Found"))))
