@@ -6,14 +6,9 @@ import com.clt.domain.group.UserFactory;
 import com.clt.domain.group.UserStore;
 
 import com.clt.domain.registry.InvalidUsernameError;
-import com.clt.domain.registry.RegisteredUserStore;
 import com.clt.event.Notifier;
 import com.clt.usecase.pojo.NewUser;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class RegisterUserUseCase implements UseCase {
     private final UserFactory userFactory;
