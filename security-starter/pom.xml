@@ -28,12 +28,12 @@
             <artifactId>security-domain</artifactId>
             <version>${parent.version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.clt.expenses</groupId>
-            <artifactId>expenses-domain</artifactId>
+            <artifactId>security-store-adapter</artifactId>
             <version>${parent.version}</version>
         </dependency>
-
         <dependency>
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-core</artifactId>

@@ -43,7 +43,10 @@ public class ExpensesSecurityConfig {
 
     @Bean
     public SecurityWebFilterChain filterChain(ServerHttpSecurity http) throws Exception {
-        http.authorizeExchange(exchanges -> exchanges.anyExchange().authenticated())
+        http.authorizeExchange(exchanges -> exchanges
+                        .pathMatchers("/user").permitAll()
+                        .anyExchange().authenticated())
+                .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .httpBasic(Customizer.withDefaults());
         return http.build();
     }

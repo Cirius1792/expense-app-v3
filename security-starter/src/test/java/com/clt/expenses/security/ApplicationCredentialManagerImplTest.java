@@ -1,11 +1,12 @@
 package com.clt.expenses.security;
 
-import com.clt.domain.registry.InvalidUsernameError;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.MonoSink;
 import reactor.test.StepVerifier;
@@ -76,7 +77,7 @@ class ApplicationCredentialManagerImplTest {
         credentialManager
                 .register(USERNAME, PLAIN_PASSWORD)
                 .as(StepVerifier::create)
-                .expectError(InvalidUsernameError.class)
+                .expectError(UserAlreadyRegisteredError.class)
                 .verify();
     }
 }

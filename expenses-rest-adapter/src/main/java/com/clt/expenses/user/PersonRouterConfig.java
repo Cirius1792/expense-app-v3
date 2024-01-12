@@ -1,5 +1,6 @@
 package com.clt.expenses.user;
 
+import com.clt.expenses.security.ApplicationCredentialManager;
 import com.clt.usecase.FindUserUseCase;
 import com.clt.usecase.RegisterUserUseCase;
 import com.clt.usecase.RetrieveGroupPerUserUseCase;
@@ -18,13 +19,15 @@ public class PersonRouterConfig {
       RegisterUserUseCase createUserUseCase,
       RetrieveGroupPerUserUseCase retrieveGroupPerUserUseCase,
       PersonMapper personMapper,
-      PersonGroupMapper personGroupMapper) {
+      PersonGroupMapper personGroupMapper,
+      ApplicationCredentialManager applicationCredentialManager) {
     return new PersonRoute(
             createUserUseCase,
             findUserUseCase,
             retrieveGroupPerUserUseCase,
             personMapper,
-            personGroupMapper)
+            personGroupMapper,
+            applicationCredentialManager)
         .createRoutes();
   }
 }

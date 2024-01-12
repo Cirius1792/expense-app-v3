@@ -1,8 +1,8 @@
 package com.clt.expenses.security;
 
-import com.clt.domain.registry.InvalidUsernameError;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import reactor.core.publisher.Mono;
 
 @Service
@@ -25,7 +25,7 @@ public class ApplicationCredentialManagerImpl implements ApplicationCredentialMa
     public Mono<ApplicationUser> register(String username, String password) {
         return this.userDetailsStore
                 .findByUsername(username)
-                .flatMap(u -> Mono.<ApplicationUser>error(new InvalidUsernameError()))
+                .flatMap(u -> Mono.<ApplicationUser>error(new UserAlreadyRegisteredError()))
                 .switchIfEmpty(
                         Mono.defer(() -> Mono.just(passwordEncoder.encode(password)))
                                 .flatMap(

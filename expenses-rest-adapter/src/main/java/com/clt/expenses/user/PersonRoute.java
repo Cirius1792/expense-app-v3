@@ -1,5 +1,6 @@
 package com.clt.expenses.user;
 
+import com.clt.expenses.security.ApplicationCredentialManager;
 import com.clt.expenses.user.request.CreateUserRequestDto;
 import com.clt.expenses.user.response.UserGroupDto;
 import com.clt.expenses.user.response.UserResponseDto;
@@ -28,18 +29,21 @@ public class PersonRoute {
     private final RetrieveGroupPerUserUseCase retrieveGroupPerUserUseCase;
     private final PersonMapper personMapper;
     private final PersonGroupMapper personGroupMapper;
+    private final ApplicationCredentialManager applicationCredentialManager;
 
     public PersonRoute(
             RegisterUserUseCase registerPersonUseCase,
             FindUserUseCase findUserUseCase,
             RetrieveGroupPerUserUseCase retrieveGroupPerUserUseCase,
             PersonMapper personMapper,
-            PersonGroupMapper personGroupMapper) {
+            PersonGroupMapper personGroupMapper,
+            ApplicationCredentialManager applicationCredentialManager) {
         this.registerPersonUseCase = registerPersonUseCase;
         this.findUserUseCase = findUserUseCase;
         this.retrieveGroupPerUserUseCase = retrieveGroupPerUserUseCase;
         this.personMapper = personMapper;
         this.personGroupMapper = personGroupMapper;
+        this.applicationCredentialManager = applicationCredentialManager;
     }
 
     public RouterFunction<ServerResponse> createRoutes() {
@@ -116,6 +120,11 @@ public class PersonRoute {
     private Mono<ServerResponse> createUser(ServerRequest serverRequest) {
         return serverRequest
                 .bodyToMono(CreateUserRequestDto.class)
+                .flatMap(
+                        r ->
+                                applicationCredentialManager
+                                        .register(r.getUsername(), r.getPassword())
+                                        .thenReturn(r))
                 .flatMap(r -> registerPersonUseCase.register(new NewUser(r.getUsername())))
                 .map(personMapper::toDto)
                 .flatMap(
