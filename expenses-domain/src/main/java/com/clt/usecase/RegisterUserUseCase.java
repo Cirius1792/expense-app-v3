@@ -32,7 +32,12 @@ public class RegisterUserUseCase implements UseCase {
         this.store = store;
         this.newUserNotifier = u -> Mono.empty();
     }
-
+    /**
+     * Registers a new user.
+     *
+     * @param  newUser the new user to be registered
+     * @return         the registered user
+     */
     public Mono<User> register(NewUser newUser) {
         return this.store
                 .retrieve(newUser.getId())
