@@ -11,11 +11,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="expenses-ledger-rest-adapter" />
         <module name="expenses-domain" />
+        <module name="security-domain" />
         <module name="expenses-persistence-h2-adapter" />
-        <module name="expenses-security-store-adapter" />
+        <module name="security-store-adapter" />
         <module name="expenses-app" />
-        <module name="expenses-security" />
         <module name="expense-domain" />
+        <module name="security-starter" />
         <module name="expenses-rest-adapter" />
         <module name="expenses-event-adapter" />
       </profile>

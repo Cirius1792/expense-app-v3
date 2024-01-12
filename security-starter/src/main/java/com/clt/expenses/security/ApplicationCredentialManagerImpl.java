@@ -1,8 +1,11 @@
 package com.clt.expenses.security;
 
+import com.clt.domain.registry.InvalidUsernameError;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+@Service
 public class ApplicationCredentialManagerImpl implements ApplicationCredentialManager {
     private final UserDetailsStore userDetailsStore;
     private final PasswordEncoder passwordEncoder;
