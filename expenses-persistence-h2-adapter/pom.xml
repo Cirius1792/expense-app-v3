@@ -20,7 +20,7 @@
         <dependency>
             <groupId>com.clt.expenses</groupId>
             <artifactId>expenses-domain</artifactId>
-	    <version>${parent.version}</version>
+            <version>${parent.version}</version>
         </dependency>
 
         <dependency>
@@ -42,7 +42,6 @@
         <dependency>
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-test</artifactId>
-            <version>3.5.5</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

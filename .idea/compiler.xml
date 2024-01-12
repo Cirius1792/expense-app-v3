@@ -23,6 +23,8 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="expenses-ledger-event-adapter" target="17" />
+      <module name="expenses-security" target="17" />
+      <module name="expenses-security-store-adapter" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
