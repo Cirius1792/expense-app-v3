@@ -145,3 +145,6 @@ buildNumber.properties
 /expenses-persistence-h2-adapter/expenses-persistence-h2-adapter.iml
 /expenses-rest-adapter/expenses-rest-adapter.iml
 **/.settings
+/expenses-web-app/node_modules/**
+/expenses-web-app/.svelte-kit/**
+
