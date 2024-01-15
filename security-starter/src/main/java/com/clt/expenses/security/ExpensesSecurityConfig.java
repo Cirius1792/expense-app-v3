@@ -1,7 +1,5 @@
 package com.clt.expenses.security;
 
-import com.clt.expenses.security.ApplicationCredentialManager;
-import com.clt.expenses.security.UserDetailService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -49,6 +47,13 @@ public class ExpensesSecurityConfig {
                         exchanges ->
                                 exchanges
                                         .pathMatchers("/user")
+                                        .permitAll()
+                                        .pathMatchers("/v3/api-docs/**",
+                                                "/configuration/ui",
+                                                "/swagger-resources/**",
+                                                "/configuration/security",
+                                                "/swagger-ui.html",
+                                                "/webjars/**")
                                         .permitAll()
                                         .anyExchange()
                                         .authenticated())
