@@ -1,7 +1,7 @@
 <!-- LoginForm.svelte -->
 <script>
   import InputField from './InputField.svelte';
-
+  import {token} from '../stores/credentials';
   let username = '';
   let password = '';
   let error = '';
@@ -10,6 +10,14 @@
     // Add your login logic here
     console.log('Username:', username);
     console.log('Password:', password);
+
+    const credentials = `${username}:${password}`;
+    const base64Credentials = btoa(credentials); // Use btoa to encode in Base64
+   
+    const authToken = `Basic ${base64Credentials}`;
+    token.set(authToken);
+    console.log('Token: ', $token);
+
      try {
       const response = await fetch('YOUR_API_ENDPOINT', {
         method: 'POST',
@@ -34,10 +42,12 @@
       }
 
       const data = await response.json();
-      authToken = data.token; // Assuming the API returns a token
+      console.log("Response: ", data);
     } catch (error) {
       console.error('Error during login:', error);
     }
+    username = '';
+    password = '';
   };
 </script>
 
