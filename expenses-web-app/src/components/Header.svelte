@@ -14,6 +14,12 @@
       <rect x="4" y="17" width="16" height="2" rx="1" fill="#fff" />
     </svg>
   </button>
+  <div class="nav-bar">
+	  <nav>
+	    <a href="/">Home</a>
+	    <a href="login">Login</a>
+	  </nav>
+  </div>
 </header>
 
 <style lang="scss">
@@ -42,5 +48,20 @@
     background: none;
     border: none;
     cursor: pointer;
+  }
+  .nav-bar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  }
+  .nav-bar nav {
+    margin-bottom: 20px;
+  }
+
+  .nav-bar a {
+    margin-right: 10px;
+    text-decoration: none;
+   color: #fff;
   }
 </style>

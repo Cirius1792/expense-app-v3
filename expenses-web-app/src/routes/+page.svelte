@@ -22,6 +22,9 @@
 
     <p>Ready to simplify your group expenses? Sign up for free today!</p>
 </div>
+<div>
+<a href="/login" class="button">Get Started</a>
+</div>
   </body>
 </main>
 <Footer />
