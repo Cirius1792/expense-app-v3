@@ -1,24 +1,25 @@
 package com.clt.expenses.group;
 
-import com.clt.domain.expense.Expense;
-import com.clt.domain.view.ExpenseAggregate;
-import com.clt.domain.view.GroupAggregate;
-import com.clt.expenses.ApplicationDriver;
-import com.clt.usecase.AddExpenseUseCase;
-import com.clt.usecase.FindExpenseUseCase;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.junit.jupiter.api.Assertions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.clt.domain.expense.Expense;
+import com.clt.domain.view.ExpenseAggregate;
+import com.clt.expenses.ApplicationDriver;
+import com.clt.usecase.AddExpenseUseCase;
+import com.clt.usecase.FindExpenseUseCase;
+
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class ExpenseStepDefinition {
 

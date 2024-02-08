@@ -13,6 +13,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+/**
+ * This class is a helper wrapper to interact with the application by masking the complexities of handling randomly generated ids during tests 
+ * */
 @Component
 public class ApplicationDriver {
     private final CreateGroupUseCase createGroupUseCase;
@@ -40,6 +44,12 @@ public class ApplicationDriver {
         return findUserUseCase.retrieve(username).map(User::getId).block();
     }
 
+    /**
+     * This method maps the group name to its id to invoke the functionality of find group by id. 
+     * It only works if the group has been created by using this abstraction layer
+     * @param groupName the name used to create the group
+     * @return the group
+     **/
     public GroupAggregate retrieveGroup(String groupName) {
         return this.findGroupUseCase.retrieve(this.groupNameToIdMap.get(groupName)).block();
     }

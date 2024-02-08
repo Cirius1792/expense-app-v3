@@ -21,23 +21,26 @@ public class PayUseCase implements UseCase {
     this.balanceService = balanceService;
   }
 
-  public Mono<Charge> pay(String groupId, String debtorId, String creditorId, Money paidAmount) {
+  public Mono<Charge> pay(String groupId, String payer, String payed, Money paidAmount) {
     if (BigDecimal.ZERO.compareTo(paidAmount.getAmount()) >= 0)
       return Mono.error(new InvalidAmountError(paidAmount));
     return balanceService
-        .retrieveBalance(debtorId, groupId)
-        .map(balance -> this.verifyAmountToPay(balance, creditorId, paidAmount))
+        .retrieveBalance(payer, groupId)
+        .map(balance -> this.verifyAmountToPay(balance, payed, paidAmount))
         .map(
-            amount ->
-                ImmutableCharge.builder()
-                    .id(idFactory.newId())
-                    .groupId(groupId)
-                    .creditor(debtorId)
-                    .debtor(creditorId)
-                    .amount(amount)
-                    .build())
+            amount -> buildPaymentCharge(groupId, payer, payed, amount))
         .flatMap(pc -> expenseChargeStore.store(pc).thenReturn(pc));
   }
+
+private ImmutableCharge buildPaymentCharge(String groupId, String payer, String payed, Money amount) {
+	return ImmutableCharge.builder()
+	    .id(idFactory.newId())
+	    .groupId(groupId)
+	    .creditor(payer)
+	    .debtor(payed)
+	    .amount(amount)
+	    .build();
+}
 
   private Money verifyAmountToPay(Balance balance, String creditorId, Money paidAmount) {
     if (paidAmount.getAmount().compareTo(balance.getDueTo(creditorId).getAmount()) > 0)
