@@ -15,7 +15,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
-class CreateGroupUseCaseTest {
+class CreateGroupWithMembersUseCaseTest {
 
     private static final String INVALID_PERSON_ID = "ipid";
     private static final User OWNER = PersonUtil.newPerson();
@@ -23,7 +23,7 @@ class CreateGroupUseCaseTest {
     private static final List<String> MEMBERS_IDS = Arrays.asList(MEMBER.getId());
     private static final String GROUP_NAME = "my-friends";
     private GroupStore groupStore;
-    private CreateGroupUseCase useCase;
+    private CreateGroupWithMembersUseCase useCase;
 
     @BeforeEach
     void initMocks() {
@@ -35,7 +35,7 @@ class CreateGroupUseCaseTest {
                 .thenAnswer(args -> Mono.just(args.getArgument(0)));
         Mockito.when(personStore.retrieve(OWNER.getId())).thenReturn(Mono.just(OWNER));
         Mockito.when(personStore.retrieve(MEMBERS_IDS)).thenReturn(Flux.just(MEMBER));
-        useCase = new CreateGroupUseCase(groupFactory, personStore, groupStore);
+        useCase = new CreateGroupWithMembersUseCase(groupFactory, personStore, groupStore);
     }
 
     @Test
@@ -51,13 +51,14 @@ class CreateGroupUseCaseTest {
     }
 
     @Test
-    @DisplayName(
-            "Given a existent owner id "
-                    + "And given an existent person id as member "
-                    + "When creating the group "
-                    + "Then a new group is created with an id "
-                    + "Then a new group is created with the owner "
-                    + "And with two members, the owner and the person")
+    @DisplayName("""
+            	    Given a existent owner id 
+                    And given an existent person id as member 
+                    When creating the group 
+                    Then a new group is created with an id 
+                    Then a new group is created with the owner 
+                    And with two members, the owner and the person
+		    """)
     void create_group_test() {
         var producer = useCase.create(GROUP_NAME, OWNER.getId(), MEMBERS_IDS);
         StepVerifier.create(producer)
@@ -71,7 +72,10 @@ class CreateGroupUseCaseTest {
     }
 
     @Test
-    @DisplayName("When creating a group " + "Then the created group is stored")
+    @DisplayName("""
+   			 When creating a group 
+   			 Then the created group is stored
+			 """)
     void created_group_is_stored_test() {
         var producer = useCase.create(GROUP_NAME, OWNER.getId(), MEMBERS_IDS);
         StepVerifier.create(producer)

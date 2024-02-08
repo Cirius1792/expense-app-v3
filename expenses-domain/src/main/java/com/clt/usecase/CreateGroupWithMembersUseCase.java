@@ -8,12 +8,12 @@ import java.util.List;
 import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple3;
 
-public class CreateGroupUseCase implements UseCase {
+public class CreateGroupWithMembersUseCase implements UseCase {
   private final GroupFactory groupFactory;
   private final UserStore personStore;
   private final GroupStore groupStore;
 
-  public CreateGroupUseCase(
+  public CreateGroupWithMembersUseCase(
           GroupFactory groupFactory, UserStore personStore, GroupStore groupStore) {
     this.groupFactory = groupFactory;
     this.personStore = personStore;

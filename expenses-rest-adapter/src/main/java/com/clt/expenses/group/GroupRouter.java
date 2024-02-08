@@ -7,7 +7,7 @@ import com.clt.expenses.group.request.PaymentRequest;
 import com.clt.expenses.group.response.BalanceResponse;
 import com.clt.expenses.group.response.GroupResponse;
 import com.clt.expenses.group.response.PaymentResponse;
-import com.clt.usecase.CreateGroupUseCase;
+import com.clt.usecase.CreateGroupWithMembersUseCase;
 import com.clt.usecase.FindGroupUseCase;
 import com.clt.usecase.PayUseCase;
 import com.clt.usecase.RetrieveUserBalancePerGroupUseCase;
@@ -25,14 +25,14 @@ import static org.springdoc.webflux.core.fn.SpringdocRouteBuilder.route;
 public class GroupRouter {
 
   private final FindGroupUseCase findGroupUseCase;
-  private final CreateGroupUseCase createGroupUseCase;
+  private final CreateGroupWithMembersUseCase createGroupUseCase;
   private final RetrieveUserBalancePerGroupUseCase retrieveUserBalancePerGroupUseCase;
   private final PayUseCase payUseCase;
   private final GroupMapper groupMapper;
 
   public GroupRouter(
       FindGroupUseCase findGroupUseCase,
-      CreateGroupUseCase createGroupUseCase,
+      CreateGroupWithMembersUseCase createGroupUseCase,
       RetrieveUserBalancePerGroupUseCase retrieveUserBalancePerGroupUseCase,
       PayUseCase payUseCase,
       GroupMapper groupMapper) {

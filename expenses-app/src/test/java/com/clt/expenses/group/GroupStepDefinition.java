@@ -4,7 +4,7 @@ import com.clt.domain.group.User;
 import com.clt.domain.view.GroupAggregate;
 import com.clt.expenses.ApplicationDriver;
 import com.clt.usecase.AddMembersToAGroupUseCase;
-import com.clt.usecase.CreateGroupUseCase;
+import com.clt.usecase.CreateGroupWithMembersUseCase;
 import com.clt.usecase.FindGroupUseCase;
 import com.clt.usecase.CreateUserUseCase;
 import io.cucumber.java.en.Given;
@@ -81,7 +81,7 @@ public class GroupStepDefinition {
   public void isAddedToTheGroup(String userId) {
     this.newGroup.set(
         addMembersToAGroupUseCase
-            .addMember(this.newGroup.get().id(), List.of(this.applicationDriver.findPerson(userId)))
+            .addMembers(this.newGroup.get().id(), List.of(this.applicationDriver.findPerson(userId)))
             .block());
   }
 }

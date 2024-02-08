@@ -1,6 +1,6 @@
 package com.clt.expenses.group;
 
-import com.clt.usecase.CreateGroupUseCase;
+import com.clt.usecase.CreateGroupWithMembersUseCase;
 import com.clt.usecase.FindGroupUseCase;
 import com.clt.usecase.PayUseCase;
 import com.clt.usecase.RetrieveUserBalancePerGroupUseCase;
@@ -16,7 +16,7 @@ public class GroupRouterConfig {
   @Bean
   RouterFunction<ServerResponse> groupRoutes(
           FindGroupUseCase findGroupUseCase,
-          CreateGroupUseCase createGroupUseCase,
+          CreateGroupWithMembersUseCase createGroupUseCase,
           GroupMapper groupMapper,
           RetrieveUserBalancePerGroupUseCase retrieveUserBalancePerGroupUseCase,
           PayUseCase payUseCase) {

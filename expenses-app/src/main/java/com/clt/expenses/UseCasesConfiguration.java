@@ -49,9 +49,9 @@ public class UseCasesConfiguration {
     }
 
     @Bean
-    CreateGroupUseCase createGroupUseCase(
+    CreateGroupWithMembersUseCase createGroupUseCase(
             GroupFactory groupFactory, UserStore personStore, GroupStore groupStore) {
-        return new CreateGroupUseCase(groupFactory, personStore, groupStore);
+        return new CreateGroupWithMembersUseCase(groupFactory, personStore, groupStore);
     }
 
     @Bean

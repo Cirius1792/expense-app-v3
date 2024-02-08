@@ -2,7 +2,7 @@ package com.clt.expenses;
 
 import com.clt.domain.group.User;
 import com.clt.domain.view.GroupAggregate;
-import com.clt.usecase.CreateGroupUseCase;
+import com.clt.usecase.CreateGroupWithMembersUseCase;
 import com.clt.usecase.FindGroupUseCase;
 import com.clt.usecase.FindUserUseCase;
 import com.clt.usecase.CreateUserUseCase;
@@ -19,13 +19,13 @@ import java.util.Map;
  * */
 @Component
 public class ApplicationDriver {
-    private final CreateGroupUseCase createGroupUseCase;
+    private final CreateGroupWithMembersUseCase createGroupUseCase;
     private final FindGroupUseCase findGroupUseCase;
     private final CreateUserUseCase registerPersonUseCase;
     private final FindUserUseCase findUserUseCase;
     private Map<String, String> groupNameToIdMap = new HashMap<>();
 
-    public ApplicationDriver(CreateGroupUseCase createGroupUseCase, FindGroupUseCase findGroupUseCase, CreateUserUseCase registerPersonUseCase, FindUserUseCase findUserUseCase) {
+    public ApplicationDriver(CreateGroupWithMembersUseCase createGroupUseCase, FindGroupUseCase findGroupUseCase, CreateUserUseCase registerPersonUseCase, FindUserUseCase findUserUseCase) {
         this.createGroupUseCase = createGroupUseCase;
         this.findGroupUseCase = findGroupUseCase;
         this.registerPersonUseCase = registerPersonUseCase;

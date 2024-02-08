@@ -19,7 +19,7 @@ public class AddMembersToAGroupUseCase implements UseCase {
         this.findGroupUseCase = findGroupUseCase;
     }
 
-    public Mono<GroupAggregate> addMember(String groupId, List<String> userIds) {
+    public Mono<GroupAggregate> addMembers(String groupId, List<String> userIds) {
         Mono<Group> groupProducer = groupStore.retrieve(groupId)
                 .switchIfEmpty(Mono.error(new GroupNotFound(groupId)));
         Mono<List<User>> newMembersProducer = personStore.retrieve(userIds)
