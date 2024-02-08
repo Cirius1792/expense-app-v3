@@ -2,7 +2,7 @@ package com.clt.expenses;
 
 import com.clt.domain.commons.UseCase;
 import com.clt.event.Listener;
-import com.clt.event.Notifier;
+import com.clt.event.Observer;
 import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,10 +15,10 @@ public class ApplicationStatusReporter {
     private static final Logger logger = LoggerFactory.getLogger(ApplicationStatusReporter.class);
 
     private final List<UseCase> useCases;
-    private final List<Notifier<?>> notifiers;
+    private final List<Observer<?>> notifiers;
     private final List<Listener<?>> listeners;
 
-    public ApplicationStatusReporter(List<UseCase> useCases, List<Notifier<?>> notifiers, List<Listener<?>> listeners) {
+    public ApplicationStatusReporter(List<UseCase> useCases, List<Observer<?>> notifiers, List<Listener<?>> listeners) {
         this.useCases = useCases;
         this.notifiers = notifiers;
         this.listeners = listeners;

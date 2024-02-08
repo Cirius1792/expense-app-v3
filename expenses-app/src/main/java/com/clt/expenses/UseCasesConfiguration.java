@@ -10,7 +10,7 @@ import com.clt.domain.group.GroupStore;
 import com.clt.domain.group.UserFactory;
 import com.clt.domain.group.UserStore;
 import com.clt.domain.ledger.*;
-import com.clt.event.Notifier;
+import com.clt.event.Observer;
 import com.clt.usecase.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,8 +29,8 @@ public class UseCasesConfiguration {
     }
 
     @Bean
-    RegisterUserUseCase registerPersonUseCase(IdFactory idFactory, UserStore personStore) {
-        return new RegisterUserUseCase(new UserFactory(idFactory), personStore);
+    CreateUserUseCase registerPersonUseCase(IdFactory idFactory, UserStore personStore) {
+        return new CreateUserUseCase(new UserFactory(idFactory), personStore);
     }
 
     @Bean
@@ -76,7 +76,7 @@ public class UseCasesConfiguration {
             UserStore personStore,
             ExpenseFactory expenseFactory,
             ExpenseStore expenseStore,
-            Notifier<ExpenseRecord> newExpenseNotifier) {
+            Observer<ExpenseRecord> newExpenseNotifier) {
         return new AddExpenseUseCase(personStore, groupStore, expenseFactory, expenseStore, newExpenseNotifier);
     }
 

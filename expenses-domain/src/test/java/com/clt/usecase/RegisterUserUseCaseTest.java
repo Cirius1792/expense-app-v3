@@ -7,7 +7,7 @@ import com.clt.domain.group.UserStore;
 
 import com.clt.domain.registry.InvalidUsernameError;
 import com.clt.event.GenericEvent;
-import com.clt.event.Notifier;
+import com.clt.event.Observer;
 import com.clt.usecase.pojo.NewUser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,8 +28,8 @@ class RegisterUserUseCaseTest {
 
     private static final NewUser NEW_USER = new NewUser(USER_NAME);
     private static UserStore store;
-    private static RegisterUserUseCase useCase;
-    private static Notifier<NewUser> newUserNotifier;
+    private static CreateUserUseCase useCase;
+    private static Observer<NewUser> newUserNotifier;
 
     @BeforeEach
     void initMocks() {
@@ -39,11 +39,11 @@ class RegisterUserUseCaseTest {
         Mockito.when(store.retrieve(USER_NAME_ALREADY_PRESENT))
                 .thenReturn(
                         Mono.just(ImmutableUser.builder().id(USER_NAME_ALREADY_PRESENT).build()));
-        newUserNotifier = Mockito.mock(Notifier.class);
+        newUserNotifier = Mockito.mock(Observer.class);
         Mockito.when(newUserNotifier.notify(NEW_USER))
                 .thenReturn(Mono.just(new GenericEvent<>("1", NEW_USER)));
         useCase =
-                new RegisterUserUseCase(
+                new CreateUserUseCase(
                         new UserFactory(new UUIDIdFactory()), store, newUserNotifier);
     }
 

@@ -6,7 +6,7 @@ import com.clt.expenses.ApplicationDriver;
 import com.clt.usecase.AddMembersToAGroupUseCase;
 import com.clt.usecase.CreateGroupUseCase;
 import com.clt.usecase.FindGroupUseCase;
-import com.clt.usecase.RegisterUserUseCase;
+import com.clt.usecase.CreateUserUseCase;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

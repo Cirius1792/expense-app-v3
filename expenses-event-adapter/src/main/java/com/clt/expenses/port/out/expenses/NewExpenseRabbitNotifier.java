@@ -2,7 +2,7 @@ package com.clt.expenses.port.out.expenses;
 
 import com.clt.domain.expense.ExpenseRecord;
 import com.clt.event.GenericEvent;
-import com.clt.event.Notifier;
+import com.clt.event.Observer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Queue;
@@ -16,7 +16,7 @@ import java.util.UUID;
 
 @Service
 @Profile("rabbit")
-public class NewExpenseRabbitNotifier implements Notifier<ExpenseRecord> {
+public class NewExpenseRabbitNotifier implements Observer<ExpenseRecord> {
   private static final Logger logger = LoggerFactory.getLogger(NewExpenseRabbitNotifier.class);
   private final RabbitTemplate template;
 

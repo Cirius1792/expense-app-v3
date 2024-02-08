@@ -1,6 +1,6 @@
 package com.clt.expenses.user;
 
-import com.clt.usecase.RegisterUserUseCase;
+import com.clt.usecase.CreateUserUseCase;
 import com.clt.usecase.pojo.NewUser;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class UserStepDefinition {
 
     @Autowired
-    private RegisterUserUseCase registerPersonUseCase;
+    private CreateUserUseCase registerPersonUseCase;
     @Autowired
     private TestUser testUser;
 

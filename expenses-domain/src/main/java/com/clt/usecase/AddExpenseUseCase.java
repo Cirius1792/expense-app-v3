@@ -6,7 +6,7 @@ import com.clt.domain.group.GroupNotFound;
 import com.clt.domain.group.GroupStore;
 import com.clt.domain.group.PersonNotFound;
 import com.clt.domain.group.UserStore;
-import com.clt.event.Notifier;
+import com.clt.event.Observer;
 import com.clt.domain.view.ExpenseAggregate;
 import com.clt.domain.view.ExpenseAggregateFactory;
 import reactor.core.publisher.Mono;
@@ -16,7 +16,7 @@ public class AddExpenseUseCase implements UseCase {
   private final GroupStore groupStore;
   private final ExpenseFactory expenseFactory;
   private final ExpenseStore expenseStore;
-  private final Notifier<ExpenseRecord> newExpenseNotifier;
+  private final Observer<ExpenseRecord> newExpenseNotifier;
 
   public AddExpenseUseCase(
       UserStore personStore,
@@ -35,7 +35,7 @@ public class AddExpenseUseCase implements UseCase {
       GroupStore groupStore,
       ExpenseFactory expenseFactory,
       ExpenseStore expenseStore,
-      Notifier<ExpenseRecord> newExpenseNotifier) {
+      Observer<ExpenseRecord> newExpenseNotifier) {
     this.personStore = personStore;
     this.groupStore = groupStore;
     this.expenseFactory = expenseFactory;

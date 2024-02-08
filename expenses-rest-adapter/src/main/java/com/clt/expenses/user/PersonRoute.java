@@ -5,7 +5,7 @@ import com.clt.expenses.user.request.CreateUserRequestDto;
 import com.clt.expenses.user.response.UserGroupDto;
 import com.clt.expenses.user.response.UserResponseDto;
 import com.clt.usecase.FindUserUseCase;
-import com.clt.usecase.RegisterUserUseCase;
+import com.clt.usecase.CreateUserUseCase;
 import com.clt.usecase.RetrieveGroupPerUserUseCase;
 import com.clt.usecase.pojo.NewUser;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -24,7 +24,7 @@ public class PersonRoute {
     private static final String USER_TAG = "Users";
     public static final String USER_ID_PARAM = "userId";
 
-    private final RegisterUserUseCase registerPersonUseCase;
+    private final CreateUserUseCase registerPersonUseCase;
     private final FindUserUseCase findUserUseCase;
     private final RetrieveGroupPerUserUseCase retrieveGroupPerUserUseCase;
     private final PersonMapper personMapper;
@@ -32,7 +32,7 @@ public class PersonRoute {
     private final ApplicationCredentialManager applicationCredentialManager;
 
     public PersonRoute(
-            RegisterUserUseCase registerPersonUseCase,
+            CreateUserUseCase registerPersonUseCase,
             FindUserUseCase findUserUseCase,
             RetrieveGroupPerUserUseCase retrieveGroupPerUserUseCase,
             PersonMapper personMapper,
