@@ -4,7 +4,7 @@ import com.clt.domain.commons.UUIDIdFactory;
 import com.clt.domain.expense.*;
 import com.clt.domain.group.*;
 import com.clt.domain.view.ExpenseAggregate;
-import com.clt.event.Notifier;
+import com.clt.event.Observer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -25,7 +25,7 @@ class AddExpenseUseCaseTest {
   private GroupStore groupStore;
   private ExpenseStore expenseStore;
   private AddExpenseUseCase useCase;
-  private Notifier<ExpenseRecord> newExpenseNotifier;
+  private Observer<ExpenseRecord> newExpenseNotifier;
 
   @BeforeEach
   void initMocks() {

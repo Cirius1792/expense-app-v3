@@ -2,7 +2,7 @@ package com.clt.expenses.user;
 
 import com.clt.expenses.security.ApplicationCredentialManager;
 import com.clt.usecase.FindUserUseCase;
-import com.clt.usecase.RegisterUserUseCase;
+import com.clt.usecase.CreateUserUseCase;
 import com.clt.usecase.RetrieveGroupPerUserUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ public class PersonRouterConfig {
   @Bean
   RouterFunction<ServerResponse> userRouter(
       FindUserUseCase findUserUseCase,
-      RegisterUserUseCase createUserUseCase,
+      CreateUserUseCase createUserUseCase,
       RetrieveGroupPerUserUseCase retrieveGroupPerUserUseCase,
       PersonMapper personMapper,
       PersonGroupMapper personGroupMapper,
