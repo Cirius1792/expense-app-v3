@@ -1,20 +1,21 @@
 package com.clt.expenses.group;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.junit.jupiter.api.Assertions;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.clt.domain.group.User;
 import com.clt.domain.view.GroupAggregate;
 import com.clt.expenses.ApplicationDriver;
 import com.clt.usecase.AddMembersToAGroupUseCase;
-import com.clt.usecase.CreateGroupUseCase;
 import com.clt.usecase.FindGroupUseCase;
-import com.clt.usecase.CreateUserUseCase;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.jupiter.api.Assertions;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 public class GroupStepDefinition {
 

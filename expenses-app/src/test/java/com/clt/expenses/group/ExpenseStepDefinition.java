@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Assertions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.clt.domain.expense.Expense;
@@ -23,7 +21,6 @@ import io.cucumber.java.en.When;
 
 public class ExpenseStepDefinition {
 
-    private static final Logger logger = LoggerFactory.getLogger(ExpenseStepDefinition.class);
 
     @Autowired
     private ApplicationDriver applicationDriver;

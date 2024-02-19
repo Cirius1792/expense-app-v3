@@ -1,10 +1,9 @@
 package com.clt.domain.ledger;
 
-import com.clt.domain.expense.Money;
-import com.clt.domain.group.User;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.clt.domain.expense.Money;
 
 public class Balance {
   private final String owner;

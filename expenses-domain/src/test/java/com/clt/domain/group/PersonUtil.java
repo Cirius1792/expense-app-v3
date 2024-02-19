@@ -1,6 +1,5 @@
 package com.clt.domain.group;
 
-import java.util.Random;
 import java.util.UUID;
 
 public class PersonUtil {
