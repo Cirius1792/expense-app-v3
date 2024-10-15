@@ -20,7 +20,7 @@ class MoneyTest {
   }
 
   @Test
-  @DisplayName("Should add money")
+  @DisplayName("Should sum money")
   void testPlusOp() {
     Money five = Money.euros(5);
     Money six = Money.euros(6);
